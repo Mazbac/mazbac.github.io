@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mertcan Özbek — ICT Professional &amp; ServiceNow Engineer</title>
+  <meta name="description" content="Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.">
+  <meta name="theme-color" content="#0a0910">
+  <meta property="og:title" content="Mertcan Özbek — ICT Professional &amp; ServiceNow Engineer">
+  <meta property="og:description" content="Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0910'/%3E%3Ctext x='10' y='44' font-family='monospace' font-size='30' fill='%23a78bfa'%3E&gt;_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <canvas class="matrix-canvas" id="matrixCanvas" aria-hidden="true"></canvas>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="logo" href="#top"><span class="prompt">&gt;_</span>mertcan@portfolio</a>
+    <nav class="nav-links" aria-label="Hoofdnavigatie">
+      <a href="#about" data-i18n="nav.about"></a>
+      <a href="#experience" data-i18n="nav.experience"></a>
+      <a href="#skills" data-i18n="nav.skills"></a>
+      <a href="#certifications" data-i18n="nav.certs"></a>
+      <a href="#projects" data-i18n="nav.projects"></a>
+      <a href="#contact" data-i18n="nav.contact"></a>
+    </nav>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Wissel taal / Switch language">
+      <span data-lang="nl">NL</span><span class="sep">/</span><span data-lang="en">EN</span>
+    </button>
+    <a class="btn nav-cv" href="cv/Mertcan-Ozbek-CV-NL.pdf" data-cv-auto download>
+      <span data-i18n="nav.cv"></span>
+    </a>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" aria-label="Introductie">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">mertcan@portfolio: ~</span>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="terminal-output" id="terminalOutput" role="log"></div>
+          <div class="terminal-input-line">
+            <span class="t-prompt">$</span>
+            <input id="terminalInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" disabled>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <figure class="photo-card">
+          <img src="assets/headshot.jpg" alt="Portret van Mertcan Özbek" width="800" height="800">
+          <figcaption>
+            <span>~/assets/mertcan.jpg</span>
+            <span class="t-accent">● online</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="hero-intro">
+      <h1 class="glitch" data-text="Mertcan Özbek">Mertcan Özbek</h1>
+      <p class="subtitle"><span id="typedRole"></span><span class="caret" aria-hidden="true">▌</span></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="cv/Mertcan-Ozbek-CV-NL.pdf" data-cv-auto download>
+          <span data-i18n="hero.actions.cv"></span> ↓
+        </a>
+        <a class="btn" href="#contact"><span data-i18n="hero.actions.contact"></span></a>
+        <a class="btn" href="https://www.linkedin.com/in/mert-ozbek" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Mazbac" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="sec" id="about">
+      <h2 class="sec-title">
+        <span class="sec-num">01</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.about"></span>
+      </h2>
+      <div class="about-grid" id="aboutBody"></div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="sec" id="experience">
+      <h2 class="sec-title">
+        <span class="sec-num">02</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.experience"></span>
+      </h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="sec" id="skills">
+      <h2 class="sec-title">
+        <span class="sec-num">03</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.skills"></span>
+      </h2>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </section>
+
+    <!-- ================= CERTIFICATIONS ================= -->
+    <section class="sec" id="certifications">
+      <h2 class="sec-title">
+        <span class="sec-num">04</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.certs"></span>
+      </h2>
+      <div class="cert-grid" id="certGrid"></div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="sec" id="projects">
+      <h2 class="sec-title">
+        <span class="sec-num">05</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.projects"></span>
+      </h2>
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="sec" id="contact">
+      <h2 class="sec-title">
+        <span class="sec-num">06</span><span class="sec-slash">//</span>
+        <span data-i18n="sec.contact"></span>
+      </h2>
+      <div class="contact-grid" id="contactGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="cv-block">
+          <p class="cv-title" data-i18n="footer.cvTitle"></p>
+          <div class="cv-buttons">
+            <a class="btn" href="cv/Mertcan-Ozbek-CV-NL.pdf" download><span data-i18n="footer.cvNl"></span> ↓</a>
+            <a class="btn" href="cv/Mertcan-Ozbek-CV-EN.pdf" download><span data-i18n="footer.cvEn"></span> ↓</a>
+          </div>
+        </div>
+        <div class="socials">
+          <a class="btn" href="mailto:mertozbek.1994@gmail.com">✉ mail</a>
+          <a class="btn" href="https://www.linkedin.com/in/mert-ozbek" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/Mazbac" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights"></span>
+        <span data-i18n="footer.built"></span>
+        <a class="to-top" href="#top">↑ ~</a>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div style="position:fixed;bottom:16px;left:16px;right:16px;z-index:200;background:#13101d;color:#e9e5f2;border:1px solid #a78bfa;padding:14px 18px;font-family:monospace;border-radius:10px;">
+      Deze site vereist JavaScript om te tonen. Please enable JavaScript to view this site.
+    </div>
+  </noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
