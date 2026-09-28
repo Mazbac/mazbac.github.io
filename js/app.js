@@ -433,8 +433,15 @@
     let drops = [];
 
     function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
+      // scale the buffer by devicePixelRatio (capped at 2x) so glyphs stay crisp on hi-dpi phones
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       cols = Math.ceil(W / gap);
       drops = new Array(cols).fill(0).map(() => Math.floor(Math.random() * -40));
     }
@@ -463,6 +470,29 @@
     }
 
     requestAnimationFrame(frame);
+  }
+
+  /* ---------------- name glitch pulse (idle life, no hover needed) ---------------- */
+
+  const heroName = $('.hero-intro h1');
+
+  function schedulePulse() {
+    if (reduced || !heroName) return;
+    setTimeout(function fire() {
+      if (!heroName) return;
+      if (document.hidden || document.getElementById('boot')) {
+        schedulePulse();
+        return;
+      }
+      const r = heroName.getBoundingClientRect();
+      if (r.bottom < -50 || r.top > window.innerHeight + 50) {
+        schedulePulse();
+        return;
+      }
+      heroName.classList.add('glitch-pulse');
+      setTimeout(() => heroName.classList.remove('glitch-pulse'), 500);
+      schedulePulse();
+    }, 6000 + Math.random() * 3000);
   }
 
   /* ---------------- nav ---------------- */
@@ -677,4 +707,5 @@
     setTimeout(playBoot, 350);
   }
   initMatrix();
+  schedulePulse();
 })();

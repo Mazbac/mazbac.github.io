@@ -121,7 +121,9 @@ main, footer.site { position: relative; z-index: 1; }
   transition: color 0.2s, background 0.2s;
 }
 
-.nav-links a:hover { color: var(--text); background: var(--surface); }
+@media (hover: hover) {
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+}
 
 .lang-toggle {
   font-family: var(--mono);
@@ -138,7 +140,9 @@ main, footer.site { position: relative; z-index: 1; }
   transition: border-color 0.2s;
 }
 
-.lang-toggle:hover { border-color: var(--accent); }
+@media (hover: hover) {
+  .lang-toggle:hover { border-color: var(--accent); }
+}
 
 .lang-toggle .sep { color: var(--faint); }
 
@@ -163,10 +167,12 @@ main, footer.site { position: relative; z-index: 1; }
   transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s, filter 0.2s;
 }
 
-.btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
 }
 
 .btn-primary {
@@ -176,10 +182,12 @@ main, footer.site { position: relative; z-index: 1; }
   box-shadow: 0 4px 18px rgba(139, 92, 246, 0.35);
 }
 
-.btn-primary:hover {
-  color: #fff;
-  filter: brightness(1.12);
-  box-shadow: 0 6px 26px rgba(139, 92, 246, 0.55);
+@media (hover: hover) {
+  .btn-primary:hover {
+    color: #fff;
+    filter: brightness(1.12);
+    box-shadow: 0 6px 26px rgba(139, 92, 246, 0.55);
+  }
 }
 
 .nav-cv {
@@ -190,11 +198,39 @@ main, footer.site { position: relative; z-index: 1; }
   color: #fff;
 }
 
-.nav-cv:hover {
-  color: #fff;
-  filter: brightness(1.12);
-  box-shadow: var(--glow);
+@media (hover: hover) {
+  .nav-cv:hover {
+    color: #fff;
+    filter: brightness(1.12);
+    box-shadow: var(--glow);
+  }
 }
+
+/* press feedback for touch devices (hover is unavailable) */
+
+.chip, .lang-toggle, .menu-btn, .to-top {
+  transition: transform 0.15s ease, color 0.2s, border-color 0.2s;
+}
+
+.btn:active,
+.nav-cv:active,
+.lang-toggle:active,
+.menu-btn:active,
+.chip:active,
+.skill-group:active,
+.cert-card:active,
+.project-card:active,
+.contact-card:active {
+  transform: scale(0.97);
+  border-color: var(--accent);
+}
+
+.btn:active,
+.nav-cv:active {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 18px rgba(167, 139, 250, 0.25);
+}
+
+.to-top:active { color: var(--accent); }
 
 /* ---------- hero ---------- */
 
@@ -271,7 +307,9 @@ main, footer.site { position: relative; z-index: 1; }
   cursor: pointer;
 }
 
-.t-link:hover { color: var(--text); }
+@media (hover: hover) {
+  .t-link:hover { color: var(--text); }
+}
 
 .terminal-input-line {
   display: flex;
@@ -310,10 +348,14 @@ main, footer.site { position: relative; z-index: 1; }
   transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
 }
 
-.photo-card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--glow), 0 18px 48px rgba(0, 0, 0, 0.45);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .photo-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--glow), 0 18px 48px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .photo-card:hover img { filter: saturate(1) contrast(1.05); }
 }
 
 .photo-card img {
@@ -324,8 +366,6 @@ main, footer.site { position: relative; z-index: 1; }
   filter: saturate(0.82) contrast(1.06);
   transition: filter 0.3s;
 }
-
-.photo-card:hover img { filter: saturate(1) contrast(1.05); }
 
 .photo-card figcaption {
   font-family: var(--mono);
@@ -364,13 +404,28 @@ h1.glitch {
   pointer-events: none;
 }
 
-.glitch:hover::before {
+@media (hover: hover) {
+  .glitch:hover::before {
+    opacity: 0.85;
+    color: #e879f9;
+    animation: glitch-a 0.45s steps(2, end) 1;
+  }
+
+  .glitch:hover::after {
+    opacity: 0.85;
+    color: #67e8f9;
+    animation: glitch-b 0.45s steps(2, end) 1;
+  }
+}
+
+/* idle glitch pulse — fires without hover (mobile + desktop) */
+.glitch.glitch-pulse::before {
   opacity: 0.85;
   color: #e879f9;
   animation: glitch-a 0.45s steps(2, end) 1;
 }
 
-.glitch:hover::after {
+.glitch.glitch-pulse::after {
   opacity: 0.85;
   color: #67e8f9;
   animation: glitch-b 0.45s steps(2, end) 1;
@@ -573,10 +628,12 @@ h1.glitch {
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.skill-group:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+@media (hover: hover) {
+  .skill-group:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
 }
 
 .skill-group h3 {
@@ -602,7 +659,9 @@ h1.glitch {
   transition: color 0.2s, border-color 0.2s;
 }
 
-.chip:hover { color: var(--accent); border-color: var(--accent); }
+@media (hover: hover) {
+  .chip:hover { color: var(--accent); border-color: var(--accent); }
+}
 
 /* certifications */
 
@@ -625,10 +684,12 @@ h1.glitch {
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.cert-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--glow);
+@media (hover: hover) {
+  .cert-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+  }
 }
 
 .cert-issuer { font-family: var(--mono); font-size: 12px; color: var(--faint); }
@@ -655,10 +716,12 @@ h1.glitch {
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.project-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+@media (hover: hover) {
+  .project-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .project-icon {
@@ -705,10 +768,12 @@ h1.glitch {
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.contact-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--glow);
+@media (hover: hover) {
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+  }
 }
 
 .c-icon { font-family: var(--mono); font-size: 20px; color: var(--accent); }
@@ -770,7 +835,9 @@ h1.glitch {
 }
 
 .to-top { color: var(--muted); text-decoration: none; }
-.to-top:hover { color: var(--accent); }
+@media (hover: hover) {
+  .to-top:hover { color: var(--accent); }
+}
 
 /* ---------- reveal (decode on first view; JS-gated so content stays visible without JS) ---------- */
 
@@ -946,8 +1013,10 @@ body.menu-locked {
   transition: border-color 0.2s;
 }
 
-.menu-btn:hover {
-  border-color: var(--accent);
+@media (hover: hover) {
+  .menu-btn:hover {
+    border-color: var(--accent);
+  }
 }
 
 .menu-icon {
@@ -1046,7 +1115,10 @@ body.menu-locked .nav {
   color: var(--accent);
 }
 
-.mm-link:hover,
+@media (hover: hover) {
+  .mm-link:hover { color: var(--text); }
+}
+
 .mm-link:active {
   color: var(--text);
 }
