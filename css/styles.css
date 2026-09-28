@@ -347,7 +347,7 @@ main, footer.site { position: relative; z-index: 1; }
 }
 
 h1.glitch {
-  font-size: clamp(2.6rem, 6.5vw, 4.2rem);
+  font-size: clamp(2.1rem, 1.4rem + 2.2vw, 4.2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0 0 10px;
@@ -421,7 +421,7 @@ h1.glitch {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  font-size: 1.7rem;
+  font-size: clamp(1.3rem, 1rem + 1.1vw, 1.9rem);
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0 0 36px;
@@ -802,11 +802,30 @@ html.js .reveal.visible {
   .facts { max-width: 420px; }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 960px) {
   .nav-links { display: none; }
-  .logo { font-size: 13px; }
   header .menu-btn { display: inline-flex; }
   body .mobile-menu { display: block; }
+  .btn, .lang-toggle { min-height: 44px; }
+}
+
+@media (max-width: 760px) {
+  .logo { font-size: 13px; }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 20px);
+    gap: 20px;
+  }
+  .photo-card { max-width: 200px; }
+  .photo-card figcaption span:first-child { display: none; }
+  .terminal-body { min-height: 280px; }
+  .hero-intro { padding-top: 20px; }
+}
+
+@media (max-width: 380px) {
+  .logo .logo-text { display: none; }
 }
 
 /* ---------- reduced motion ---------- */
