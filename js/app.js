@@ -30,7 +30,8 @@
     '.c-label', '.c-value',
     '.about-text', '.fact .k', '.fact .v',
     '.terminal-title', '#typedRole',
-    '.photo-card figcaption span'
+    '.photo-card figcaption span',
+    '.hero-intro h1'
   ].join(',');
 
   function scrambleTargetsIn(root) {
@@ -59,6 +60,7 @@
     }
     // Write the glyph state synchronously so the final text is never painted first
     el.textContent = glyphVersion(finalText, 0);
+    if (el.hasAttribute('data-text')) el.setAttribute('data-text', el.textContent);
     const start = performance.now() + delay;
     requestAnimationFrame(function frame(now) {
       if (now < start) {
@@ -66,7 +68,9 @@
         return;
       }
       const t = Math.min(1, (now - start) / duration);
-      el.textContent = t >= 1 ? finalText : glyphVersion(finalText, t);
+      const next = t >= 1 ? finalText : glyphVersion(finalText, t);
+      el.textContent = next;
+      if (el.hasAttribute('data-text')) el.setAttribute('data-text', next);
       if (t < 1) requestAnimationFrame(frame);
     });
   }
@@ -684,10 +688,17 @@
       const sec = document.getElementById(id);
       if (sec) $$('.reveal', sec).forEach((el) => el.classList.add('visible'));
     });
-    decodeAll(document.body, { duration: 420, perItem: 12, maxStagger: 420 });
+    // phones get a slower, more visible wave; desktop stays snappy
+    const narrow = window.innerWidth <= 760;
+    decodeAll(
+      document.body,
+      narrow
+        ? { duration: 700, perItem: 40, maxStagger: 900 }
+        : { duration: 420, perItem: 12, maxStagger: 420 }
+    );
     setTimeout(() => {
       animLock = false;
-    }, 950);
+    }, narrow ? 1700 : 950);
   });
 
   /* ---------------- init ---------------- */
