@@ -820,7 +820,7 @@ html.js .reveal.visible {
   }
   .photo-card { max-width: 200px; }
   .photo-card figcaption span:first-child { display: none; }
-  .terminal-body { min-height: 280px; }
+  .terminal-body { min-height: 250px; max-height: 250px; }
   .hero-intro { padding-top: 20px; }
 }
 
