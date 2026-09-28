@@ -42,25 +42,31 @@
     return !r || r.classList.contains('visible');
   }
 
+  function glyphVersion(finalText, settledFrac) {
+    const len = finalText.length;
+    const settled = Math.floor(len * settledFrac);
+    let out = finalText.slice(0, settled);
+    for (let i = settled; i < len; i += 1) {
+      out += Math.random() < 0.55 ? GLYPHS[(Math.random() * GLYPHS.length) | 0] : finalText[i];
+    }
+    return out;
+  }
+
   function scrambleText(el, finalText, { duration = 420, delay = 0 } = {}) {
     if (reduced) {
       el.textContent = finalText;
       return;
     }
+    // Write the glyph state synchronously so the final text is never painted first
+    el.textContent = glyphVersion(finalText, 0);
     const start = performance.now() + delay;
-    const len = finalText.length;
     requestAnimationFrame(function frame(now) {
       if (now < start) {
         requestAnimationFrame(frame);
         return;
       }
       const t = Math.min(1, (now - start) / duration);
-      const settled = Math.floor(t * len);
-      let out = finalText.slice(0, settled);
-      for (let i = settled; i < len; i += 1) {
-        out += Math.random() < 0.55 ? GLYPHS[(Math.random() * GLYPHS.length) | 0] : finalText[i];
-      }
-      el.textContent = t >= 1 ? finalText : out;
+      el.textContent = t >= 1 ? finalText : glyphVersion(finalText, t);
       if (t < 1) requestAnimationFrame(frame);
     });
   }
@@ -470,6 +476,67 @@
     { passive: true }
   );
 
+  /* ---------------- mobile menu ---------------- */
+
+  const menuBtn = $('#menuBtn');
+  const mobileMenu = $('#mobileMenu');
+  let menuOpen = false;
+
+  function renderMobileMenuLinks() {
+    const items = [
+      { href: '#about', key: 'nav.about' },
+      { href: '#experience', key: 'nav.experience' },
+      { href: '#skills', key: 'nav.skills' },
+      { href: '#certifications', key: 'nav.certs' },
+      { href: '#projects', key: 'nav.projects' },
+      { href: '#contact', key: 'nav.contact' }
+    ];
+    $('#mmLinks').innerHTML = items
+      .map((it) => '<a class="mm-link" href="' + it.href + '"><span class="mm-prompt" aria-hidden="true">$</span><span class="mm-text" data-i18n="' + it.key + '"></span></a>')
+      .join('');
+  }
+
+  function openMenu() {
+    if (menuOpen) return;
+    menuOpen = true;
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-locked');
+    $$('.mm-link .mm-text', mobileMenu).forEach((t, i) => {
+      scrambleText(t, t.textContent, { duration: 320, delay: 80 + i * 70 });
+    });
+  }
+
+  function closeMenu() {
+    if (!menuOpen) return;
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-locked');
+    menuBtn.focus({ preventScroll: true });
+  }
+
+  menuBtn.addEventListener('click', openMenu);
+  mobileMenu.addEventListener('click', (e) => {
+    const link = e.target.closest('a.mm-link');
+    if (link) {
+      e.preventDefault();
+      closeMenu();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) setTimeout(() => target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }), 60);
+      return;
+    }
+    if (e.target.closest('[data-mm-close]') || !e.target.closest('a')) closeMenu();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) closeMenu();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 760 && menuOpen) closeMenu();
+  });
+
   /* ---------------- boot sequence ---------------- */
 
   function bootLines() {
@@ -574,10 +641,16 @@
   $('#langToggle').addEventListener('click', () => {
     if (animLock) return;
     animLock = true;
+    // Remember which sections are currently revealed so they don't blink to empty
+    const visibleIds = Array.from(new Set($$('.reveal.visible').map((el) => el.closest('section')?.id).filter(Boolean)));
     lang = lang === 'nl' ? 'en' : 'nl';
     localStorage.setItem('portfolio-lang', lang);
     applyI18n();
     renderAll();
+    visibleIds.forEach((id) => {
+      const sec = document.getElementById(id);
+      if (sec) $$('.reveal', sec).forEach((el) => el.classList.add('visible'));
+    });
     decodeAll(document.body, { duration: 420, perItem: 12, maxStagger: 420 });
     setTimeout(() => {
       animLock = false;
@@ -586,6 +659,7 @@
 
   /* ---------------- init ---------------- */
 
+  renderMobileMenuLinks();
   applyI18n();
   renderAll();
   animLock = true;
