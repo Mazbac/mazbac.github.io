@@ -772,20 +772,18 @@ h1.glitch {
 .to-top { color: var(--muted); text-decoration: none; }
 .to-top:hover { color: var(--accent); }
 
-/* ---------- reveal animations (JS-gated: content stays visible without JS) ---------- */
+/* ---------- reveal (decode on first view; JS-gated so content stays visible without JS) ---------- */
 
 .reveal {
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.25s ease;
 }
 
 html.js .reveal {
   opacity: 0;
-  transform: translateY(18px);
 }
 
 html.js .reveal.visible {
   opacity: 1;
-  transform: none;
 }
 
 /* ---------- responsive ---------- */
@@ -819,7 +817,90 @@ html.js .reveal.visible {
 
   html.js .reveal {
     opacity: 1;
-    transform: none;
     transition: none;
   }
+
+  .boot-skip { animation: none; }
+}
+
+/* ---------- boot sequence ---------- */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  font-family: var(--mono);
+  overflow: hidden;
+  transition: transform 0.45s ease-in, opacity 0.45s ease-in;
+}
+
+.boot.done {
+  transform: translateY(-100%);
+  opacity: 0.3;
+}
+
+.boot-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: max(44px, 9vh) clamp(20px, 6vw, 90px) 0;
+}
+
+.boot-log {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.boot-log .b-line {
+  white-space: pre;
+}
+
+.boot-log .b-accent {
+  color: var(--accent);
+}
+
+.boot-finale {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.boot-finale.show {
+  opacity: 1;
+}
+
+.boot-name {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-align: center;
+  padding: 0 16px;
+}
+
+.boot-granted {
+  color: var(--accent);
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.boot-skip {
+  position: absolute;
+  bottom: 18px;
+  right: 22px;
+  font-size: 11px;
+  color: var(--faint);
+  animation: blink 1.6s steps(2, start) infinite;
 }

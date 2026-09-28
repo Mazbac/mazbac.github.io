@@ -15,6 +15,11 @@ const CONTENT = {
       title: 'Mertcan Özbek — ICT Professional & ServiceNow Engineer',
       description: 'Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.'
     },
+    imgAlt: 'Portret van Mertcan Özbek',
+    aria: {
+      nav: 'Hoofdnavigatie',
+      input: 'Terminalinvoer'
+    },
     nav: {
       about: 'Over mij',
       experience: 'Ervaring',
@@ -99,10 +104,10 @@ const CONTENT = {
       neofetch: [
         'mertcan@portfolio',
         '──────────────────',
-        'OS:        Rotterdam Edition 2026',
+        'Systeem:   Rotterdam Edition 2026',
         'Shell:     motivatie (zsh)',
         'Uptime:    4+ jaar in IT',
-        'Role:      ServiceNow Engineer',
+        'Rol:       ServiceNow Engineer',
         'Status:    open voor opportuniteiten'
       ]
     },
@@ -234,13 +239,13 @@ const CONTENT = {
       },
       {
         icon: 'stream',
-        name: 'Remote PC access — Sunshine & Moonlight',
+        name: 'Remote PC-toegang — Sunshine & Moonlight',
         tags: ['Sunshine', 'Moonlight', 'NVIDIA', 'Port forwarding', 'Latency'],
         text: 'Low-latency streamingoplossing voor volledige remote toegang tot mijn pc vanaf overal. Configuratie van Sunshine (host) en Moonlight (client) voor minimale vertraging en maximale beeldkwaliteit — port forwarding, encoder-instellingen en securitymaatregelen. Geschikt voor zowel productiviteit als gaming via NVIDIA GeForce-componenten.'
       },
       {
         icon: 'chip',
-        name: 'Custom PC build — Mini-ITX',
+        name: 'Eigen PC-build — Mini-ITX',
         tags: ['Mini-ITX', 'Hardware', 'Koeling', 'Troubleshooting'],
         text: 'Compact high-performance systeem gebouwd op basis van Mini-ITX met zorgvuldig geselecteerde componenten (CPU, GPU, RAM, PSU). Geoptimaliseerd voor airflow, kabelmanagement en ruimtebeperking. Inzicht opgedaan in compatibiliteit, koeling en hardware-troubleshooting.'
       }
@@ -253,6 +258,7 @@ const CONTENT = {
     ],
     footer: {
       cvTitle: 'CV downloaden:',
+      mail: '✉ e-mail',
       cvNl: 'CV (Nederlands)',
       cvEn: 'CV (English)',
       rights: '© 2026 Mertcan Özbek — Alle rechten voorbehouden.',
@@ -264,6 +270,11 @@ const CONTENT = {
     meta: {
       title: 'Mertcan Özbek — ICT Professional & ServiceNow Engineer',
       description: 'Portfolio of Mertcan Özbek: ICT professional with enterprise Microsoft 365, ServiceNow and ITIL experience.'
+    },
+    imgAlt: 'Portrait of Mertcan Özbek',
+    aria: {
+      nav: 'Main navigation',
+      input: 'Terminal input'
     },
     nav: {
       about: 'About',
@@ -503,6 +514,7 @@ const CONTENT = {
     ],
     footer: {
       cvTitle: 'Download CV:',
+      mail: '✉ email',
       cvNl: 'CV (Dutch)',
       cvEn: 'CV (English)',
       rights: '© 2026 Mertcan Özbek — All rights reserved.',

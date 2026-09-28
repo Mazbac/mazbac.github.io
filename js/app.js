@@ -1,5 +1,5 @@
 /* ============================================================
-   App — rendering, i18n, terminal, effects
+   App — rendering, i18n, boot sequence, scramble effects, terminal
    ============================================================ */
 
 (() => {
@@ -16,6 +16,60 @@
     }[c]));
 
   let lang = localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'nl';
+  let animLock = false;
+
+  /* ---------------- scramble-decode utility ---------------- */
+
+  const GLYPHS = '0123456789abcdef<>/[]{}$#@*+=~!|?^%&';
+  const LEAF_SEL = [
+    '[data-i18n]',
+    '.tl-period', '.tl-company .co', '.tl-item h3', '.tl-item li',
+    '.skill-group h3', '.chip',
+    '.cert-issuer', '.cert-name', '.cert-date', '.cert-verify',
+    '.project-card h3', '.project-text',
+    '.c-label', '.c-value',
+    '.about-text', '.fact .k', '.fact .v',
+    '.terminal-title', '#typedRole',
+    '.photo-card figcaption span'
+  ].join(',');
+
+  function scrambleTargetsIn(root) {
+    return $$(LEAF_SEL, root).filter((el) => el.children.length === 0 && el.textContent.trim().length > 0);
+  }
+
+  function isRevealed(el) {
+    const r = el.closest('.reveal');
+    return !r || r.classList.contains('visible');
+  }
+
+  function scrambleText(el, finalText, { duration = 420, delay = 0 } = {}) {
+    if (reduced) {
+      el.textContent = finalText;
+      return;
+    }
+    const start = performance.now() + delay;
+    const len = finalText.length;
+    requestAnimationFrame(function frame(now) {
+      if (now < start) {
+        requestAnimationFrame(frame);
+        return;
+      }
+      const t = Math.min(1, (now - start) / duration);
+      const settled = Math.floor(t * len);
+      let out = finalText.slice(0, settled);
+      for (let i = settled; i < len; i += 1) {
+        out += Math.random() < 0.55 ? GLYPHS[(Math.random() * GLYPHS.length) | 0] : finalText[i];
+      }
+      el.textContent = t >= 1 ? finalText : out;
+      if (t < 1) requestAnimationFrame(frame);
+    });
+  }
+
+  function decodeAll(root, { duration = 420, perItem = 12, maxStagger = 420 } = {}) {
+    const targets = scrambleTargetsIn(root).filter(isRevealed);
+    targets.forEach((t, i) => scrambleText(t, t.textContent, { duration, delay: Math.min(i * perItem, maxStagger) }));
+    return targets.length;
+  }
 
   /* ---------------- icons ---------------- */
 
@@ -48,13 +102,21 @@
     $$('#langToggle span[data-lang]').forEach((el) => {
       el.classList.toggle('active', el.dataset.lang === lang);
     });
+    const img = $('#headshotImg');
+    if (img) img.alt = C.imgAlt;
+    const navLinks = $('.nav-links');
+    if (navLinks) navLinks.setAttribute('aria-label', C.aria.nav);
+    const input = $('#terminalInput');
+    if (input) input.setAttribute('aria-label', C.aria.input);
   }
 
   /* ---------------- renderers ---------------- */
 
   function renderAbout() {
     const C = CONTENT[lang];
-    $('#aboutBody').innerHTML =
+    const body = $('#aboutBody');
+    body.classList.add('reveal');
+    body.innerHTML =
       '<p class="about-text">' + escapeHtml(C.about.text) + '</p>' +
       '<div class="facts" role="list">' +
       C.about.facts
@@ -72,8 +134,8 @@
     const C = CONTENT[lang];
     $('#timeline').innerHTML = C.experience
       .map(
-        (item, i) =>
-          '<article class="tl-item reveal" style="transition-delay:' + Math.min(i * 60, 240) + 'ms">' +
+        (item) =>
+          '<article class="tl-item reveal">' +
           '<span class="tl-dot" aria-hidden="true"></span>' +
           '<div class="tl-period">' + escapeHtml(item.period) + '</div>' +
           '<h3>' + escapeHtml(item.role) + '</h3>' +
@@ -88,8 +150,8 @@
     const C = CONTENT[lang];
     $('#skillsGrid').innerHTML = C.skills
       .map(
-        (g, i) =>
-          '<div class="skill-group reveal" style="transition-delay:' + i * 60 + 'ms">' +
+        (g) =>
+          '<div class="skill-group reveal">' +
           '<h3>' + escapeHtml(g.name) + '</h3>' +
           '<div class="chips">' + g.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
           '</div>'
@@ -101,8 +163,8 @@
     const C = CONTENT[lang];
     $('#certGrid').innerHTML = C.certs
       .map(
-        (c, i) =>
-          '<a class="cert-card reveal" style="transition-delay:' + i * 60 + 'ms" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
+        (c) =>
+          '<a class="cert-card reveal" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
           '<span class="cert-issuer">' + escapeHtml(c.issuer) + '</span>' +
           '<span class="cert-name">' + escapeHtml(c.name) + '</span>' +
           '<span class="cert-date">' + escapeHtml(c.date) + '</span>' +
@@ -116,8 +178,8 @@
     const C = CONTENT[lang];
     $('#projectGrid').innerHTML = C.projects
       .map(
-        (p, i) =>
-          '<article class="project-card reveal" style="transition-delay:' + i * 70 + 'ms">' +
+        (p) =>
+          '<article class="project-card reveal">' +
           '<div class="project-icon" aria-hidden="true">' + (ICONS[p.icon] || '') + '</div>' +
           '<h3>' + escapeHtml(p.name) + '</h3>' +
           '<div class="chips">' + p.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
@@ -131,8 +193,8 @@
     const C = CONTENT[lang];
     $('#contactGrid').innerHTML = C.contact
       .map(
-        (c, i) =>
-          '<a class="contact-card reveal" style="transition-delay:' + i * 60 + 'ms" href="' + escapeHtml(c.href) + '"' +
+        (c) =>
+          '<a class="contact-card reveal" href="' + escapeHtml(c.href) + '"' +
           (c.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' +
           '<span class="c-icon" aria-hidden="true">' + escapeHtml(c.icon) + '</span>' +
           '<span class="c-label">' + escapeHtml(c.label) + '</span>' +
@@ -142,13 +204,20 @@
       .join('');
   }
 
-  /* ---------------- reveal on scroll ---------------- */
+  /* ---------------- reveal on scroll (decode on first view) ---------------- */
+
+  function revealEl(el) {
+    el.classList.add('visible');
+    if (reduced) return;
+    const targets = scrambleTargetsIn(el);
+    targets.forEach((t, i) => scrambleText(t, t.textContent, { duration: 380, delay: i * 45 }));
+  }
 
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add('visible');
+          revealEl(e.target);
           io.unobserve(e.target);
         }
       });
@@ -172,27 +241,6 @@
     renderProjects();
     renderContact();
     observeReveals();
-  }
-
-  /* ---------------- role typewriter ---------------- */
-
-  let roleTimer = null;
-
-  function typeRole() {
-    const el = $('#typedRole');
-    const text = CONTENT[lang].hero.role;
-    if (roleTimer) clearInterval(roleTimer);
-    if (reduced) {
-      el.textContent = text;
-      return;
-    }
-    el.textContent = '';
-    let i = 0;
-    roleTimer = setInterval(() => {
-      i += 1;
-      el.textContent = text.slice(0, i);
-      if (i >= text.length) clearInterval(roleTimer);
-    }, 38);
   }
 
   /* ---------------- terminal ---------------- */
@@ -422,21 +470,134 @@
     { passive: true }
   );
 
+  /* ---------------- boot sequence ---------------- */
+
+  function bootLines() {
+    const langLine =
+      lang === 'nl'
+        ? 'STATUS: OPEN VOOR NIEUWE OPPORTUNITEITEN ....... ✓'
+        : 'STATUS: OPEN TO NEW OPPORTUNITIES ............... ✓';
+    return [
+      'MERTCAN OZBEK SYSTEMS — BIOS v2.6',
+      '(C) 2026 — ALL RIGHTS RESERVED',
+      '',
+      'CPU: MOTIVATION @ 3.50 GHZ ........... OK',
+      'MEMORY: 4+ YR IT ..................... 100% OK',
+      'MODULES: /experience /skills /certs ... OK',
+      'MOUNT /projects: home-assistant, sunshine, mini-itx . OK',
+      'matrix.d ................................ OK',
+      langLine,
+      '████████████ 100% — READY'
+    ];
+  }
+
+  let skipRequested = false;
+  let bootEl = null;
+
+  function onSkip() {
+    skipRequested = true;
+  }
+
+  async function typeBootLine(log, line) {
+    const div = document.createElement('div');
+    div.className = 'b-line';
+    if (line.startsWith('STATUS') || line.includes('READY')) div.classList.add('b-accent');
+    log.appendChild(div);
+    if (reduced) {
+      div.textContent = line;
+      return;
+    }
+    for (let i = 1; i <= line.length; i += 1) {
+      if (skipRequested) {
+        div.textContent = line;
+        return;
+      }
+      div.textContent = line.slice(0, i);
+      await sleep(3 + Math.random() * 5);
+    }
+  }
+
+  async function revealInitial() {
+    decodeAll(document.body, { duration: 520, perItem: 10, maxStagger: 500 });
+    await sleep(620);
+  }
+
+  async function playBoot() {
+    bootEl = $('#boot');
+    if (!bootEl) return;
+    const log = $('#bootLog');
+    const finale = $('#bootFinale');
+    const skipHint = $('#bootSkip');
+    skipHint.textContent = lang === 'nl' ? 'druk op een toets om over te slaan' : 'press any key to skip';
+    $('#typedRole').textContent = CONTENT[lang].hero.role;
+    window.addEventListener('keydown', onSkip);
+    bootEl.addEventListener('pointerdown', onSkip);
+
+    for (const line of bootLines()) {
+      if (skipRequested) break;
+      if (line === '') {
+        await sleep(90);
+        continue;
+      }
+      await typeBootLine(log, line);
+      await sleep(45);
+    }
+
+    if (skipRequested) {
+      bootEl.classList.add('done');
+      await sleep(250);
+      revealInitial();
+      await sleep(320);
+      bootEl.remove();
+      window.removeEventListener('keydown', onSkip);
+      bootEl.removeEventListener('pointerdown', onSkip);
+      animLock = false;
+      setTimeout(playIntro, 250);
+      return;
+    }
+
+    finale.classList.add('show');
+    await sleep(650);
+    bootEl.classList.add('done');
+    await sleep(180);
+    revealInitial();
+    await sleep(320);
+    bootEl.remove();
+    window.removeEventListener('keydown', onSkip);
+    bootEl.removeEventListener('pointerdown', onSkip);
+    animLock = false;
+    setTimeout(playIntro, 300);
+  }
+
   /* ---------------- language toggle ---------------- */
 
   $('#langToggle').addEventListener('click', () => {
+    if (animLock) return;
+    animLock = true;
     lang = lang === 'nl' ? 'en' : 'nl';
     localStorage.setItem('portfolio-lang', lang);
     applyI18n();
     renderAll();
-    typeRole();
+    decodeAll(document.body, { duration: 420, perItem: 12, maxStagger: 420 });
+    setTimeout(() => {
+      animLock = false;
+    }, 950);
   });
 
   /* ---------------- init ---------------- */
 
   applyI18n();
   renderAll();
-  typeRole();
+  animLock = true;
+  if (reduced) {
+    const b = $('#boot');
+    if (b) b.remove();
+    animLock = false;
+    $$('.reveal').forEach((el) => el.classList.add('visible'));
+    $('#typedRole').textContent = CONTENT[lang].hero.role;
+    setTimeout(playIntro, 300);
+  } else {
+    setTimeout(playBoot, 350);
+  }
   initMatrix();
-  setTimeout(playIntro, reduced ? 0 : 600);
 })();
