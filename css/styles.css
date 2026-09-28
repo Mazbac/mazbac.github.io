@@ -999,26 +999,10 @@ body.menu-locked {
   transform: none;
 }
 
-.mm-close {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.mm-close:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+/* while the menu is open the nav (with its burger/× button) floats above the overlay,
+   so the close control stays exactly where the hamburger is */
+body.menu-locked .nav {
+  z-index: 200;
 }
 
 .mm-links {

@@ -518,7 +518,10 @@
     menuBtn.focus({ preventScroll: true });
   }
 
-  menuBtn.addEventListener('click', openMenu);
+  menuBtn.addEventListener('click', () => {
+    if (menuOpen) closeMenu();
+    else openMenu();
+  });
   mobileMenu.addEventListener('click', (e) => {
     const link = e.target.closest('a.mm-link');
     if (link) {
@@ -528,7 +531,7 @@
       if (target) setTimeout(() => target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }), 60);
       return;
     }
-    if (e.target.closest('[data-mm-close]') || !e.target.closest('a')) closeMenu();
+    if (!e.target.closest('a')) closeMenu();
   });
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && menuOpen) closeMenu();
