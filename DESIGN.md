@@ -90,7 +90,7 @@ components:
     rounded: "{rounded.pill}"
     padding: "5px 11px"
   terminal:
-    backgroundColor: "rgba(19, 16, 29, 0.88)"
+    backgroundColor: "#0a0910"
     rounded: "{rounded.hero}"
   diagram:
     backgroundColor: "{colors.surface}"
@@ -176,7 +176,7 @@ The career stage is static even on desktop and chapter minimum heights are remov
 
 ## Elevation & Depth
 
-The preserved hero has genuine terminal depth: translucent chrome, a dark ambient shadow and violet glow. Background matrix texture remains subtle (`opacity: 0.10`), beneath the pointer-transparent CRT treatment. The fixed navigation uses blur (`12px`) and becomes more opaque after scrolling. Narrative depth is primarily tonal and ruled, not a repeated collection of floating cards.
+The preserved hero has genuine terminal depth: dark console chrome, an ambient shadow and violet glow. Background matrix texture remains subtle (`opacity: 0.10`), beneath the pointer-transparent CRT treatment. The fixed navigation uses blur (`12px`) and becomes more opaque after scrolling. Narrative depth is primarily tonal and ruled, not a repeated collection of floating cards.
 
 ### Shadow Vocabulary
 - **Terminal:** `0 24px 60px rgba(0, 0, 0, 0.5), 0 0 48px rgba(139, 92, 246, 0.10)`.
@@ -193,7 +193,7 @@ Hero windows and portrait use the hero radius; facts and the automation hub use 
 ## Components
 
 ### Original boot and terminal
-The full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. The boot now reveals the page in about a second, with a brief upward transform and opacity transition (`0.28s ease-in`); terminal commands finish shortly afterward. Skip works from the start of the animation. It is decorative and marked `aria-hidden`; reduced-motion users bypass it. The BIOS stays dark in either page theme.
+The full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. One horizontal sync line traverses the BIOS before it closes to a narrow horizontal strip via `clip-path` (`0.2s`); the hero terminal settles into place by 8px without carrying the glitch onto the page. Both consoles share the same opaque `#0a0910` ground in either theme. The page becomes visible in about 1.4 seconds; terminal commands finish shortly afterward. Skip bypasses the glitch and fades quickly, even when requested immediately; reduced-motion users bypass the boot entirely. The overlay is decorative and marked `aria-hidden`.
 
 The terminal retains traffic-light chrome, monospaced log, scrollable output and a transparent command input with violet caret. Desktop body padding is `20px 22px`, height range `360–430px`; responsive overrides are recorded above. The input is disabled/hidden during initialization and the output has `role="log"`. No conventional contact form is introduced.
 

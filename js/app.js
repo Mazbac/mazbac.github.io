@@ -697,6 +697,9 @@
       'MODULES: /experience /skills /certs ... OK',
       'MOUNT /projects: home-assistant, sunshine, mini-itx . OK',
       'matrix.d ................................ OK',
+      'RAM CLEAR ............................... OK',
+      'VGA SYNC ................................ OK',
+      'RESTART ............................. READY',
       langLine,
       '████████████ 100% — READY'
     ];
@@ -728,10 +731,6 @@
     div.textContent = line;
   }
 
-  function revealInitial() {
-    decodeAll(document.body, { duration: 280, perItem: 5, maxStagger: 180 });
-  }
-
   async function playBoot() {
     bootEl = $('#boot');
     if (!bootEl) return;
@@ -752,11 +751,21 @@
 
     if (!skipRequested) {
       finale.classList.add('show');
-      await sleep(160);
+      await sleep(90);
     }
-    bootEl.classList.add('done');
-    revealInitial();
-    await sleep(300);
+    if (!skipRequested) {
+      bootEl.classList.add('glitching');
+      await sleep(140);
+    } else {
+      bootEl.classList.add('skipped');
+    }
+    if (!skipRequested) {
+      bootEl.classList.add('done');
+      const terminal = $('.terminal');
+      terminal.classList.add('settling');
+      terminal.addEventListener('animationend', () => terminal.classList.remove('settling'), { once: true });
+    }
+    await sleep(skipRequested ? 170 : 230);
     bootEl.remove();
     window.removeEventListener('keydown', onSkip);
     bootEl.removeEventListener('pointerdown', onSkip);
