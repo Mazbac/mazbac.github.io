@@ -334,35 +334,59 @@
     heading.textContent = J.workbench;
   }
 
+  let tiltBound = false;
+
   function initProjectTilt() {
+    // renderAll() re-runs this on every language switch; bind once.
+    if (tiltBound) return;
+    tiltBound = true;
     const canTilt = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-    $$('.project-visual').forEach((visual) => {
-      let frame = 0;
-      let x = 0;
-      let y = 0;
-      visual.addEventListener('pointermove', (event) => {
-        if (!canTilt.matches || event.pointerType !== 'mouse') return;
-        x = event.clientX;
-        y = event.clientY;
-        if (frame) return;
-        frame = requestAnimationFrame(() => {
-          frame = 0;
-          if (!visual.isConnected) return;
-          const rect = visual.getBoundingClientRect();
-          const horizontal = Math.max(-1, Math.min(1, (x - rect.left) / rect.width * 2 - 1));
-          const vertical = Math.max(-1, Math.min(1, (y - rect.top) / rect.height * 2 - 1));
-          visual.style.setProperty('--tilt-x', (-vertical * 3).toFixed(2) + 'deg');
-          visual.style.setProperty('--tilt-y', (horizontal * 4).toFixed(2) + 'deg');
-          visual.classList.add('is-tilting');
-        });
-      });
-      visual.addEventListener('pointerleave', () => {
-        cancelAnimationFrame(frame);
-        frame = 0;
+    const radius = 100; // the card responds before the cursor reaches it
+    let frame = 0;
+    let px = 0;
+    let py = 0;
+
+    function settle() {
+      $$('.project-visual').forEach((visual) => {
         visual.classList.remove('is-tilting');
         visual.style.removeProperty('--tilt-x');
         visual.style.removeProperty('--tilt-y');
       });
+    }
+
+    function update() {
+      frame = 0;
+      $$('.project-visual').forEach((visual) => {
+        const rect = visual.getBoundingClientRect();
+        const dx = Math.max(rect.left - px, 0, px - rect.right);
+        const dy = Math.max(rect.top - py, 0, py - rect.bottom);
+        const dist = Math.hypot(dx, dy);
+        if (dist > radius) {
+          visual.classList.remove('is-tilting');
+          visual.style.removeProperty('--tilt-x');
+          visual.style.removeProperty('--tilt-y');
+          return;
+        }
+        const fade = 1 - dist / radius; // full on the card, easing out to the radius edge
+        const horizontal = Math.max(-1, Math.min(1, (px - rect.left - rect.width / 2) / rect.width));
+        const vertical = Math.max(-1, Math.min(1, (py - rect.top - rect.height / 2) / rect.height));
+        visual.style.setProperty('--tilt-x', (-vertical * 3 * fade).toFixed(2) + 'deg');
+        visual.style.setProperty('--tilt-y', (horizontal * 4 * fade).toFixed(2) + 'deg');
+        visual.classList.add('is-tilting');
+      });
+    }
+
+    document.addEventListener('pointermove', (event) => {
+      if (!canTilt.matches || event.pointerType !== 'mouse') return;
+      px = event.clientX;
+      py = event.clientY;
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    });
+
+    document.documentElement.addEventListener('pointerleave', () => {
+      if (frame) { cancelAnimationFrame(frame); frame = 0; }
+      settle();
     });
   }
 
