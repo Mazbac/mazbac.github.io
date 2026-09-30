@@ -114,7 +114,7 @@ The preserved boot, interactive terminal and portrait lead into spacious narrati
 - Readable summaries with native optional detail.
 - Truthful portrait, credentials and explicitly conceptual diagrams.
 
-Documentation scope: `css/styles.css`, its later cascade in `css/journey.css`, `index.html`, and generated markup in `js/app.js`, `js/content.js` and `js/journey.js`. `.impeccable` is ignored and local development-only; this root document is the portable system record.
+Documentation scope: `css/styles.css`, its later cascade in `css/journey.css`, `index.html`, and generated markup in `js/app.js`, driven by the content model in `content/site.json`. `.impeccable` is ignored and local development-only; this root document is the portable system record.
 
 ## Colors
 

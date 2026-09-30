@@ -1,8 +1,13 @@
 /* ============================================================
    App: rendering, i18n, boot sequence, scramble effects, terminal
+
+   Content is loaded from content/site.json. If that cannot be
+   fetched (for example when index.html is opened straight from
+   disk) the generated copy in js/content.generated.js is used
+   instead, so the site never renders empty.
    ============================================================ */
 
-(() => {
+(async () => {
   'use strict';
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,6 +19,34 @@
     String(s).replace(/[&<>"']/g, (c) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
+
+  async function loadContent() {
+    try {
+      const res = await fetch('content/site.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error('content/site.json: HTTP ' + res.status);
+      return await res.json();
+    } catch (err) {
+      const fallback = window.__PORTFOLIO_CONTENT__;
+      if (fallback) {
+        console.warn('[portfolio] content/site.json unavailable, using generated fallback.', err);
+        return fallback;
+      }
+      throw new Error('Portfolio content is unavailable.');
+    }
+  }
+
+  let DATA;
+  try {
+    DATA = await loadContent();
+  } catch (err) {
+    document.body.innerHTML = '<pre style="padding:24px;font-family:ui-monospace,monospace">' + escapeHtml(String(err.message || err)) + '</pre>';
+    throw err;
+  }
+
+  const CONTENT = DATA;
+  const JOURNEY = { nl: DATA.nl.journey, en: DATA.en.journey };
+  const CV_FILES = DATA.meta.cvFiles;
+  const CONTACT_EMAIL = DATA.meta.email;
 
   let lang = localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'nl';
   let animLock = false;
@@ -170,6 +203,12 @@
     const img = $('#headshotImg');
     if (img) img.alt = C.imgAlt;
     $('#mmLinks').setAttribute('aria-label', C.aria.nav);
+    const mmPanel = $('.mm-panel');
+    if (mmPanel) mmPanel.setAttribute('aria-label', C.aria.menu);
+    $('#menuBtn').setAttribute('aria-label', C.aria.menu);
+    $('#langToggle').setAttribute('aria-label', C.aria.lang);
+    const hero = $('section.hero');
+    if (hero) hero.setAttribute('aria-label', C.aria.hero);
     $('#navProgress').setAttribute('aria-label', C.nav.progress);
     const input = $('#terminalInput');
     if (input) input.setAttribute('aria-label', C.aria.input);
@@ -200,13 +239,31 @@
     const C = CONTENT[lang];
     const J = JOURNEY[lang];
     $('#experience .sec-title').hidden = true;
-    const groups = [[4], [3, 2], [1], [0]];
-    const tools = [['Windows 11', 'Google Workspace', 'Hardware'], ['TOPdesk', 'ServiceNow', 'VPN'], ['Microsoft 365', 'Intune', 'ITIL'], ['ServiceNow', 'JavaScript', 'CSA']];
-    $('#timeline').innerHTML = '<div class="career-stage reveal" data-reveal="career-stage"><h2>' + escapeHtml(J.career) + '</h2><div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(J.phases[0]) + '</span><div class="orbit-track"><i></i><i></i><i></i><i></i></div></div><nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' + groups.map((g, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(J.phases[i]) + '</a>').join('') + '</nav></div><div class="career-chapters">' + groups.map((indices, i) => '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '"><div class="phase-intro reveal" data-reveal="phase-' + i + '-intro"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / 04</div><h3>' + escapeHtml(J.phases[i]) + '</h3><p class="phase-summary">' + escapeHtml(J.summaries[i]) + '</p><div class="chips">' + tools[i].map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div></div>' + indices.map(index => {
-      const item = C.experience[index];
-      return '<div class="career-role reveal" data-reveal="role-' + index + '"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta"><span class="role-org">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '</span><br><span class="role-period">' + escapeHtml(item.period) + '</span></p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
-    }).join('') + '</article>').join('') + '</div>';
-    $('#phase-1 .chips').insertAdjacentHTML('afterend', '<p class="overlap-note">' + escapeHtml(J.overlap) + '</p>');
+    const phases = C.career.phases;
+    const phaseCount = String(phases.length).padStart(2, '0');
+    let roleIndex = 0;
+    $('#timeline').innerHTML =
+      '<div class="career-stage reveal" data-reveal="career-stage"><h2>' + escapeHtml(J.career) + '</h2>' +
+      '<div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(phases[0].name) + '</span>' +
+      '<div class="orbit-track">' + phases.map(() => '<i></i>').join('') + '</div></div>' +
+      '<nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' +
+      phases.map((p, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(p.name) + '</a>').join('') +
+      '</nav></div><div class="career-chapters">' +
+      phases.map((p, i) => {
+        const roles = C.career.roles.filter((r) => r.phase === i);
+        return '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '">' +
+        '<div class="phase-intro reveal" data-reveal="phase-' + i + '-intro"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / ' + phaseCount + '</div>' +
+        '<h3>' + escapeHtml(p.name) + '</h3><p class="phase-summary">' + escapeHtml(p.summary) + '</p>' +
+        '<div class="chips">' + p.tools.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
+        (p.note ? '<p class="overlap-note">' + escapeHtml(p.note) + '</p>' : '') +
+        '</div>' +
+        roles.map((r) => {
+          const key = roleIndex++;
+          return '<div class="career-role reveal" data-reveal="role-' + key + '"><h4>' + escapeHtml(r.role) + '</h4><p class="role-meta"><span class="role-org">' + escapeHtml(r.company) + ' · ' + escapeHtml(r.city) + '</span><br><span class="role-period">' + escapeHtml(r.period) + '</span></p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + r.bullets.map((b) => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
+        }).join('') +
+        '</article>';
+      }).join('') +
+      '</div>';
     updateCareer();
   }
 
@@ -247,29 +304,30 @@
     const C = CONTENT[lang];
     const J = JOURNEY[lang];
     $('#projects .sec-title').hidden = true;
+    const projectCount = String(C.projects.length).padStart(2, '0');
     const projectInfo = (p, i) => {
-      const heading = '<span class="project-index">' + String(i + 1).padStart(2, '0') + ' / 03</span><h3>' + escapeHtml(p.name) + '</h3>';
-      const supporting = '<p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
-        '<div class="chips">' + p.tags.map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
+      const heading = '<span class="project-index">' + String(i + 1).padStart(2, '0') + ' / ' + projectCount + '</span><h3>' + escapeHtml(p.name) + '</h3>';
+      const supporting = '<p class="project-hook">' + escapeHtml(p.note) + '</p>' +
+        '<div class="chips">' + p.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
         '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details>';
       return '<div class="project-notes reveal" data-reveal="project-' + i + '-notes">' + (i === 2
         ? '<div class="project-heading">' + heading + '</div><div class="project-supporting">' + supporting + '</div>'
         : heading + supporting) + '</div>';
     };
     const node = (text, className) => '<span class="diagram-item ' + className + '">' + escapeHtml(text) + '</span>';
-    const diagram = (i) => {
-      const labels = J.projectSchematics[i];
+    const diagram = (p, i) => {
+      const labels = p.labels;
       const caption = '<p class="diagram-caption">' + escapeHtml(J.diagram) + '</p>';
-      if (i === 0) return '<div class="project-visual automation-map reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="automation-nodes">' +
+      if (p.diagram === 'hub') return '<div class="project-visual automation-map reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="automation-nodes">' +
         node(labels[0], 'automation-core') + node(labels[1], 'automation-branch branch-one') + node(labels[2], 'automation-branch branch-two') + node(labels[3], 'automation-branch branch-three') +
         '</div>' + caption + '</div>';
-      if (i === 1) return '<div class="project-visual remote-route reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="route-nodes">' +
+      if (p.diagram === 'route') return '<div class="project-visual remote-route reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="route-nodes">' +
         node(labels[0], 'route-host') + '<span class="route-line" aria-hidden="true"><i></i></span>' + node(labels[1], 'route-client') + '</div><div class="route-meta">' +
-        labels.slice(2).map(t => '<span>' + escapeHtml(t) + '</span>').join('') + '</div>' + caption + '</div>';
-      return '<div class="project-visual build-board reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="chassis"><span class="chassis-title">Mini-ITX</span>' +
+        labels.slice(2).map((t) => '<span>' + escapeHtml(t) + '</span>').join('') + '</div>' + caption + '</div>';
+      return '<div class="project-visual build-board reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="chassis"><span class="chassis-title">' + escapeHtml(p.chassisLabel) + '</span>' +
         labels.map((t, n) => node(t, 'part part-' + n)).join('') + '<span class="airflow" aria-hidden="true"></span></div>' + caption + '</div>';
     };
-    $('#projectGrid').innerHTML = C.projects.map((p, i) => '<article class="workbench-project workbench-' + i + '">' + projectInfo(p, i) + diagram(i) + '</article>').join('');
+    $('#projectGrid').innerHTML = C.projects.map((p, i) => '<article class="workbench-project workbench-' + i + '">' + projectInfo(p, i) + diagram(p, i) + '</article>').join('');
     initProjectTilt();
     let heading = $('#projects .journey-title');
     if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title reveal'; heading.dataset.reveal = 'project-heading'; $('#projectGrid').before(heading); }
@@ -334,7 +392,7 @@
     if (!stage) return;
     stage.style.setProperty('--phase', active);
     $('.orbit-index', stage).textContent = String(active + 1).padStart(2, '0');
-    $('.orbit-name', stage).textContent = JOURNEY[lang].phases[active];
+    $('.orbit-name', stage).textContent = CONTENT[lang].career.phases[active].name;
     $$('.phase-jumps a', stage).forEach((a, i) => { a.classList.toggle('is-current', i === active); if (i === active) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
     phases.forEach((p, i) => p.classList.toggle('is-current', i === active));
   }
@@ -516,10 +574,13 @@
         {
           html:
             escapeHtml(T.cvLine) +
-            ' <a class="t-link" href="' + CV_FILES.nl + '" target="_blank" rel="noopener">[Nederlands]</a>' +
-            ' · <a class="t-link" href="' + CV_FILES.en + '" target="_blank" rel="noopener">[English]</a>'
+            ' <a class="t-link" href="' + CV_FILES.nl + '" target="_blank" rel="noopener">' + escapeHtml(T.cvLabels.nl) + '</a>' +
+            ' · <a class="t-link" href="' + CV_FILES.en + '" target="_blank" rel="noopener">' + escapeHtml(T.cvLabels.en) + '</a>'
         }
       ];
+    } else if (cmd === 'clear') {
+      termOut.innerHTML = '';
+      lines = [{ text: T.clearLine, cls: 'dim' }];
     } else if (cmd === 'ls') {
       lines = [{ text: T.lsOut }];
     } else if (cmd === 'neofetch') {
@@ -532,7 +593,7 @@
     } else if (cmd === 'exit' || cmd === 'quit') {
       lines = [{ text: T.exitLine, cls: 't-line dim' }];
     } else {
-      lines = [{ text: T.notFound(parts[0]) }];
+      lines = [{ text: T.notFound.replace('{cmd}', parts[0]) }];
     }
 
     await sleep(reduced ? 0 : 240);
@@ -731,25 +792,7 @@
   /* ---------------- boot sequence ---------------- */
 
   function bootLines() {
-    const langLine =
-      lang === 'nl'
-        ? 'STATUS: OPEN VOOR NIEUWE OPPORTUNITEITEN ....... ✓'
-        : 'STATUS: OPEN TO NEW OPPORTUNITIES ............... ✓';
-    return [
-      'MERTCAN OZBEK SYSTEMS · BIOS v2.6',
-      '(C) 2026 · ALL RIGHTS RESERVED',
-      '',
-      'CPU: MOTIVATION @ 3.50 GHZ ........... OK',
-      'MEMORY: 4+ YR IT ..................... 100% OK',
-      'MODULES: /experience /skills /certs ... OK',
-      'MOUNT /projects: home-assistant, sunshine, mini-itx . OK',
-      'matrix.d ................................ OK',
-      'RAM CLEAR ............................... OK',
-      'VGA SYNC ................................ OK',
-      'RESTART ............................. READY',
-      langLine,
-      '████████████ 100% · READY'
-    ];
+    return CONTENT[lang].boot.lines;
   }
 
   let skipRequested = false;
@@ -784,8 +827,11 @@
     const log = $('#bootLog');
     const finale = $('#bootFinale');
     const skipHint = $('#bootSkip');
-    skipHint.textContent = lang === 'nl' ? 'druk op een toets om over te slaan' : 'press any key to skip';
-    $('#typedRole').textContent = CONTENT[lang].hero.role;
+    const C = CONTENT[lang];
+    skipHint.textContent = C.boot.skipHint;
+    $('.boot-name').textContent = C.boot.name;
+    $('.boot-granted').textContent = C.boot.granted;
+    $('#typedRole').textContent = C.hero.role;
     window.addEventListener('keydown', onSkip);
     bootEl.addEventListener('pointerdown', onSkip);
 
@@ -863,6 +909,18 @@
   applyI18n();
   renderAll();
   syncTheme();
+  // static copy that lives in index.html, kept in sync from the content model
+  const heroTitle = $('.hero-intro h1');
+  if (heroTitle) {
+    heroTitle.textContent = DATA.meta.name;
+    heroTitle.setAttribute('data-text', DATA.meta.name);
+  }
+  const captionSpans = $$('.photo-card figcaption span');
+  if (captionSpans.length === 2) {
+    captionSpans[0].textContent = DATA.meta.portraitCaption;
+    captionSpans[1].textContent = DATA.meta.online;
+  }
+  $$('.sec-num').forEach((el, i) => { el.textContent = DATA.meta.sectionNumbers[i]; });
   animLock = true;
   if (reduced) {
     const b = $('#boot');
@@ -876,4 +934,6 @@
   }
   initMatrix();
   schedulePulse();
-})();
+})().catch((err) => {
+  console.error(err);
+});

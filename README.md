@@ -18,9 +18,9 @@ Personal portfolio website for job hunting. Built with plain HTML, CSS and JavaS
 ```
 index.html          page skeleton
 css/styles.css      all styling
-js/content.js       all NL/EN content (edit this to update text)
-js/journey.js       bilingual narrative copy and conceptual diagram labels
 css/journey.css     narrative layout and responsive choreography
+content/site.json   all NL/EN content: facts, narrative, terminal and boot copy
+js/content.generated.js  generated fallback copy of site.json (do not edit by hand)
 js/app.js           rendering, i18n, terminal, effects
 assets/headshot.jpg portrait
 cv/                 CV PDFs + the HTML sources used to generate them
@@ -28,7 +28,15 @@ cv/                 CV PDFs + the HTML sources used to generate them
 
 ## Updating content
 
-Factual content lives in `js/content.js`; narrative presentation copy lives in `js/journey.js` (NL and EN objects). Edit the strings, then commit and push. Project diagrams are labeled conceptual overviews, not screenshots or measured results. Full role and project descriptions remain available through native expandable details.
+All visible copy lives in `content/site.json` (a `nl` and an `en` object, plus shared `meta`). The site fetches that file on load; if the fetch fails, `js/content.generated.js` (a generated copy of the same data) is used instead, so the page never renders empty.
+
+When you edit `content/site.json`, regenerate the fallback so it stays in sync, then commit and push both files:
+
+```powershell
+node -e "const fs=require('fs');const s=JSON.parse(fs.readFileSync('content/site.json','utf8'));fs.writeFileSync('js/content.generated.js','/* Generated from content/site.json. Do not edit by hand. */\nwindow.__PORTFOLIO_CONTENT__ = '+JSON.stringify(s,null,2)+';\n');"
+```
+
+Career roles are listed in display order (oldest first) and each carries a `phase` index into `career.phases`; each project carries its own `diagram` type (`hub`, `route` or `board`). Project diagrams are labeled conceptual overviews, not screenshots or measured results. Full role and project descriptions remain available through native expandable details.
 
 ## Regenerating the CV PDFs
 

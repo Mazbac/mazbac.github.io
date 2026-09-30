@@ -1,0 +1,1002 @@
+/* Generated from content/site.json. Do not edit by hand. */
+window.__PORTFOLIO_CONTENT__ = {
+  "meta": {
+    "name": "Mertcan Özbek",
+    "email": "mertozbek.1994@gmail.com",
+    "cvFiles": {
+      "nl": "cv/Mertcan-Ozbek-CV-NL.pdf",
+      "en": "cv/Mertcan-Ozbek-CV-EN.pdf"
+    },
+    "portrait": "assets/headshot.jpg",
+    "portraitCaption": "~/assets/mertcan.jpg",
+    "online": "● online",
+    "sectionNumbers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06"
+    ]
+  },
+  "nl": {
+    "meta": {
+      "title": "Mertcan Özbek | ICT Professional & ServiceNow Engineer",
+      "description": "Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL."
+    },
+    "imgAlt": "Portret van Mertcan Özbek",
+    "aria": {
+      "nav": "Hoofdnavigatie",
+      "input": "Terminalinvoer",
+      "menu": "Menu",
+      "lang": "Wissel taal / Switch language",
+      "hero": "Introductie"
+    },
+    "nav": {
+      "about": "Over mij",
+      "experience": "Ervaring",
+      "skills": "Vaardigheden",
+      "certs": "Certificaten",
+      "projects": "Projecten",
+      "contact": "Contact",
+      "progress": "Leesvoortgang",
+      "theme": "Schakel naar {mode} modus",
+      "themeLight": "lichte",
+      "themeDark": "donkere",
+      "themeMenu": "Weergave",
+      "themeState": "{mode} modus"
+    },
+    "sec": {
+      "about": "Over mij",
+      "experience": "Werkervaring",
+      "skills": "Vaardigheden",
+      "certs": "Certificaten",
+      "projects": "Projecten",
+      "contact": "Contact"
+    },
+    "hero": {
+      "role": "ICT Professional · ServiceNow Engineer · ITIL",
+      "actions": {
+        "cv": "Download CV"
+      },
+      "intro": [
+        {
+          "cmd": "whoami",
+          "out": [
+            {
+              "text": "mertcan-ozbek · ICT professional · Rotterdam"
+            }
+          ]
+        },
+        {
+          "cmd": "cat profile.txt",
+          "out": [
+            {
+              "text": "Enterprise Microsoft 365 · Incident- / probleem- / changemanagement (ITIL)"
+            },
+            {
+              "text": "ServiceNow · Intune · Azure AD"
+            }
+          ]
+        },
+        {
+          "cmd": "ls skills/",
+          "out": [
+            {
+              "text": "microsoft-365  azure  servicenow  itil  intune  javascript"
+            }
+          ]
+        },
+        {
+          "cmd": "./status.sh",
+          "out": [
+            {
+              "text": "● Actueel: ServiceNow Engineer @ Devoteam",
+              "cls": "t-accent"
+            },
+            {
+              "text": "● Status: open voor nieuwe opportuniteiten",
+              "cls": "t-accent"
+            }
+          ]
+        }
+      ]
+    },
+    "boot": {
+      "name": "MERTCAN ÖZBEK",
+      "granted": "ACCESS GRANTED ✓",
+      "skipHint": "druk op een toets om over te slaan",
+      "lines": [
+        "MERTCAN OZBEK SYSTEMS · BIOS v2.6",
+        "(C) 2026 · ALL RIGHTS RESERVED",
+        "",
+        "CPU: MOTIVATION @ 3.50 GHZ ........... OK",
+        "MEMORY: 4+ YR IT ..................... 100% OK",
+        "MODULES: /experience /skills /certs ... OK",
+        "MOUNT /projects: home-assistant, sunshine, mini-itx . OK",
+        "matrix.d ................................ OK",
+        "RAM CLEAR ............................... OK",
+        "VGA SYNC ................................ OK",
+        "RESTART ............................. READY",
+        "STATUS: OPEN VOOR NIEUWE OPPORTUNITEITEN ....... ✓",
+        "████████████ 100% · READY"
+      ]
+    },
+    "term": {
+      "helpTitle": "Beschikbare commando's:",
+      "help": [
+        "  whoami      wie ben ik?",
+        "  about       over mij",
+        "  experience  werkervaring",
+        "  skills      vaardigheden",
+        "  certs       certificaten",
+        "  projects    persoonlijke projecten",
+        "  contact     contactgegevens",
+        "  cv          CV downloaden (NL / EN)",
+        "  ls          bestanden tonen",
+        "  neofetch    systeeminfo",
+        "  clear       scherm wissen",
+        "  sudo hire-me  ?"
+      ],
+      "notFound": "command niet gevonden: '{cmd}'. Probeer help",
+      "aboutLine": "> scrollend naar \"Over mij\" …",
+      "expLine": "> scrollend naar \"Werkervaring\" …",
+      "skillsLine": "> scrollend naar \"Vaardigheden\" …",
+      "certsLine": "> scrollend naar \"Certificaten\" …",
+      "projectsLine": "> scrollend naar \"Projecten\" …",
+      "contactLine": "> scrollend naar \"Contact\" …",
+      "clearLine": "scherm gewist. (geen sporen)",
+      "exitLine": "nice try. dit is een portfolio, geen shell. (probeer: sudo hire-me)",
+      "sudoLine": "toegang verleend ✓. Stuur me een e-mail, dan maken we het werkelijkheid:",
+      "whoami1": "mertcan-ozbek · ICT professional · Rotterdam (NL)",
+      "whoami2": "huidige rol: ServiceNow Support Engineer @ Devoteam",
+      "lsOut": "about.txt  experience/  skills/  certifications/  projects/  contact.sh",
+      "contact": [
+        {
+          "label": "e-mail:   ",
+          "value": "mertozbek.1994@gmail.com",
+          "href": "mailto:mertozbek.1994@gmail.com"
+        },
+        {
+          "label": "telefoon: ",
+          "value": "+31 6 27057401",
+          "href": "tel:+31627057401"
+        },
+        {
+          "label": "linkedin: ",
+          "value": "linkedin.com/in/mert-ozbek",
+          "href": "https://www.linkedin.com/in/mert-ozbek"
+        },
+        {
+          "label": "github:   ",
+          "value": "github.com/Mazbac",
+          "href": "https://github.com/Mazbac"
+        }
+      ],
+      "cvLine": "CV downloaden:",
+      "neofetch": [
+        "mertcan@portfolio",
+        "──────────────────",
+        "Systeem:   Rotterdam Edition 2026",
+        "Shell:     motivatie (zsh)",
+        "Uptime:    4+ jaar in IT",
+        "Rol:       ServiceNow Engineer",
+        "Status:    open voor opportuniteiten"
+      ],
+      "cvLabels": {
+        "nl": "[\n        {\n          html:\n            escapeHtml(T.cvLine) +\n            ' <a class=\"t-link\" href=\"' + CV_FILES.nl + '\" target=\"_blank\" rel=\"noopener\">[Nederlands]",
+        "en": "[English]"
+      }
+    },
+    "about": {
+      "text": "Ik ben een resultaatgerichte IT-professional met bewezen ervaring in technische ondersteuning binnen enterprise Microsoft 365-omgevingen. Mijn kernvakgebied is incident-, probleem- en changemanagement volgens ITIL-principes, met hands-on kennis van ServiceNow, Intune, Azure AD en Microsoft 365. Ik combineer een gestructureerde werkwijze met een sterk analytisch vermogen en denk proactief mee in procesoptimalisatie en serviceverbetering. Kwaliteit, veiligheid en klantgerichtheid staan voorop in elke schakel van de IT-keten. Buiten kantooruren werk ik aan mijn smart home (Home Assistant, IoT, automatiseringen) en bouw ik zelf PCs.",
+      "facts": [
+        [
+          "location",
+          "Rotterdam, NL",
+          false
+        ],
+        [
+          "experience",
+          "4+ jaar IT-support & platformbeheer",
+          false
+        ],
+        [
+          "status",
+          "open voor nieuwe opportuniteiten",
+          true
+        ],
+        [
+          "languages",
+          "Nederlands (native) · Engels",
+          false
+        ]
+      ]
+    },
+    "career": {
+      "phases": [
+        {
+          "name": "De basis bouwen",
+          "summary": "Werkplekken, hardware en de systemen die een kantoor draaiend houden.",
+          "tools": [
+            "Windows 11",
+            "Google Workspace",
+            "Hardware"
+          ],
+          "note": null
+        },
+        {
+          "name": "De operatie draaiend houden",
+          "summary": "Incidentdiagnose, werkplekondersteuning en changes met oog voor de operatie.",
+          "tools": [
+            "TOPdesk",
+            "ServiceNow",
+            "VPN"
+          ],
+          "note": "Deze rollen overlappen in tijd; ze worden samen getoond, niet als opeenvolgende functies."
+        },
+        {
+          "name": "Werken in de enterprise",
+          "summary": "Microsoft 365-beheer, servicemanagement en gestructureerde ITIL-processen.",
+          "tools": [
+            "Microsoft 365",
+            "Intune",
+            "ITIL"
+          ],
+          "note": null
+        },
+        {
+          "name": "Dieper in ServiceNow",
+          "summary": "Complexe platformsupport, configuratiewijzigingen en JavaScript-scripting.",
+          "tools": [
+            "ServiceNow",
+            "JavaScript",
+            "CSA"
+          ],
+          "note": null
+        }
+      ],
+      "roles": [
+        {
+          "phase": 0,
+          "period": "Mei 2022 – Mrt 2023",
+          "role": "IT Specialist",
+          "company": "Tyger Marketing",
+          "city": "Rotterdam",
+          "bullets": [
+            "Werkplekken uitrollen (Windows 11 & Chrome OS).",
+            "Google Workspace en LeadDesk inrichten en onderhouden.",
+            "Beheer van hardware, netwerkconfiguraties en leverancierscommunicatie (o.a. KPN).",
+            "Ondersteuning bij kantoorautomatisering en administratieve IT-processen."
+          ]
+        },
+        {
+          "phase": 1,
+          "period": "Mrt 2023 – Feb 2025",
+          "role": "IT Helpdesk Ondersteuning",
+          "company": "OGD ict-diensten",
+          "city": "Rotterdam",
+          "bullets": [
+            "Incidenten op het gebied van netwerken, applicaties en hardware oplossen.",
+            "Change-ondersteuning, updates en migraties.",
+            "Registratie in TOPdesk en ServiceNow, conform ITIL-principes.",
+            "Werkervaring opgedaan met routers, VPN-verbindingen en netwerkcomponenten."
+          ]
+        },
+        {
+          "phase": 1,
+          "period": "Apr 2023 – Feb 2025",
+          "role": "IT Technische Ondersteuning",
+          "company": "Port of Rotterdam",
+          "city": "Rotterdam",
+          "bullets": [
+            "Incidentbeheer via TOPdesk en ServiceNow: snelle diagnose en opvolging van IT-problemen.",
+            "Changes uitvoeren met minimale impact op de operatie (Windows-omgeving).",
+            "Werkplekbeheer: installatie, configuratie en onderhoud van hardware en software.",
+            "Procesverbeteringen doorgevoerd, resulterend in snellere afhandelingstijden.",
+            "Netwerkincidenten opgevolgd: connectiviteit en VPN-verbindingen."
+          ]
+        },
+        {
+          "phase": 2,
+          "period": "Mei 2025 – Jan 2026",
+          "role": "IT Support Engineer",
+          "company": "Conclusion Enablement",
+          "city": "Utrecht",
+          "bullets": [
+            "IT-support in een enterprise-omgeving met focus op Microsoft 365 (Exchange Online, Teams, SharePoint, Azure AD, Intune).",
+            "Beheer van gebruikers, apparaten, rechten en policies via M365 admin portals en Intune.",
+            "Incidenten, serviceverzoeken, changes en problemen afhandelen via ServiceNow, conform ITIL.",
+            "Tickets prioriteren aan de hand van een priomatrix, met waarborging van SLA's en klanttevredenheid.",
+            "Bijdragen aan changemanagement, procesoptimalisatie, documentatie en het KMS."
+          ]
+        },
+        {
+          "phase": 3,
+          "period": "Jan 2026 – heden",
+          "role": "ServiceNow Support Engineer",
+          "company": "Devoteam",
+          "city": "Amsterdam",
+          "bullets": [
+            "3e-lijns supportvraagstukken op het ServiceNow-platform: complexe technische issues oplossen.",
+            "Updates en configuratiewijzigingen doorvoeren op basis van klantbehoeften.",
+            "Eindgebruikers ondersteunen en trainen.",
+            "Scripting (JavaScript) inzetten voor platformgerelateerde werkzaamheden."
+          ]
+        }
+      ]
+    },
+    "skills": [
+      {
+        "name": "Cloud & Identity",
+        "tags": [
+          "Microsoft 365",
+          "Azure AD / Entra ID",
+          "Intune",
+          "Azure",
+          "Exchange Online",
+          "Teams",
+          "SharePoint"
+        ]
+      },
+      {
+        "name": "Service Management",
+        "tags": [
+          "ITIL",
+          "ServiceNow",
+          "TOPdesk",
+          "Incidentmanagement",
+          "Probleembeheer",
+          "Changemanagement",
+          "SLA's",
+          "KMS"
+        ]
+      },
+      {
+        "name": "Tools & Automatisering",
+        "tags": [
+          "JavaScript",
+          "Node-RED",
+          "Windows 11",
+          "Chrome OS",
+          "Google Workspace",
+          "Hardware & PC builds",
+          "Netwerken (VPN, port forwarding)"
+        ]
+      },
+      {
+        "name": "Soft Skills",
+        "tags": [
+          "Communicatie",
+          "Klantgerichtheid",
+          "Analytisch vermogen",
+          "Procesoptimalisatie"
+        ]
+      }
+    ],
+    "certs": [
+      {
+        "issuer": "ServiceNow",
+        "name": "Certified System Administrator (CSA)",
+        "date": "Feb 2026",
+        "url": "https://www.credly.com/badges/42bbccc2-45b9-4160-8b57-54d5dd3393d5/linked_in_profile"
+      },
+      {
+        "issuer": "Microsoft",
+        "name": "Microsoft Certified: Azure Fundamentals (AZ-900)",
+        "date": "Jan 2024",
+        "url": "https://learn.microsoft.com/api/credentials/share/en-us/MertcanOzbek-3694/9210C9668548C2F9?sharingId=4669B57ADB6C4781"
+      },
+      {
+        "issuer": "Microsoft",
+        "name": "Microsoft 365 Certified: Fundamentals",
+        "date": "Sep 2023",
+        "url": "https://learn.microsoft.com/api/credentials/share/en-us/MertcanOzbek-3694/2F83BCAA2C81FCD1?sharingId=4669B57ADB6C4781"
+      },
+      {
+        "issuer": "PeopleCert",
+        "name": "ITIL Foundation Level",
+        "date": "Mrt 2023",
+        "url": "https://shorturl.at/ijoQ8"
+      }
+    ],
+    "certsVerify": "badge verifiëren ↗",
+    "projects": [
+      {
+        "icon": "home",
+        "name": "Home Assistant & IoT",
+        "diagram": "hub",
+        "chassisLabel": null,
+        "note": "Apparaten en automatiseringen verbinden.",
+        "tags": [
+          "Home Assistant",
+          "Node-RED",
+          "M5Stack",
+          "Bluetooth",
+          "IoT"
+        ],
+        "text": "Zelfstandig opgezet Home Assistant-platform op een thin client voor centrale aansturing van slimme apparaten. Automatiseringen met Node-RED (aanwezigheid, tijd, energieverbruik), API-integratie van een slimme thermostaat en spraakbediening via M5Stack. Verdiepte kennis van edge computing, IoT-protocollen en automatisering.",
+        "labels": [
+          "Home Assistant",
+          "Node-RED",
+          "Slimme thermostaat",
+          "Spraakbediening via M5Stack"
+        ]
+      },
+      {
+        "icon": "stream",
+        "name": "Remote PC-toegang: Sunshine & Moonlight",
+        "diagram": "route",
+        "chassisLabel": null,
+        "note": "Een desktop op afstand bereikbaar maken.",
+        "tags": [
+          "Sunshine",
+          "Moonlight",
+          "NVIDIA",
+          "Port forwarding",
+          "Latency"
+        ],
+        "text": "Low-latency streamingoplossing voor volledige remote toegang tot mijn pc vanaf overal. Configuratie van Sunshine (host) en Moonlight (client) voor minimale vertraging en maximale beeldkwaliteit, met port forwarding, encoder-instellingen en securitymaatregelen. Geschikt voor zowel productiviteit als gaming via NVIDIA GeForce-componenten.",
+        "labels": [
+          "Sunshine · host-pc",
+          "Moonlight · client",
+          "Port forwarding",
+          "Encoder-instellingen"
+        ]
+      },
+      {
+        "icon": "chip",
+        "name": "Eigen PC-build: Mini-ITX",
+        "diagram": "board",
+        "chassisLabel": "Mini-ITX",
+        "note": "Bouwen binnen fysieke beperkingen.",
+        "tags": [
+          "Mini-ITX",
+          "Hardware",
+          "Koeling",
+          "Troubleshooting"
+        ],
+        "text": "Compact high-performance systeem gebouwd op basis van Mini-ITX met zorgvuldig geselecteerde componenten (CPU, GPU, RAM, PSU). Geoptimaliseerd voor airflow, kabelmanagement en ruimtebeperking. Inzicht opgedaan in compatibiliteit, koeling en hardware-troubleshooting.",
+        "labels": [
+          "CPU",
+          "GPU",
+          "RAM",
+          "PSU"
+        ]
+      }
+    ],
+    "contact": [
+      {
+        "icon": "☎",
+        "label": "Telefoon",
+        "value": "+31 6 27057401",
+        "href": "tel:+31627057401"
+      },
+      {
+        "icon": "in",
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/mert-ozbek",
+        "href": "https://www.linkedin.com/in/mert-ozbek"
+      },
+      {
+        "icon": "</>",
+        "label": "GitHub",
+        "value": "github.com/Mazbac",
+        "href": "https://github.com/Mazbac"
+      }
+    ],
+    "footer": {
+      "rights": "© 2026 Mertcan Özbek. Alle rechten voorbehouden."
+    },
+    "journey": {
+      "thesis": "Van mensen aan het werk houden naar de platformen waarop ze werken.",
+      "factLabels": [
+        "Locatie",
+        "Ervaring",
+        "Status",
+        "Talen"
+      ],
+      "intro": "Enterprise-support, Microsoft 365 en nu ServiceNow. Ontdek de ervaring achter de tools.",
+      "career": "Een carrière in beweging.",
+      "proof": "Ervaring, geverifieerd.",
+      "workbench": "Na werktijd gaat het bouwen door.",
+      "close": "Laten we praten over de volgende stap.",
+      "closeText": "Op zoek naar gestructureerde probleemoplossing, platformervaring en een hands-on mentaliteit? Laten we kennismaken.",
+      "email": "Stuur me een e-mail",
+      "details": "Bekijk de rol",
+      "projectDetails": "Bekijk het project",
+      "skills": "De complete toolkit",
+      "diagram": "Conceptueel overzicht · op basis van de projectbeschrijving"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Mertcan Özbek | ICT Professional & ServiceNow Engineer",
+      "description": "Portfolio of Mertcan Özbek: ICT professional with enterprise Microsoft 365, ServiceNow and ITIL experience."
+    },
+    "imgAlt": "Portrait of Mertcan Özbek",
+    "aria": {
+      "nav": "Main navigation",
+      "input": "Terminal input",
+      "menu": "Menu",
+      "lang": "Wissel taal / Switch language",
+      "hero": "Introductie"
+    },
+    "nav": {
+      "about": "About",
+      "experience": "Experience",
+      "skills": "Skills",
+      "certs": "Certifications",
+      "projects": "Projects",
+      "contact": "Contact",
+      "progress": "Reading progress",
+      "theme": "Switch to {mode} mode",
+      "themeLight": "light",
+      "themeDark": "dark",
+      "themeMenu": "Appearance",
+      "themeState": "{mode} mode"
+    },
+    "sec": {
+      "about": "About",
+      "experience": "Experience",
+      "skills": "Skills",
+      "certs": "Certifications",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "hero": {
+      "role": "ICT Professional · ServiceNow Engineer · ITIL",
+      "actions": {
+        "cv": "Download CV"
+      },
+      "intro": [
+        {
+          "cmd": "whoami",
+          "out": [
+            {
+              "text": "mertcan-ozbek · ICT professional · Rotterdam"
+            }
+          ]
+        },
+        {
+          "cmd": "cat profile.txt",
+          "out": [
+            {
+              "text": "Enterprise Microsoft 365 · Incident / problem / change management (ITIL)"
+            },
+            {
+              "text": "ServiceNow · Intune · Azure AD"
+            }
+          ]
+        },
+        {
+          "cmd": "ls skills/",
+          "out": [
+            {
+              "text": "microsoft-365  azure  servicenow  itil  intune  javascript"
+            }
+          ]
+        },
+        {
+          "cmd": "./status.sh",
+          "out": [
+            {
+              "text": "● Current: ServiceNow Engineer @ Devoteam",
+              "cls": "t-accent"
+            },
+            {
+              "text": "● Status: open to new opportunities",
+              "cls": "t-accent"
+            }
+          ]
+        }
+      ]
+    },
+    "boot": {
+      "name": "MERTCAN ÖZBEK",
+      "granted": "ACCESS GRANTED ✓",
+      "skipHint": "press any key to skip",
+      "lines": [
+        "MERTCAN OZBEK SYSTEMS · BIOS v2.6",
+        "(C) 2026 · ALL RIGHTS RESERVED",
+        "",
+        "CPU: MOTIVATION @ 3.50 GHZ ........... OK",
+        "MEMORY: 4+ YR IT ..................... 100% OK",
+        "MODULES: /experience /skills /certs ... OK",
+        "MOUNT /projects: home-assistant, sunshine, mini-itx . OK",
+        "matrix.d ................................ OK",
+        "RAM CLEAR ............................... OK",
+        "VGA SYNC ................................ OK",
+        "RESTART ............................. READY",
+        "STATUS: OPEN TO NEW OPPORTUNITIES ............... ✓",
+        "████████████ 100% · READY"
+      ]
+    },
+    "term": {
+      "helpTitle": "Available commands:",
+      "help": [
+        "  whoami      who am i?",
+        "  about       about me",
+        "  experience  work experience",
+        "  skills      skills",
+        "  certs       certifications",
+        "  projects    personal projects",
+        "  contact     contact details",
+        "  cv          download CV (NL / EN)",
+        "  ls          list files",
+        "  neofetch    system info",
+        "  clear       clear screen",
+        "  sudo hire-me  ?"
+      ],
+      "notFound": "command not found: '{cmd}'. Try help",
+      "aboutLine": "> scrolling to \"About\" …",
+      "expLine": "> scrolling to \"Experience\" …",
+      "skillsLine": "> scrolling to \"Skills\" …",
+      "certsLine": "> scrolling to \"Certifications\" …",
+      "projectsLine": "> scrolling to \"Projects\" …",
+      "contactLine": "> scrolling to \"Contact\" …",
+      "clearLine": "screen cleared. (no traces)",
+      "exitLine": "nice try. this is a portfolio, not a shell. (try: sudo hire-me)",
+      "sudoLine": "permission granted ✓. Send me an email and we'll make it happen:",
+      "whoami1": "mertcan-ozbek · ICT professional · Rotterdam (NL)",
+      "whoami2": "current role: ServiceNow Support Engineer @ Devoteam",
+      "lsOut": "about.txt  experience/  skills/  certifications/  projects/  contact.sh",
+      "contact": [
+        {
+          "label": "email:    ",
+          "value": "mertozbek.1994@gmail.com",
+          "href": "mailto:mertozbek.1994@gmail.com"
+        },
+        {
+          "label": "phone:    ",
+          "value": "+31 6 27057401",
+          "href": "tel:+31627057401"
+        },
+        {
+          "label": "linkedin: ",
+          "value": "linkedin.com/in/mert-ozbek",
+          "href": "https://www.linkedin.com/in/mert-ozbek"
+        },
+        {
+          "label": "github:   ",
+          "value": "github.com/Mazbac",
+          "href": "https://github.com/Mazbac"
+        }
+      ],
+      "cvLine": "Download my CV:",
+      "neofetch": [
+        "mertcan@portfolio",
+        "──────────────────",
+        "OS:        Rotterdam Edition 2026",
+        "Shell:     motivation (zsh)",
+        "Uptime:    4+ years in IT",
+        "Role:      ServiceNow Engineer",
+        "Status:    open to opportunities"
+      ],
+      "cvLabels": {
+        "nl": "[\n        {\n          html:\n            escapeHtml(T.cvLine) +\n            ' <a class=\"t-link\" href=\"' + CV_FILES.nl + '\" target=\"_blank\" rel=\"noopener\">[Nederlands]",
+        "en": "[English]"
+      }
+    },
+    "about": {
+      "text": "I'm a results-oriented IT professional with proven experience in technical support within enterprise Microsoft 365 environments. My core area is incident, problem and change management aligned with ITIL principles, with hands-on knowledge of ServiceNow, Intune, Azure AD and Microsoft 365. I combine a structured way of working with strong analytical skills and think proactively about process optimization and service improvement. Quality, security and customer focus come first in every link of the IT chain. Outside office hours I work on my smart home (Home Assistant, IoT, automations) and build PCs myself.",
+      "facts": [
+        [
+          "location",
+          "Rotterdam, NL",
+          false
+        ],
+        [
+          "experience",
+          "4+ years IT support & platform administration",
+          false
+        ],
+        [
+          "status",
+          "open to new opportunities",
+          true
+        ],
+        [
+          "languages",
+          "Dutch (native) · English",
+          false
+        ]
+      ]
+    },
+    "career": {
+      "phases": [
+        {
+          "name": "Building the foundations",
+          "summary": "Workstations, hardware and the systems that keep an office running.",
+          "tools": [
+            "Windows 11",
+            "Google Workspace",
+            "Hardware"
+          ],
+          "note": null
+        },
+        {
+          "name": "Keeping operations moving",
+          "summary": "Incident diagnosis, workplace support and changes with operational impact in mind.",
+          "tools": [
+            "TOPdesk",
+            "ServiceNow",
+            "VPN"
+          ],
+          "note": "These roles overlap in time; they are shown together, not as consecutive positions."
+        },
+        {
+          "name": "Working across the enterprise",
+          "summary": "Microsoft 365 administration, service management and structured ITIL workflows.",
+          "tools": [
+            "Microsoft 365",
+            "Intune",
+            "ITIL"
+          ],
+          "note": null
+        },
+        {
+          "name": "Going deeper into ServiceNow",
+          "summary": "Complex platform support, configuration changes and JavaScript scripting.",
+          "tools": [
+            "ServiceNow",
+            "JavaScript",
+            "CSA"
+          ],
+          "note": null
+        }
+      ],
+      "roles": [
+        {
+          "phase": 0,
+          "period": "May 2022 – Mar 2023",
+          "role": "IT Specialist",
+          "company": "Tyger Marketing",
+          "city": "Rotterdam",
+          "bullets": [
+            "Rolling out workstations (Windows 11 & Chrome OS).",
+            "Setting up and maintaining Google Workspace and LeadDesk.",
+            "Managing hardware, network configurations and vendor communication (incl. KPN).",
+            "Supporting office automation and administrative IT processes."
+          ]
+        },
+        {
+          "phase": 1,
+          "period": "Mar 2023 – Feb 2025",
+          "role": "IT Helpdesk Support",
+          "company": "OGD ict-diensten",
+          "city": "Rotterdam",
+          "bullets": [
+            "Resolving incidents across networks, applications and hardware.",
+            "Change support, updates and migrations.",
+            "Logging in TOPdesk and ServiceNow, aligned with ITIL principles.",
+            "Gained experience with routers, VPN connections and network components."
+          ]
+        },
+        {
+          "phase": 1,
+          "period": "Apr 2023 – Feb 2025",
+          "role": "IT Technical Support",
+          "company": "Port of Rotterdam",
+          "city": "Rotterdam",
+          "bullets": [
+            "Incident management via TOPdesk and ServiceNow: rapid diagnosis and follow-up of IT issues.",
+            "Executing changes with minimal operational impact (Windows environment).",
+            "Workplace management: installation, configuration and maintenance of hardware and software.",
+            "Implemented process improvements, resulting in faster resolution times.",
+            "Handled network-related incidents, including connectivity and VPN connections."
+          ]
+        },
+        {
+          "phase": 2,
+          "period": "May 2025 – Jan 2026",
+          "role": "IT Support Engineer",
+          "company": "Conclusion Enablement",
+          "city": "Utrecht",
+          "bullets": [
+            "IT support in an enterprise environment with a focus on Microsoft 365 (Exchange Online, Teams, SharePoint, Azure AD, Intune).",
+            "Managing users, devices, entitlements and policies via Microsoft 365 admin portals and Intune.",
+            "Handling incidents, service requests, changes and problems via ServiceNow, aligned with ITIL.",
+            "Prioritizing tickets using a priority matrix, safeguarding SLAs and customer satisfaction.",
+            "Contributing to change management, process optimization, documentation and the KMS."
+          ]
+        },
+        {
+          "phase": 3,
+          "period": "Jan 2026 – Present",
+          "role": "ServiceNow Support Engineer",
+          "company": "Devoteam",
+          "city": "Amsterdam",
+          "bullets": [
+            "L3 support on the ServiceNow platform: resolving complex technical issues.",
+            "Rolling out updates and configuration changes driven by customer needs.",
+            "Supporting and training end users.",
+            "Applying scripting (JavaScript) for platform-related work."
+          ]
+        }
+      ]
+    },
+    "skills": [
+      {
+        "name": "Cloud & Identity",
+        "tags": [
+          "Microsoft 365",
+          "Azure AD / Entra ID",
+          "Intune",
+          "Azure",
+          "Exchange Online",
+          "Teams",
+          "SharePoint"
+        ]
+      },
+      {
+        "name": "Service Management",
+        "tags": [
+          "ITIL",
+          "ServiceNow",
+          "TOPdesk",
+          "Incident management",
+          "Problem management",
+          "Change management",
+          "SLAs",
+          "KMS"
+        ]
+      },
+      {
+        "name": "Tools & Automation",
+        "tags": [
+          "JavaScript",
+          "Node-RED",
+          "Windows 11",
+          "Chrome OS",
+          "Google Workspace",
+          "Hardware & PC builds",
+          "Networking (VPN, port forwarding)"
+        ]
+      },
+      {
+        "name": "Soft Skills",
+        "tags": [
+          "Communication",
+          "Customer focus",
+          "Analytical skills",
+          "Process optimization"
+        ]
+      }
+    ],
+    "certs": [
+      {
+        "issuer": "ServiceNow",
+        "name": "Certified System Administrator (CSA)",
+        "date": "Feb 2026",
+        "url": "https://www.credly.com/badges/42bbccc2-45b9-4160-8b57-54d5dd3393d5/linked_in_profile"
+      },
+      {
+        "issuer": "Microsoft",
+        "name": "Microsoft Certified: Azure Fundamentals (AZ-900)",
+        "date": "Jan 2024",
+        "url": "https://learn.microsoft.com/api/credentials/share/en-us/MertcanOzbek-3694/9210C9668548C2F9?sharingId=4669B57ADB6C4781"
+      },
+      {
+        "issuer": "Microsoft",
+        "name": "Microsoft 365 Certified: Fundamentals",
+        "date": "Sep 2023",
+        "url": "https://learn.microsoft.com/api/credentials/share/en-us/MertcanOzbek-3694/2F83BCAA2C81FCD1?sharingId=4669B57ADB6C4781"
+      },
+      {
+        "issuer": "PeopleCert",
+        "name": "ITIL Foundation Level",
+        "date": "Mar 2023",
+        "url": "https://shorturl.at/ijoQ8"
+      }
+    ],
+    "certsVerify": "verify badge ↗",
+    "projects": [
+      {
+        "icon": "home",
+        "name": "Home Assistant & IoT",
+        "diagram": "hub",
+        "chassisLabel": null,
+        "note": "Connecting devices and automations.",
+        "tags": [
+          "Home Assistant",
+          "Node-RED",
+          "M5Stack",
+          "Bluetooth",
+          "IoT"
+        ],
+        "text": "Self-built Home Assistant platform on a thin client for central control of smart devices. Automations with Node-RED (presence, time, energy use), smart-thermostat API integration and voice control via M5Stack. Deepened knowledge of edge computing, IoT protocols and automation.",
+        "labels": [
+          "Home Assistant",
+          "Node-RED",
+          "Smart thermostat",
+          "M5Stack voice control"
+        ]
+      },
+      {
+        "icon": "stream",
+        "name": "Remote PC access: Sunshine & Moonlight",
+        "diagram": "route",
+        "chassisLabel": null,
+        "note": "Making a desktop reachable remotely.",
+        "tags": [
+          "Sunshine",
+          "Moonlight",
+          "NVIDIA",
+          "Port forwarding",
+          "Latency"
+        ],
+        "text": "Low-latency streaming setup for full remote access to my PC from anywhere. Configured Sunshine (host) and Moonlight (client) for minimal lag and maximum image quality, using port forwarding, encoder settings and security measures. Suitable for both productivity and gaming via NVIDIA GeForce components.",
+        "labels": [
+          "Sunshine · host PC",
+          "Moonlight · client",
+          "Port forwarding",
+          "Encoder settings"
+        ]
+      },
+      {
+        "icon": "chip",
+        "name": "Custom PC build: Mini-ITX",
+        "diagram": "board",
+        "chassisLabel": "Mini-ITX",
+        "note": "Working within physical constraints.",
+        "tags": [
+          "Mini-ITX",
+          "Hardware",
+          "Cooling",
+          "Troubleshooting"
+        ],
+        "text": "Compact high-performance system built on Mini-ITX with carefully selected components (CPU, GPU, RAM, PSU). Optimized for airflow, cable management and space constraints. Gained insight into compatibility, cooling and hardware troubleshooting.",
+        "labels": [
+          "CPU",
+          "GPU",
+          "RAM",
+          "PSU"
+        ]
+      }
+    ],
+    "contact": [
+      {
+        "icon": "☎",
+        "label": "Phone",
+        "value": "+31 6 27057401",
+        "href": "tel:+31627057401"
+      },
+      {
+        "icon": "in",
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/mert-ozbek",
+        "href": "https://www.linkedin.com/in/mert-ozbek"
+      },
+      {
+        "icon": "</>",
+        "label": "GitHub",
+        "value": "github.com/Mazbac",
+        "href": "https://github.com/Mazbac"
+      }
+    ],
+    "footer": {
+      "rights": "© 2026 Mertcan Özbek. All rights reserved."
+    },
+    "journey": {
+      "thesis": "From keeping people working to shaping the platforms they work on.",
+      "factLabels": [
+        "Location",
+        "Experience",
+        "Status",
+        "Languages"
+      ],
+      "intro": "Enterprise support, Microsoft 365 and now ServiceNow. Follow the experience behind the tools.",
+      "career": "A career in motion.",
+      "proof": "Experience, verified.",
+      "workbench": "The work continues after hours.",
+      "close": "Let’s talk about what comes next.",
+      "closeText": "Looking for structured problem-solving, platform experience and a hands-on mindset? Start a conversation.",
+      "email": "Send me an email",
+      "details": "Explore the role",
+      "projectDetails": "Explore the project",
+      "skills": "The complete toolkit",
+      "diagram": "Conceptual overview · based on project description"
+    }
+  }
+};
