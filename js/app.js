@@ -384,7 +384,7 @@
     return div;
   }
 
-  async function typeCmd(cmd) {
+  async function typeCmd(cmd, fast = false) {
     if (reduced) {
       addCmdLine(cmd);
       return;
@@ -393,21 +393,21 @@
     for (let i = 1; i <= cmd.length; i += 1) {
       div.innerHTML = '<span class="t-prompt">$</span>' + escapeHtml(cmd.slice(0, i));
       scrollDown();
-      await sleep(14 + Math.random() * 26);
+      await sleep(fast ? 4 : 14 + Math.random() * 26);
     }
-    await sleep(160);
+    if (!fast) await sleep(160);
   }
 
   async function playIntro() {
     termInput.disabled = true;
     const C = CONTENT[lang];
     for (const step of C.hero.intro) {
-      await typeCmd(step.cmd);
+      await typeCmd(step.cmd, true);
       for (const line of step.out) {
-        await sleep(reduced ? 0 : 120);
+        if (!reduced) await sleep(20);
         addLine(escapeHtml(line.text), line.cls || 't-out');
       }
-      await sleep(reduced ? 0 : 240);
+      if (!reduced) await sleep(40);
     }
     termInput.disabled = false;
     termInput.focus({ preventScroll: true });
@@ -718,19 +718,18 @@
       div.textContent = line;
       return;
     }
-    for (let i = 1; i <= line.length; i += 1) {
-      if (skipRequested) {
-        div.textContent = line;
-        return;
+    if (line.startsWith('MERTCAN') || line.includes('READY')) {
+      for (let i = 1; i <= line.length; i += 1) {
+        if (skipRequested) break;
+        div.textContent = line.slice(0, i);
+        await sleep(2);
       }
-      div.textContent = line.slice(0, i);
-      await sleep(3 + Math.random() * 5);
     }
+    div.textContent = line;
   }
 
-  async function revealInitial() {
-    decodeAll(document.body, { duration: 520, perItem: 10, maxStagger: 500 });
-    await sleep(620);
+  function revealInitial() {
+    decodeAll(document.body, { duration: 280, perItem: 5, maxStagger: 180 });
   }
 
   async function playBoot() {
@@ -746,38 +745,23 @@
 
     for (const line of bootLines()) {
       if (skipRequested) break;
-      if (line === '') {
-        await sleep(90);
-        continue;
-      }
+      if (line === '') continue;
       await typeBootLine(log, line);
-      await sleep(45);
+      if (!skipRequested) await sleep(20);
     }
 
-    if (skipRequested) {
-      bootEl.classList.add('done');
-      await sleep(250);
-      revealInitial();
-      await sleep(320);
-      bootEl.remove();
-      window.removeEventListener('keydown', onSkip);
-      bootEl.removeEventListener('pointerdown', onSkip);
-      animLock = false;
-      setTimeout(playIntro, 250);
-      return;
+    if (!skipRequested) {
+      finale.classList.add('show');
+      await sleep(160);
     }
-
-    finale.classList.add('show');
-    await sleep(650);
     bootEl.classList.add('done');
-    await sleep(180);
     revealInitial();
-    await sleep(320);
+    await sleep(300);
     bootEl.remove();
     window.removeEventListener('keydown', onSkip);
     bootEl.removeEventListener('pointerdown', onSkip);
     animLock = false;
-    setTimeout(playIntro, 300);
+    playIntro();
   }
 
   /* ---------------- language toggle ---------------- */
@@ -824,9 +808,9 @@
     animLock = false;
     $$('.reveal').forEach((el) => el.classList.add('visible'));
     $('#typedRole').textContent = CONTENT[lang].hero.role;
-    setTimeout(playIntro, 300);
+    playIntro();
   } else {
-    setTimeout(playBoot, 350);
+    playBoot();
   }
   initMatrix();
   schedulePulse();

@@ -193,7 +193,7 @@ Hero windows and portrait use the hero radius; facts and the automation hub use 
 ## Components
 
 ### Original boot and terminal
-The original full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. Boot exits with the existing upward transform and opacity transition (`0.45s ease-in`). It is decorative and marked `aria-hidden`; reduced-motion users bypass it. The BIOS stays dark in either page theme. Do not rewrite its timing or transcript from this documentation.
+The full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. The boot now reveals the page in about a second, with a brief upward transform and opacity transition (`0.28s ease-in`); terminal commands finish shortly afterward. Skip works from the start of the animation. It is decorative and marked `aria-hidden`; reduced-motion users bypass it. The BIOS stays dark in either page theme.
 
 The terminal retains traffic-light chrome, monospaced log, scrollable output and a transparent command input with violet caret. Desktop body padding is `20px 22px`, height range `360–430px`; responsive overrides are recorded above. The input is disabled/hidden during initialization and the output has `role="log"`. No conventional contact form is introduced.
 
