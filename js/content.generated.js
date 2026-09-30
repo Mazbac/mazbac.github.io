@@ -486,7 +486,7 @@ window.__PORTFOLIO_CONTENT__ = {
       }
     ],
     "footer": {
-      "rights": "© 2026 Mertcan Özbek. Alle rechten voorbehouden."
+      "rights": "© 2026 Mertcan Özbek. Alle rechten voorbehouden. [CMS-TEST]"
     },
     "journey": {
       "thesis": "Van mensen aan het werk houden naar de platformen waarop ze werken.",
