@@ -933,6 +933,23 @@
   applyI18n();
   renderAll();
   syncTheme();
+  const photo = $('.photo-card');
+  let scanStart = null;
+  let scanBoostTimer = 0;
+  photo.addEventListener('pointerdown', (event) => {
+    if (reduced || event.pointerType !== 'touch') return;
+    scanStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  });
+  photo.addEventListener('pointercancel', () => { scanStart = null; });
+  photo.addEventListener('pointerup', (event) => {
+    if (!scanStart || event.pointerId !== scanStart.id) return;
+    const distance = Math.hypot(event.clientX - scanStart.x, event.clientY - scanStart.y);
+    scanStart = null;
+    if (distance > 12) return; // scrolling past the photo is not a tap
+    photo.classList.add('is-scan-boosted');
+    clearTimeout(scanBoostTimer);
+    scanBoostTimer = setTimeout(() => photo.classList.remove('is-scan-boosted'), 600);
+  });
   // Dropdown toggles (<summary>) must not keep focus after a mouse click:
   // that would show the focus ring around the label. Keyboard focus
   // (Tab, then Enter/Space) keeps its focus-visible ring, untouched.

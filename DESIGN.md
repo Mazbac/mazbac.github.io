@@ -163,19 +163,19 @@ Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-
 | Threshold | Actual behavior |
 | --- | --- |
 | `1024px` and below | Header chapter indicator shows the number only; the reading-progress line stays visible. |
-| `960px` and below | Hero becomes one column with portrait first (`280px` maximum); terminal minimum height becomes `320px`. Buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns, chapter minimum heights are removed. |
-| `560px` and below | Portrait maximum is `200px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Each project introduces itself before its own diagram; integration hub, connection route and component board adapt individually. Chapter padding contracts to `26px 0 30px`. |
+| `960px` and below | Hero becomes one column with portrait first (up to `380px`, or the available width); terminal minimum height becomes `320px`. Buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns. |
+| `560px` and below | The portrait fills the available width up to `380px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Each project introduces itself before its own diagram; integration hub, connection route and component board adapt individually. Chapter padding contracts to `26px 0 30px`. |
 | `640px` and below | Logo text disappears; its terminal prompt remains. |
 | `500px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`. Chapter number and contact shortcut disappear; the index menu retains contact access, with full-size language and theme controls in the header. |
 
 An incumbent `760px` rule also reduces the logo font to `13px`. Facts retain their incumbent maximum width (`420px`) after the `960px` rule. At small widths, schematic labels, chapter headings and tags wrap rather than force overflow.
 
 ### Reduced motion
-The career stage is static even on desktop and chapter minimum heights are removed. All chapter text stays fully opaque. Smooth scrolling becomes automatic; glitch pseudo-elements disappear, caret/skip blinking stops and JS-gated reveals become immediately visible. Application guards suppress ambient/glitch animation and bypass the boot in reduced-motion mode. This does not imply every incumbent hover transition has been removed.
+The career stage is static even on desktop. All chapter text stays fully opaque. Smooth scrolling becomes automatic; glitch pseudo-elements disappear, caret/skip blinking stops and JS-gated reveals become immediately visible. The photo retains its static scanlines but the traveling beam and tap boost stop. Application guards suppress ambient/glitch animation and bypass the boot in reduced-motion mode. This does not imply every incumbent hover transition has been removed.
 
 ## Elevation & Depth
 
-The preserved hero has genuine terminal depth: dark console chrome, an ambient shadow and violet glow. Background matrix texture remains subtle (`opacity: 0.10`), beneath the pointer-transparent CRT treatment. The fixed navigation uses blur (`12px`) and becomes more opaque after scrolling. Narrative depth is primarily tonal and ruled, not a repeated collection of floating cards.
+The preserved hero has genuine terminal depth: dark console chrome, an ambient shadow and violet glow. Background matrix texture remains subtle (`opacity: 0.10`). The fixed pointer-transparent overlay supplies only a vignette; horizontal scanlines live locally on the terminal and portrait screen, not over reading text or the portrait caption. The portrait also has a slow traveling beam and a brief boost on hover or touch tap, while reduced motion keeps only the static lines. The fixed navigation uses blur (`12px`) and becomes more opaque after scrolling. Narrative depth is primarily tonal and ruled, not a repeated collection of floating cards.
 
 ### Shadow Vocabulary
 - **Terminal:** `0 24px 60px rgba(0, 0, 0, 0.5), 0 0 48px rgba(139, 92, 246, 0.10)`.
