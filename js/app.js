@@ -192,10 +192,15 @@
     const C = CONTENT[lang];
     const J = JOURNEY[lang];
     $('#projects .sec-title').hidden = true;
-    const projectInfo = (p, i) =>
-      '<div class="project-notes"><span class="project-index">' + String(i + 1).padStart(2, '0') + ' / 03</span><h3>' + escapeHtml(p.name) + '</h3><p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
-      '<div class="chips">' + p.tags.map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
-      '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details></div>';
+    const projectInfo = (p, i) => {
+      const heading = '<span class="project-index">' + String(i + 1).padStart(2, '0') + ' / 03</span><h3>' + escapeHtml(p.name) + '</h3>';
+      const supporting = '<p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
+        '<div class="chips">' + p.tags.map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
+        '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details>';
+      return '<div class="project-notes">' + (i === 2
+        ? '<div class="project-heading">' + heading + '</div><div class="project-supporting">' + supporting + '</div>'
+        : heading + supporting) + '</div>';
+    };
     const node = (text, className) => '<span class="diagram-item ' + className + '">' + escapeHtml(text) + '</span>';
     const diagram = (i) => {
       const labels = J.projectSchematics[i];
