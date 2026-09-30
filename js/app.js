@@ -933,6 +933,14 @@
   applyI18n();
   renderAll();
   syncTheme();
+  // Dropdown toggles (<summary>) must not keep focus after a mouse click:
+  // that would show the focus ring around the label. Keyboard focus
+  // (Tab, then Enter/Space) keeps its focus-visible ring, untouched.
+  document.addEventListener('click', (event) => {
+    if (event.detail === 0) return; // keyboard activation, not a mouse click
+    const summary = event.target instanceof Element ? event.target.closest('summary') : null;
+    if (summary && document.activeElement === summary) summary.blur();
+  }, true);
   // static copy that lives in index.html, kept in sync from the content model
   const heroTitle = $('.hero-intro h1');
   if (heroTitle) {
