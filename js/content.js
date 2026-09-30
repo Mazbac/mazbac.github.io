@@ -261,8 +261,7 @@ const CONTENT = {
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      rights: '© 2026 Mertcan Özbek. Alle rechten voorbehouden.',
-      built: 'gebouwd met ♥ in plain HTML/CSS/JS, zonder framework'
+      rights: '© 2026 Mertcan Özbek. Alle rechten voorbehouden.'
     }
   },
 
@@ -517,8 +516,7 @@ const CONTENT = {
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      rights: '© 2026 Mertcan Özbek. All rights reserved.',
-      built: 'built with ♥ in plain HTML/CSS/JS, no framework'
+      rights: '© 2026 Mertcan Özbek. All rights reserved.'
     }
   }
 };
