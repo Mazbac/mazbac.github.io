@@ -32,7 +32,8 @@ const CONTENT = {
       theme: 'Schakel naar {mode} modus',
       themeLight: 'lichte',
       themeDark: 'donkere',
-      themeMenu: 'Weergave'
+      themeMenu: 'Weergave',
+      themeState: '{mode} modus'
     },
     sec: {
       about: 'Over mij',
@@ -287,7 +288,8 @@ const CONTENT = {
       theme: 'Switch to {mode} mode',
       themeLight: 'light',
       themeDark: 'dark',
-      themeMenu: 'Appearance'
+      themeMenu: 'Appearance',
+      themeState: '{mode} mode'
     },
     sec: {
       about: 'About',

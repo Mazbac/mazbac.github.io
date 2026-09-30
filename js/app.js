@@ -35,7 +35,7 @@
     const menuTheme = $('#mmTheme');
     if (menuTheme) {
       menuTheme.setAttribute('aria-label', label);
-      menuTheme.querySelector('.mm-mode').textContent = mode + (lang === 'nl' ? ' modus' : ' mode');
+      menuTheme.querySelector('.mm-mode').textContent = CONTENT[lang].nav.themeState.replace('{mode}', mode);
     }
     themeColor.content = light ? '#f6f4fb' : '#0a0910';
     refreshMatrix();

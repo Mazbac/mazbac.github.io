@@ -27,7 +27,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .phase-jumps { display: grid; gap: 4px; }
 .phase-jumps a { padding: 10px 0; font: .85rem var(--mono); color: var(--muted); text-decoration: none; }
 .phase-jumps a.is-current { color: var(--accent); }
-.career-phase { min-height: 55vh; padding: 45px 0 65px; border-top: 1px solid var(--border); scroll-margin-top: 95px; }
+.career-phase { min-height: max(55vh, 36rem); padding: 45px 0 65px; border-top: 1px solid var(--border); scroll-margin-top: 95px; }
 .overlap-note { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .phase-number { font: .85rem var(--mono); color: var(--accent); margin-bottom: 20px; }
 .career-phase h3 { font-size: clamp(1.7rem, 2.6vw, 2.8rem); letter-spacing: -.025em; line-height: 1.15; margin: 0 0 20px; }
@@ -37,7 +37,6 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .career-role h4 { font-size: 1rem; margin: 0 0 10px; }
 .role-meta { font: .85rem/1.8 var(--mono); color: var(--muted); }
 .career-role ul { padding-left: 22px; }
-#skills { padding-top: 0; padding-bottom: 45px; }
 #skillsGrid { display: block; }
 .toolkit { border-block: 1px solid var(--border); }
 .toolkit > summary { font-size: 1.1rem; padding: 24px 0; }
@@ -95,10 +94,10 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .part-1 { grid-column: 2 / 4; grid-row: 2; }
 .part-2 { grid-column: 2; grid-row: 3; }
 .part-3 { grid-column: 3; grid-row: 3; }
-.airflow { grid-column: 1 / -1; grid-row: 4; display: block; border-top: 1px dashed var(--accent); position: relative; margin-top: 15px; }
+.airflow { grid-column: 1 / -1; grid-row: 4; display: block; border-top: 1px solid var(--accent); position: relative; margin-top: 15px; }
 .airflow::after { content: ''; position: absolute; right: 0; top: -4px; width: 7px; height: 7px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); transform: rotate(45deg); }
 #contactGrid { display: block; }
-#contact { border-top: 1px solid var(--accent); }
+#contact { border-top: 1px solid var(--accent); padding-bottom: 40px; }
 .contact-finale h2 { max-width: 16ch; }
 .finale-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 50px; }
 .contact-directory { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 680px; }
@@ -108,6 +107,9 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
   .career-orbit { transition: color .3s ease-out; }
   .career-phase { transition: border-color .4s ease-out; }
   .career-phase.is-current, .career-phase:focus-within { border-color: var(--accent); }
+}
+@media (min-width: 961px) and (max-height: 700px) {
+  .career-stage { position: static; }
 }
 @media (max-width: 960px) {
   .sec { padding-top: 60px; padding-bottom: 60px; }

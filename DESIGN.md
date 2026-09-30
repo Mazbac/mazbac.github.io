@@ -48,7 +48,7 @@ typography:
     fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace"
     fontSize: "12px"
 rounded:
-  control: "8px"
+  control: "9px"
   button: "9px"
   container: "12px"
   hero: "14px"
@@ -155,9 +155,9 @@ The bold human headline is distinct from restrained monospaced machinery. Narrat
 
 ## Layout
 
-The hero and name block share a centered maximum width (`1120px`); narrative sections and footer use `1080px`, with horizontal gutters (`24px`). Desktop hero columns are `1.15fr / 0.85fr` with a `36px` gap. The opening uses `1.5fr / 1fr` and a `70px` gap; the career uses `1fr / 1.1fr` and a `90px` gap. Narrative sections have `90px` top and bottom padding. The toolkit intentionally overrides this with no top padding and `45px` bottom padding.
+The hero and name block share a centered maximum width (`1120px`); narrative sections and footer use `1080px`, with horizontal gutters (`24px`). Desktop hero columns are `1.15fr / 0.85fr` with a `36px` gap. The opening uses `1.5fr / 1fr` and a `70px` gap; the career uses `1fr / 1.1fr` and a `90px` gap. Narrative sections, including the toolkit, have `90px` top and bottom padding on desktop. The closing contact section has `40px` below its last directory row before the footer surface; the footer has no extra margin above it.
 
-Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). Chapters use a desktop minimum height (`55vh`), natural document scrolling and real anchor links; no scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials are a two-column ruled list; the contact directory is a single-column ruled list. The workbench changes composition by project: automation hub with integrations beside its introduction, remote transmission route beside notes, and a full-width component spread below the PC-build introduction.
+Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). Chapters use a desktop minimum height of `max(55vh, 36rem)`, approximately matching or exceeding the stage's intrinsic height, with natural document scrolling and real anchor links. On short desktop viewports (`700px` high or less) the stage is static so it cannot stick outside the visible area. No scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials are a two-column ruled list; the contact directory is a single-column ruled list. The workbench changes composition by project: automation hub with integrations beside its introduction, remote transmission route beside notes, and a full-width component spread below the PC-build introduction.
 
 ### Responsive behavior
 | Threshold | Actual behavior |
@@ -188,7 +188,7 @@ Credential and contact-directory rows have no hover shadow or lift in the finish
 
 ## Shapes
 
-Hero windows and portrait use the hero radius; facts and the automation hub use the container radius; buttons and compact navigation controls use their respective smaller radii. Chips are fully rounded. Schematic nodes and the technical component board use square edges. Narrative list rows are flat and square, divided by thin rules; the facts panel uses dashed internal separators. Native disclosure markers remain visible.
+The terminal window uses the `14px` hero radius; portrait, facts, framed icons and the automation hub use the `12px` container radius; buttons and compact navigation controls use `9px`. Chips are fully rounded. Schematic nodes and the technical component board use square edges. All list dividers, internal facts, menu rows, footer rules and the diagram airflow line are solid, one-pixel strokes. Native disclosure markers remain visible.
 
 ## Components
 
@@ -201,7 +201,7 @@ The terminal retains traffic-light chrome, monospaced log, scrollable output and
 `assets/headshot.jpg` is the existing **user-supplied portrait of Mertcan Özbek**, not a generated or stock asset. Its provenance is user supplied as confirmed for this pass; no photographer or license is inferred. The binary is untouched. HTML uses meaningful portrait alt text; the image is square, cover-cropped, with the incumbent saturation/contrast filter. The decorative caption path `~/assets/mertcan.jpg` is terminal styling, not the actual source path.
 
 ### Actions and navigation
-Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The fixed header (`58px`) is a status bar: logo, current role on wide screens, current chapter number/name, a thin scroll-progress line, a contact anchor where space permits, language and theme controls. The menu button opens the six-section index at every width. The role was moved out of the About facts rather than duplicated. The theme icon is 44px and the menu has a labeled theme row; first visit follows `prefers-color-scheme`, explicit choice persists, and the short theme fade is disabled for reduced motion.
+Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The fixed header (`58px`) is a status bar: logo, current role on wide screens, current chapter number/name, a thin scroll-progress line, a contact anchor where space permits, language and theme controls. The menu button opens the six-section index at every width. The role was moved out of the About facts rather than duplicated. The theme icon is 44px and the menu has a labeled theme row whose state comes from NL/EN translations; first visit follows `prefers-color-scheme`, explicit choice persists, and the short theme fade is disabled for reduced motion.
 
 ### Native disclosures and toolkit
 About, full role bullets, complete toolkit and project detail use actual `<details>/<summary>` elements, not simulated accordions. Summaries are monospaced violet, have `14px` vertical padding and a `44px` minimum height; an open summary has `12px` bottom separation. The toolkit uses a stronger summary (`1.1rem`, `24px` vertical padding), ruled edges and two columns, stacking on small screens. Native keyboard semantics and markers remain intact. Language rerender preserves open disclosure indices.
