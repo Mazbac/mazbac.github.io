@@ -62,10 +62,17 @@
   const GLYPHS = '0123456789abcdef<>/[]{}$#@*+=~!|?^%&';
   const LEAF_SEL = [
     '[data-i18n]',
-    '.tl-period', '.tl-company .co', '.tl-item h3', '.tl-item li',
-    '.skill-group h3', '.chip',
+    '#chapterName', '.mm-mode',
+    '.journey-opening h2', '.journey-opening > p', '.journey-opening summary',
+    '.career-stage h2', '.orbit-name', '.phase-jumps a',
+    '.career-phase h3', '.phase-summary', '.overlap-note',
+    '.career-role h4', '.role-org', '.role-period', '.career-role summary', '.career-role li',
+    '.toolkit > summary', '.skill-group h3', '.chip',
+    '.journey-title',
     '.cert-issuer', '.cert-name', '.cert-date', '.cert-verify',
-    '.project-card h3', '.project-text',
+    '.project-notes h3', '.project-hook', '.project-notes summary', '.project-text',
+    '.diagram-item', '.route-meta span', '.diagram-caption',
+    '.contact-finale h2', '.contact-finale > p', '.finale-actions .btn',
     '.c-label', '.c-value',
     '.about-text', '.fact .k', '.fact .v',
     '.terminal-title', '#typedRole',
@@ -80,6 +87,12 @@
   function isRevealed(el) {
     const r = el.closest('.reveal');
     return !r || r.classList.contains('visible');
+  }
+
+  function isOnScreen(el) {
+    if (!el.getClientRects().length || getComputedStyle(el).visibility !== 'visible') return false;
+    const r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth;
   }
 
   function glyphVersion(finalText, settledFrac) {
@@ -115,7 +128,7 @@
   }
 
   function decodeAll(root, { duration = 420, perItem = 12, maxStagger = 420 } = {}) {
-    const targets = scrambleTargetsIn(root).filter(isRevealed);
+    const targets = scrambleTargetsIn(root).filter((el) => isRevealed(el) && isOnScreen(el));
     targets.forEach((t, i) => scrambleText(t, t.textContent, { duration, delay: Math.min(i * perItem, maxStagger) }));
     return targets.length;
   }
@@ -187,7 +200,7 @@
     const tools = [['Windows 11', 'Google Workspace', 'Hardware'], ['TOPdesk', 'ServiceNow', 'VPN'], ['Microsoft 365', 'Intune', 'ITIL'], ['ServiceNow', 'JavaScript', 'CSA']];
     $('#timeline').innerHTML = '<div class="career-stage"><h2>' + escapeHtml(J.career) + '</h2><div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(J.phases[0]) + '</span><div class="orbit-track"><i></i><i></i><i></i><i></i></div></div><nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' + groups.map((g, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(J.phases[i]) + '</a>').join('') + '</nav></div><div class="career-chapters">' + groups.map((indices, i) => '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / 04</div><h3>' + escapeHtml(J.phases[i]) + '</h3><p class="phase-summary">' + escapeHtml(J.summaries[i]) + '</p><div class="chips">' + tools[i].map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' + indices.map(index => {
       const item = C.experience[index];
-      return '<div class="career-role"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '<br>' + escapeHtml(item.period) + '</p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
+      return '<div class="career-role"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta"><span class="role-org">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '</span><br><span class="role-period">' + escapeHtml(item.period) + '</span></p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
     }).join('') + '</article>').join('') + '</div>';
     $('#phase-1 .chips').insertAdjacentHTML('afterend', '<p class="overlap-note">' + escapeHtml(J.overlap) + '</p>');
     updateCareer();
