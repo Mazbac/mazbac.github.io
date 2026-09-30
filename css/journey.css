@@ -42,7 +42,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .phase-jumps { display: grid; gap: 4px; }
 .phase-jumps a { padding: 10px 0; font: .85rem var(--mono); color: var(--muted); text-decoration: none; }
 .phase-jumps a.is-current { color: var(--accent); }
-.career-phase { min-height: max(55vh, 36rem); padding: 45px 0 65px; border-top: 1px solid var(--border); scroll-margin-top: 95px; }
+.career-phase { padding: 45px 0 65px; border-top: 1px solid var(--border); scroll-margin-top: 95px; }
 .overlap-note { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .phase-number { font: .85rem var(--mono); color: var(--accent); margin-bottom: 20px; }
 .career-phase h3 { font-size: clamp(1.7rem, 2.6vw, 2.8rem); letter-spacing: -.025em; line-height: 1.15; margin: 0 0 20px; }
@@ -143,7 +143,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
   .career-orbit { display: none; }
   .phase-jumps { grid-template-columns: 1fr 1fr; gap: 10px; }
   .phase-jumps a { font-size: .75rem; }
-  .career-phase { min-height: 0; padding: 32px 0 40px; }
+  .career-phase { padding: 32px 0 40px; }
   .workbench-project { gap: 32px; }
   .journey-opening h2, .journey-title, .career-stage h2, .contact-finale h2 { margin-bottom: 24px; }
 }
@@ -176,5 +176,5 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 }
 @media (prefers-reduced-motion: reduce) {
   .career-stage { position: static; }
-  .career-phase { min-height: 0; opacity: 1; }
+  .career-phase { opacity: 1; }
 }
