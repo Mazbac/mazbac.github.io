@@ -1,6 +1,6 @@
 ---
 name: "Mertcan Özbek Portfolio"
-description: "A preserved violet terminal identity with a naturally scrolling career narrative."
+description: "A preserved violet terminal identity with a naturally scrolling career narrative and light/dark reading modes."
 colors:
   bg: "#0a0910"
   bg-soft: "#0e0c17"
@@ -104,7 +104,7 @@ components:
 
 **Creative North Star: "The preserved terminal, opened into a career journey"**
 
-The incumbent near-black and violet terminal/BIOS identity remains authoritative. Inter carries the human story; JetBrains Mono carries commands, metadata and technical evidence. Recomposition creates distinct reading moments without introducing a new brand.
+The incumbent near-black and violet terminal/BIOS identity remains authoritative. The optional light mode uses lavender-tinted reading surfaces with a deeper violet accent while the boot and interactive terminal stay dark. Inter carries the human story; JetBrains Mono carries commands, metadata and technical evidence. Recomposition creates distinct reading moments without introducing a new brand.
 
 The preserved boot, interactive terminal and portrait lead into spacious narrative chapters, optional native disclosures, a credential checkpoint, schematic personal builds and direct contact. This is a record of the finished artifact, not a proposal for additional UI.
 
@@ -118,7 +118,7 @@ Documentation scope: `css/styles.css`, its later cascade in `css/journey.css`, `
 
 ## Colors
 
-Violet illumination sits on purple-tinted near-black surfaces; readable lavender neutrals carry the story.
+Violet illumination sits on purple-tinted near-black surfaces in dark mode; readable lavender neutrals carry the story. Light mode uses `#f6f4fb` for the page, white for raised surfaces, `#241f33` for text, and `#7c3aed` for links and accents. Its deep-violet filled actions use white text. All project diagrams and credentials follow the page theme; only the boot and terminal retain the dark console palette.
 
 ### Primary
 - **Terminal Violet** (`accent`): prompts, links, summaries, focus outlines, chapter numbers, active progress segments and diagram connectors.
@@ -164,8 +164,7 @@ Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-
 | --- | --- |
 | `960px` and below | Hero becomes one column with portrait first (`280px` maximum); terminal minimum height becomes `320px`. Desktop navigation gives way to the existing mobile menu; buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns, chapter minimum heights are removed. |
 | `560px` and below | Portrait maximum is `200px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Each project introduces itself before its own diagram; integration hub, connection route and component board adapt individually. Chapter padding contracts to `26px 0 30px`. |
-| `420px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`, retaining the full logo and uncrushed menu control. |
-| `380px` and below | Logo text disappears; its terminal prompt remains, making room for language and CV controls. |
+| `500px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`. Logo text disappears; its terminal prompt remains, making room for full-size language, CV and theme controls. |
 
 An incumbent `760px` rule also reduces the logo font to `13px`. Facts retain their incumbent maximum width (`420px`) after the `960px` rule. At small widths, schematic labels, chapter headings and tags wrap rather than force overflow.
 
@@ -191,7 +190,7 @@ Hero windows and portrait use the hero radius; facts and the automation hub use 
 ## Components
 
 ### Original boot and terminal
-The original full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. Boot exits with the existing upward transform and opacity transition (`0.45s ease-in`). It is decorative and marked `aria-hidden`; reduced-motion users bypass it. Do not rewrite its timing or transcript from this documentation.
+The original full-screen BIOS overlay, log, centered name, “ACCESS GRANTED” finale and click/key skip remain preserved. Boot exits with the existing upward transform and opacity transition (`0.45s ease-in`). It is decorative and marked `aria-hidden`; reduced-motion users bypass it. The BIOS stays dark in either page theme. Do not rewrite its timing or transcript from this documentation.
 
 The terminal retains traffic-light chrome, monospaced log, scrollable output and a transparent command input with violet caret. Desktop body padding is `20px 22px`, height range `360–430px`; responsive overrides are recorded above. The input is disabled/hidden during initialization and the output has `role="log"`. No conventional contact form is introduced.
 
@@ -199,7 +198,7 @@ The terminal retains traffic-light chrome, monospaced log, scrollable output and
 `assets/headshot.jpg` is the existing **user-supplied portrait of Mertcan Özbek**, not a generated or stock asset. Its provenance is user supplied as confirmed for this pass; no photographer or license is inferred. The binary is untouched. HTML uses meaningful portrait alt text; the image is square, cover-cropped, with the incumbent saturation/contrast filter. The decorative caption path `~/assets/mertcan.jpg` is terminal styling, not the actual source path.
 
 ### Actions and navigation
-Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The original shell includes fixed navigation (`58px` high), bilingual controls, downloadable CVs and the existing modal mobile menu. These are maintained rather than redesigned here.
+Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The original shell includes fixed navigation (`58px` high), bilingual controls, downloadable CVs and the existing modal mobile menu. A 44px sun/moon icon and a labeled menu row toggle light/dark without rerendering content; the first visit follows `prefers-color-scheme` and an explicit choice is persisted. A short color fade is disabled for reduced motion.
 
 ### Native disclosures and toolkit
 About, full role bullets, complete toolkit and project detail use actual `<details>/<summary>` elements, not simulated accordions. Summaries are monospaced violet, have `14px` vertical padding and a `44px` minimum height; an open summary has `12px` bottom separation. The toolkit uses a stronger summary (`1.1rem`, `24px` vertical padding), ruled edges and two columns, stacking on small screens. Native keyboard semantics and markers remain intact. Language rerender preserves open disclosure indices.

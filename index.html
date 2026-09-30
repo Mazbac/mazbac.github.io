@@ -6,6 +6,16 @@
   <title>Mertcan Özbek — ICT Professional &amp; ServiceNow Engineer</title>
   <meta name="description" content="Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.">
   <meta name="theme-color" content="#0a0910">
+  <script>
+    (() => {
+      let saved;
+      try { saved = localStorage.getItem('portfolio-theme'); } catch (_) { /* storage may be unavailable */ }
+      const media = window.matchMedia('(prefers-color-scheme: light)');
+      const theme = saved === 'light' || saved === 'dark' ? saved : media.matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f6f4fb' : '#0a0910';
+    })();
+  </script>
   <meta property="og:title" content="Mertcan Özbek — ICT Professional &amp; ServiceNow Engineer">
   <meta property="og:description" content="Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.">
   <meta property="og:type" content="website">
@@ -59,6 +69,10 @@
     <a class="btn nav-cv" href="cv/Mertcan-Ozbek-CV-NL.pdf" data-cv-auto download>
       <span data-i18n="nav.cv"></span>
     </a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Schakel naar lichte modus" aria-pressed="false" title="Schakel naar lichte modus">
+      <svg class="theme-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      <svg class="theme-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>
+    </button>
   </header>
 
   <main id="top">
@@ -187,7 +201,7 @@
   </footer>
 
   <noscript>
-    <div style="position:fixed;bottom:16px;left:16px;right:16px;z-index:200;background:#13101d;color:#e9e5f2;border:1px solid #a78bfa;padding:14px 18px;font-family:monospace;border-radius:10px;">
+    <div class="noscript-message">
       Deze site vereist JavaScript om te tonen. Please enable JavaScript to view this site.
     </div>
   </noscript>

@@ -17,6 +17,45 @@
 
   let lang = localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'nl';
   let animLock = false;
+  const themeMedia = window.matchMedia('(prefers-color-scheme: light)');
+  let themeOverride = false;
+  try { themeOverride = ['light', 'dark'].includes(localStorage.getItem('portfolio-theme')); } catch (_) { /* storage may be unavailable */ }
+  const html = document.documentElement;
+  const themeButton = $('#themeToggle');
+  const themeColor = $('meta[name="theme-color"]');
+  let refreshMatrix = () => {};
+
+  function syncTheme() {
+    const light = html.dataset.theme === 'light';
+    const mode = light ? CONTENT[lang].nav.themeDark : CONTENT[lang].nav.themeLight;
+    const label = CONTENT[lang].nav.theme.replace('{mode}', mode);
+    themeButton.setAttribute('aria-label', label);
+    themeButton.setAttribute('title', label);
+    themeButton.setAttribute('aria-pressed', String(light));
+    const menuTheme = $('#mmTheme');
+    if (menuTheme) {
+      menuTheme.setAttribute('aria-label', label);
+      menuTheme.querySelector('.mm-mode').textContent = mode + (lang === 'nl' ? ' modus' : ' mode');
+    }
+    themeColor.content = light ? '#f6f4fb' : '#0a0910';
+    refreshMatrix();
+  }
+
+  function setTheme(theme, persist = true) {
+    if (!reduced) html.classList.add('theme-switching');
+    html.dataset.theme = theme;
+    if (persist) {
+      themeOverride = true;
+      try { localStorage.setItem('portfolio-theme', theme); } catch (_) { /* storage may be unavailable */ }
+    }
+    syncTheme();
+    if (!reduced) setTimeout(() => html.classList.remove('theme-switching'), 220);
+  }
+
+  themeButton.addEventListener('click', () => setTheme(html.dataset.theme === 'light' ? 'dark' : 'light'));
+  themeMedia.addEventListener('change', (event) => {
+    if (!themeOverride) setTheme(event.matches ? 'light' : 'dark', false);
+  });
 
   /* ---------------- scramble-decode utility ---------------- */
 
@@ -479,6 +518,15 @@
     let H = 0;
     let cols = 0;
     let drops = [];
+    let trail;
+    let ink;
+
+    refreshMatrix = () => {
+      const styles = getComputedStyle(document.documentElement);
+      trail = styles.getPropertyValue('--matrix-trail').trim();
+      ink = styles.getPropertyValue('--matrix-ink').trim();
+      ctx.clearRect(0, 0, W, H);
+    };
 
     function resize() {
       // scale the buffer by devicePixelRatio (capped at 2x) so glyphs stay crisp on hi-dpi phones
@@ -495,6 +543,7 @@
     }
 
     resize();
+    refreshMatrix();
     window.addEventListener('resize', resize);
 
     let last = 0;
@@ -503,9 +552,9 @@
       if (t - last < 70) return; // ~14 fps — slow rain
       last = t;
       if (document.hidden) return;
-      ctx.fillStyle = 'rgba(10, 9, 16, 0.12)';
+      ctx.fillStyle = trail;
       ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = 'rgba(167, 139, 250, 0.5)';
+      ctx.fillStyle = ink;
       ctx.font = fontSize + 'px monospace';
       for (let i = 0; i < cols; i += 1) {
         const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
@@ -571,7 +620,7 @@
     ];
     $('#mmLinks').innerHTML = items
       .map((it) => '<a class="mm-link" href="' + it.href + '"><span class="mm-prompt" aria-hidden="true">$</span><span class="mm-text" data-i18n="' + it.key + '"></span></a>')
-      .join('');
+      .join('') + '<button class="mm-link mm-theme" id="mmTheme" type="button"><span class="mm-prompt" aria-hidden="true">$</span><span><span data-i18n="nav.themeMenu"></span> · <span class="mm-mode"></span></span></button>';
   }
 
   function openMenu() {
@@ -599,6 +648,11 @@
   menuBtn.addEventListener('click', () => {
     if (menuOpen) closeMenu();
     else openMenu();
+  });
+  mobileMenu.addEventListener('click', (e) => {
+    if (!e.target.closest('#mmTheme')) return;
+    setTheme(html.dataset.theme === 'light' ? 'dark' : 'light');
+    closeMenu();
   });
   mobileMenu.addEventListener('click', (e) => {
     const link = e.target.closest('a.mm-link');
@@ -729,6 +783,7 @@
     localStorage.setItem('portfolio-lang', lang);
     applyI18n();
     renderAll();
+    syncTheme();
     openDetails.forEach(i => { const el = $$('main details')[i]; if (el) el.open = true; });
     visibleIds.forEach((id) => {
       const sec = document.getElementById(id);
@@ -752,6 +807,7 @@
   renderMobileMenuLinks();
   applyI18n();
   renderAll();
+  syncTheme();
   animLock = true;
   if (reduced) {
     const b = $('#boot');

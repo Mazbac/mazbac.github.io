@@ -143,7 +143,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
   .contact-directory .c-value { overflow-wrap: anywhere; }
 }
 .cert-issuer, .contact-directory .c-label { color: var(--muted); }
-.finale-actions .btn-primary { background: #7545db; color: #fff; }
+.finale-actions .btn-primary { background: var(--finale-action); border-color: var(--finale-action); color: var(--on-accent); }
 @media (hover: hover) {
   .cert-card:hover, .contact-directory .contact-card:hover { box-shadow: none; transform: none; color: var(--accent); }
 }

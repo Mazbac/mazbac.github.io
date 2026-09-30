@@ -12,13 +12,13 @@ Busy hiring managers and recruiters assessing Mertcan's trajectory, capabilities
 A personal job-hunting portfolio: understand the progression into ServiceNow engineering, verify credentials, download a CV, and start a conversation.
 
 ## Capabilities and Constraints
-Static HTML/CSS/JavaScript on GitHub Pages. Dutch and English with persisted language selection. Downloadable bilingual CVs. No contact form. Existing interactive terminal, skippable BIOS boot and terminal identity preserved. Respect reduced motion. Mobile chapters are unpinned; desktop uses a bounded sticky career stage without scroll hijacking.
+Static HTML/CSS/JavaScript on GitHub Pages. Dutch and English with persisted language selection. Light/dark appearance follows the system on first visit and persists an explicit choice. Downloadable bilingual CVs. No contact form. Existing interactive terminal, skippable BIOS boot and terminal identity preserved. Respect reduced motion. Mobile chapters are unpinned; desktop uses a bounded sticky career stage without scroll hijacking.
 
 ## Evidence on Hand
 Role histories and personal project descriptions in js/content.js, real credential URLs, assets/headshot.jpg and CV PDFs. No supplied project screenshots or quantified outcomes. Never fabricate results or client work. OGD and Port of Rotterdam dates overlap and must not be presented as sequential jobs.
 
 ## Brand Commitments
-Preserve the existing dark terminal/BIOS identity and violet accent. Recompose sections rather than rebrand.
+Preserve the dark terminal/BIOS identity and violet accent. A lavender-tinted light reading mode may invert the page while the boot and terminal remain dark. Recompose sections rather than rebrand.
 
 ## Product Principles
 - Quick first read, optional full detail.

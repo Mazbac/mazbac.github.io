@@ -27,7 +27,11 @@ const CONTENT = {
       certs: 'Certificaten',
       projects: 'Projecten',
       contact: 'Contact',
-      cv: 'CV'
+      cv: 'CV',
+      theme: 'Schakel naar {mode} modus',
+      themeLight: 'lichte',
+      themeDark: 'donkere',
+      themeMenu: 'Weergave'
     },
     sec: {
       about: 'Over mij',
@@ -283,7 +287,11 @@ const CONTENT = {
       certs: 'Certifications',
       projects: 'Projects',
       contact: 'Contact',
-      cv: 'CV'
+      cv: 'CV',
+      theme: 'Switch to {mode} mode',
+      themeLight: 'light',
+      themeDark: 'dark',
+      themeMenu: 'Appearance'
     },
     sec: {
       about: 'About',
