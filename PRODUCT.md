@@ -1,4 +1,4 @@
-# Portfolio — Mertcan Özbek
+# Portfolio: Mertcan Özbek
 
 <!-- impeccable:product-schema 1 -->
 

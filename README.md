@@ -1,13 +1,13 @@
-# Portfolio — Mertcan Özbek
+# Portfolio: Mertcan Özbek
 
-Personal portfolio website for job hunting. Built with plain HTML, CSS and JavaScript — no framework, no build step.
+Personal portfolio website for job hunting. Built with plain HTML, CSS and JavaScript, with no framework or build step.
 
 **Live:** https://mazbac.github.io
 
 ## Features
 
 - Bilingual: Dutch (default) / English, toggle in the navbar (choice is remembered)
-- Interactive terminal hero — type `help` to see the available commands
+- Interactive terminal hero: type `help` to see the available commands
 - Dark terminal aesthetic: violet accent, matrix rain, CRT scanlines, glitch hover
 - Sections: About, Experience, Skills, Certifications, Projects, Contact
 - Narrative journey: four career phases (sticky desktop, unpinned mobile), expandable role details, verification checkpoint, and conceptual project diagrams
@@ -45,4 +45,4 @@ $edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
 
 ## Deploy
 
-Public repo named `mazbac.github.io` — GitHub Pages serves it automatically from the `main` branch root.
+Public repo named `mazbac.github.io`. GitHub Pages serves it automatically from the `main` branch root.

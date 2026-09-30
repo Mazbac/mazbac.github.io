@@ -1,5 +1,5 @@
 /* ============================================================
-   Portfolio — Mertcan Özbek
+   Portfolio: Mertcan Özbek
    Dark terminal aesthetic · violet accent · zero dependencies
    ============================================================ */
 
@@ -538,7 +538,7 @@ h1.glitch {
   }
 }
 
-/* idle glitch pulse — fires without hover (mobile + desktop) */
+/* idle glitch pulse: fires without hover (mobile + desktop) */
 .glitch.glitch-pulse::before {
   opacity: 0.85;
   color: #e879f9;

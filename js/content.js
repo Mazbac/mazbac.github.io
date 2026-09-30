@@ -1,5 +1,5 @@
 /* ============================================================
-   Content — NL & EN — Mertcan Özbek portfolio
+   Content: NL & EN, Mertcan Özbek portfolio
    ============================================================ */
 
 const CV_FILES = {
@@ -12,7 +12,7 @@ const CONTACT_EMAIL = 'mertozbek.1994@gmail.com';
 const CONTENT = {
   nl: {
     meta: {
-      title: 'Mertcan Özbek — ICT Professional & ServiceNow Engineer',
+      title: 'Mertcan Özbek | ICT Professional & ServiceNow Engineer',
       description: 'Portfolio van Mertcan Özbek: ICT professional met ervaring in enterprise Microsoft 365, ServiceNow en ITIL.'
     },
     imgAlt: 'Portret van Mertcan Özbek',
@@ -49,7 +49,7 @@ const CONTENT = {
       intro: [
         {
           cmd: 'whoami',
-          out: [{ text: 'mertcan-ozbek — ICT professional · Rotterdam' }]
+          out: [{ text: 'mertcan-ozbek · ICT professional · Rotterdam' }]
         },
         {
           cmd: 'cat profile.txt',
@@ -87,7 +87,7 @@ const CONTENT = {
         '  clear       scherm wissen',
         '  sudo hire-me  ?'
       ],
-      notFound: (c) => "command niet gevonden: '" + c + "' — probeer help",
+      notFound: (c) => "command niet gevonden: '" + c + "'. Probeer help",
       aboutLine: '> scrollend naar "Over mij" …',
       expLine: '> scrollend naar "Werkervaring" …',
       skillsLine: '> scrollend naar "Vaardigheden" …',
@@ -96,8 +96,8 @@ const CONTENT = {
       contactLine: '> scrollend naar "Contact" …',
       clearLine: 'scherm gewist. (geen sporen)',
       exitLine: 'nice try. dit is een portfolio, geen shell. (probeer: sudo hire-me)',
-      sudoLine: 'toegang verleend ✓ — stuur me een e-mail, dan maken we het werkelijkheid:',
-      whoami1: 'mertcan-ozbek — ICT professional · Rotterdam (NL)',
+      sudoLine: 'toegang verleend ✓. Stuur me een e-mail, dan maken we het werkelijkheid:',
+      whoami1: 'mertcan-ozbek · ICT professional · Rotterdam (NL)',
       whoami2: 'huidige rol: ServiceNow Support Engineer @ Devoteam',
       lsOut: 'about.txt  experience/  skills/  certifications/  projects/  contact.sh',
       contact: [
@@ -128,7 +128,7 @@ const CONTENT = {
     },
     experience: [
       {
-        period: 'Jan 2026 — heden',
+        period: 'Jan 2026 – heden',
         role: 'ServiceNow Support Engineer',
         company: 'Devoteam',
         city: 'Amsterdam',
@@ -140,7 +140,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Mei 2025 — Jan 2026',
+        period: 'Mei 2025 – Jan 2026',
         role: 'IT Support Engineer',
         company: 'Conclusion Enablement',
         city: 'Utrecht',
@@ -153,7 +153,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Apr 2023 — Feb 2025',
+        period: 'Apr 2023 – Feb 2025',
         role: 'IT Technische Ondersteuning',
         company: 'Port of Rotterdam',
         city: 'Rotterdam',
@@ -166,7 +166,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Mrt 2023 — Feb 2025',
+        period: 'Mrt 2023 – Feb 2025',
         role: 'IT Helpdesk Ondersteuning',
         company: 'OGD ict-diensten',
         city: 'Rotterdam',
@@ -178,7 +178,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Mei 2022 — Mrt 2023',
+        period: 'Mei 2022 – Mrt 2023',
         role: 'IT Specialist',
         company: 'Tyger Marketing',
         city: 'Rotterdam',
@@ -244,13 +244,13 @@ const CONTENT = {
       },
       {
         icon: 'stream',
-        name: 'Remote PC-toegang — Sunshine & Moonlight',
+        name: 'Remote PC-toegang: Sunshine & Moonlight',
         tags: ['Sunshine', 'Moonlight', 'NVIDIA', 'Port forwarding', 'Latency'],
-        text: 'Low-latency streamingoplossing voor volledige remote toegang tot mijn pc vanaf overal. Configuratie van Sunshine (host) en Moonlight (client) voor minimale vertraging en maximale beeldkwaliteit — port forwarding, encoder-instellingen en securitymaatregelen. Geschikt voor zowel productiviteit als gaming via NVIDIA GeForce-componenten.'
+        text: 'Low-latency streamingoplossing voor volledige remote toegang tot mijn pc vanaf overal. Configuratie van Sunshine (host) en Moonlight (client) voor minimale vertraging en maximale beeldkwaliteit, met port forwarding, encoder-instellingen en securitymaatregelen. Geschikt voor zowel productiviteit als gaming via NVIDIA GeForce-componenten.'
       },
       {
         icon: 'chip',
-        name: 'Eigen PC-build — Mini-ITX',
+        name: 'Eigen PC-build: Mini-ITX',
         tags: ['Mini-ITX', 'Hardware', 'Koeling', 'Troubleshooting'],
         text: 'Compact high-performance systeem gebouwd op basis van Mini-ITX met zorgvuldig geselecteerde componenten (CPU, GPU, RAM, PSU). Geoptimaliseerd voor airflow, kabelmanagement en ruimtebeperking. Inzicht opgedaan in compatibiliteit, koeling en hardware-troubleshooting.'
       }
@@ -261,14 +261,14 @@ const CONTENT = {
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      rights: '© 2026 Mertcan Özbek — Alle rechten voorbehouden.',
-      built: 'gebouwd met ♥ in plain HTML/CSS/JS — geen framework'
+      rights: '© 2026 Mertcan Özbek. Alle rechten voorbehouden.',
+      built: 'gebouwd met ♥ in plain HTML/CSS/JS, zonder framework'
     }
   },
 
   en: {
     meta: {
-      title: 'Mertcan Özbek — ICT Professional & ServiceNow Engineer',
+      title: 'Mertcan Özbek | ICT Professional & ServiceNow Engineer',
       description: 'Portfolio of Mertcan Özbek: ICT professional with enterprise Microsoft 365, ServiceNow and ITIL experience.'
     },
     imgAlt: 'Portrait of Mertcan Özbek',
@@ -305,7 +305,7 @@ const CONTENT = {
       intro: [
         {
           cmd: 'whoami',
-          out: [{ text: 'mertcan-ozbek — ICT professional · Rotterdam' }]
+          out: [{ text: 'mertcan-ozbek · ICT professional · Rotterdam' }]
         },
         {
           cmd: 'cat profile.txt',
@@ -343,7 +343,7 @@ const CONTENT = {
         '  clear       clear screen',
         '  sudo hire-me  ?'
       ],
-      notFound: (c) => "command not found: '" + c + "' — try help",
+      notFound: (c) => "command not found: '" + c + "'. Try help",
       aboutLine: '> scrolling to "About" …',
       expLine: '> scrolling to "Experience" …',
       skillsLine: '> scrolling to "Skills" …',
@@ -352,8 +352,8 @@ const CONTENT = {
       contactLine: '> scrolling to "Contact" …',
       clearLine: 'screen cleared. (no traces)',
       exitLine: 'nice try. this is a portfolio, not a shell. (try: sudo hire-me)',
-      sudoLine: "permission granted ✓ — send me an email and we'll make it happen:",
-      whoami1: 'mertcan-ozbek — ICT professional · Rotterdam (NL)',
+      sudoLine: "permission granted ✓. Send me an email and we'll make it happen:",
+      whoami1: 'mertcan-ozbek · ICT professional · Rotterdam (NL)',
       whoami2: 'current role: ServiceNow Support Engineer @ Devoteam',
       lsOut: 'about.txt  experience/  skills/  certifications/  projects/  contact.sh',
       contact: [
@@ -384,7 +384,7 @@ const CONTENT = {
     },
     experience: [
       {
-        period: 'Jan 2026 — Present',
+        period: 'Jan 2026 – Present',
         role: 'ServiceNow Support Engineer',
         company: 'Devoteam',
         city: 'Amsterdam',
@@ -396,7 +396,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'May 2025 — Jan 2026',
+        period: 'May 2025 – Jan 2026',
         role: 'IT Support Engineer',
         company: 'Conclusion Enablement',
         city: 'Utrecht',
@@ -409,7 +409,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Apr 2023 — Feb 2025',
+        period: 'Apr 2023 – Feb 2025',
         role: 'IT Technical Support',
         company: 'Port of Rotterdam',
         city: 'Rotterdam',
@@ -422,7 +422,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'Mar 2023 — Feb 2025',
+        period: 'Mar 2023 – Feb 2025',
         role: 'IT Helpdesk Support',
         company: 'OGD ict-diensten',
         city: 'Rotterdam',
@@ -434,7 +434,7 @@ const CONTENT = {
         ]
       },
       {
-        period: 'May 2022 — Mar 2023',
+        period: 'May 2022 – Mar 2023',
         role: 'IT Specialist',
         company: 'Tyger Marketing',
         city: 'Rotterdam',
@@ -500,13 +500,13 @@ const CONTENT = {
       },
       {
         icon: 'stream',
-        name: 'Remote PC access — Sunshine & Moonlight',
+        name: 'Remote PC access: Sunshine & Moonlight',
         tags: ['Sunshine', 'Moonlight', 'NVIDIA', 'Port forwarding', 'Latency'],
-        text: 'Low-latency streaming setup for full remote access to my PC from anywhere. Configured Sunshine (host) and Moonlight (client) for minimal lag and maximum image quality — port forwarding, encoder settings and security measures. Suitable for both productivity and gaming via NVIDIA GeForce components.'
+        text: 'Low-latency streaming setup for full remote access to my PC from anywhere. Configured Sunshine (host) and Moonlight (client) for minimal lag and maximum image quality, using port forwarding, encoder settings and security measures. Suitable for both productivity and gaming via NVIDIA GeForce components.'
       },
       {
         icon: 'chip',
-        name: 'Custom PC build — Mini-ITX',
+        name: 'Custom PC build: Mini-ITX',
         tags: ['Mini-ITX', 'Hardware', 'Cooling', 'Troubleshooting'],
         text: 'Compact high-performance system built on Mini-ITX with carefully selected components (CPU, GPU, RAM, PSU). Optimized for airflow, cable management and space constraints. Gained insight into compatibility, cooling and hardware troubleshooting.'
       }
@@ -517,8 +517,8 @@ const CONTENT = {
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      rights: '© 2026 Mertcan Özbek — All rights reserved.',
-      built: 'built with ♥ in plain HTML/CSS/JS — no framework'
+      rights: '© 2026 Mertcan Özbek. All rights reserved.',
+      built: 'built with ♥ in plain HTML/CSS/JS, no framework'
     }
   }
 };

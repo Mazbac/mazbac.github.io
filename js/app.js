@@ -1,5 +1,5 @@
 /* ============================================================
-   App — rendering, i18n, boot sequence, scramble effects, terminal
+   App: rendering, i18n, boot sequence, scramble effects, terminal
    ============================================================ */
 
 (() => {
@@ -617,7 +617,7 @@
     let last = 0;
     function frame(t) {
       requestAnimationFrame(frame);
-      if (t - last < 70) return; // ~14 fps — slow rain
+      if (t - last < 70) return; // ~14 fps, slow rain
       last = t;
       if (document.hidden) return;
       ctx.fillStyle = trail;
@@ -739,8 +739,8 @@
         ? 'STATUS: OPEN VOOR NIEUWE OPPORTUNITEITEN ....... ✓'
         : 'STATUS: OPEN TO NEW OPPORTUNITIES ............... ✓';
     return [
-      'MERTCAN OZBEK SYSTEMS — BIOS v2.6',
-      '(C) 2026 — ALL RIGHTS RESERVED',
+      'MERTCAN OZBEK SYSTEMS · BIOS v2.6',
+      '(C) 2026 · ALL RIGHTS RESERVED',
       '',
       'CPU: MOTIVATION @ 3.50 GHZ ........... OK',
       'MEMORY: 4+ YR IT ..................... 100% OK',
@@ -751,7 +751,7 @@
       'VGA SYNC ................................ OK',
       'RESTART ............................. READY',
       langLine,
-      '████████████ 100% — READY'
+      '████████████ 100% · READY'
     ];
   }
 
