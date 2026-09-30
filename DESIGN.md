@@ -187,7 +187,7 @@ Credential and contact-directory rows have no hover shadow or lift in the finish
 
 ## Shapes
 
-The terminal window uses the `14px` hero radius; portrait, facts, framed icons and the automation hub use the `12px` container radius; buttons and compact navigation controls use `9px`. Chips are fully rounded. Schematic nodes and the technical component board use square edges. All list dividers, internal facts, menu rows, footer rules and the diagram airflow line are solid, one-pixel strokes. Native disclosure markers remain visible.
+The terminal window uses the `14px` hero radius; portrait, facts, framed icons, the automation hub and the remote route use the `12px` container radius; buttons and compact navigation controls use `9px`. Chips are fully rounded. Schematic nodes and the technical component board use square edges. All list dividers, internal facts, menu rows, footer rules and the diagram airflow line are solid, one-pixel strokes. Native disclosure markers remain visible.
 
 ## Components
 
@@ -212,7 +212,7 @@ Foundations → operations → enterprise → ServiceNow specialization. The ope
 Real credential links form ruled rows on the console-surface section. Issuer and date metadata accompany the credential name and verification affordance. Hover changes emphasis without turning each row into a raised card. Contact rows use the same flat evidence-directory rhythm, with glyph icons hidden.
 
 ### Workbench diagrams
-Three personal builds use distinct HTML/CSS schematics drawn from existing descriptions. Home Assistant is a branching hub connecting Node-RED, a smart thermostat and M5Stack voice control. Sunshine/Moonlight is a horizontal host-to-client path with configuration annotations. Mini-ITX is a wide component inventory board showing CPU, GPU, RAM, PSU and an airflow indicator. Every diagram has a visible **“Conceptual overview · based on project description”** caption (localized in Dutch). These are conceptual explanations, **not screenshots, production architecture evidence or client work**. No fabricated raster assets or performance metrics are implied. Each project keeps its actual name, one-line hook, tags and optional full description.
+Three personal builds use distinct HTML/CSS schematics drawn from existing descriptions. Home Assistant is a branching hub connecting Node-RED, a smart thermostat and M5Stack voice control. Sunshine/Moonlight is a horizontal host-to-client path with configuration annotations, set in the same surface card as the automation hub. Mini-ITX is a wide component inventory board showing CPU, GPU, RAM, PSU and an airflow indicator. Every diagram has a visible **“Conceptual overview · based on project description”** caption (localized in Dutch). These are conceptual explanations, **not screenshots, production architecture evidence or client work**. No fabricated raster assets or performance metrics are implied. Each project keeps its actual name, one-line hook, tags and optional full description.
 
 ### Contact finale
 A large human invitation, email and language-aware CV actions precede a single column with phone, LinkedIn and GitHub. Email appears once as the primary action, not again as a directory row. The heading is capped at `16ch`; the closing section begins with a violet rule. The footer keeps only the signature and return-to-top link. The terminal's `contact`, `cv` and `sudo hire-me` commands remain complete by deliberate exception. There is no invented form, submission flow or backend.
