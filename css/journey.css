@@ -42,7 +42,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .toolkit > summary { font-size: 1.1rem; padding: 24px 0; }
 .toolkit-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: 24px; }
 .toolkit .skill-group { background: none; border: none; padding: 0; }
-#certifications { background: var(--surface); }
+#certifications { background: var(--surface); border-radius: 12px; }
 .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
 .cert-card { background: none; border: 0; border-radius: 0; border-top: 1px solid var(--border); padding: 24px 0; box-shadow: none; }
 .cert-name { font-size: 1.1rem; }
