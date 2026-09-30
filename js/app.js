@@ -727,9 +727,6 @@
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && menuOpen) closeMenu();
   });
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 960 && menuOpen) closeMenu();
-  });
 
   /* ---------------- boot sequence ---------------- */
 
