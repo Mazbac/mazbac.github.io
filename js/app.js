@@ -270,9 +270,42 @@
         labels.map((t, n) => node(t, 'part part-' + n)).join('') + '<span class="airflow" aria-hidden="true"></span></div>' + caption + '</div>';
     };
     $('#projectGrid').innerHTML = C.projects.map((p, i) => '<article class="workbench-project workbench-' + i + '">' + projectInfo(p, i) + diagram(i) + '</article>').join('');
+    initProjectTilt();
     let heading = $('#projects .journey-title');
     if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title reveal'; heading.dataset.reveal = 'project-heading'; $('#projectGrid').before(heading); }
     heading.textContent = J.workbench;
+  }
+
+  function initProjectTilt() {
+    const canTilt = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    $$('.project-visual').forEach((visual) => {
+      let frame = 0;
+      let x = 0;
+      let y = 0;
+      visual.addEventListener('pointermove', (event) => {
+        if (!canTilt.matches || event.pointerType !== 'mouse') return;
+        x = event.clientX;
+        y = event.clientY;
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          if (!visual.isConnected) return;
+          const rect = visual.getBoundingClientRect();
+          const horizontal = Math.max(-1, Math.min(1, (x - rect.left) / rect.width * 2 - 1));
+          const vertical = Math.max(-1, Math.min(1, (y - rect.top) / rect.height * 2 - 1));
+          visual.style.setProperty('--tilt-x', (-vertical * 3).toFixed(2) + 'deg');
+          visual.style.setProperty('--tilt-y', (horizontal * 4).toFixed(2) + 'deg');
+          visual.classList.add('is-tilting');
+        });
+      });
+      visual.addEventListener('pointerleave', () => {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        visual.classList.remove('is-tilting');
+        visual.style.removeProperty('--tilt-x');
+        visual.style.removeProperty('--tilt-y');
+      });
+    });
   }
 
   function renderContact() {
