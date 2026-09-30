@@ -157,13 +157,13 @@ The bold human headline is distinct from restrained monospaced machinery. Narrat
 
 The hero and name/action block share a centered maximum width (`1120px`); narrative sections and footer use `1080px`, with horizontal gutters (`24px`). Desktop hero columns are `1.15fr / 0.85fr` with a `36px` gap. The opening uses `1.5fr / 1fr` and a `70px` gap; the career uses `1fr / 1.1fr` and a `90px` gap. Narrative sections have `90px` top and bottom padding. The toolkit intentionally overrides this with no top padding and `45px` bottom padding.
 
-Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). This offset is also confirmed by the finish reviewer. Chapters use a desktop minimum height (`55vh`), natural document scrolling and real anchor links; no scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials and the contact directory are two-column ruled lists. Projects alternate diagram/prose placement, with the second diagram on the right.
+Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). This offset is also confirmed by the finish reviewer. Chapters use a desktop minimum height (`55vh`), natural document scrolling and real anchor links; no scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials and the contact directory are two-column ruled lists. The workbench changes composition by project: automation hub with integrations beside its introduction, remote transmission route beside notes, and a full-width component spread below the PC-build introduction.
 
 ### Responsive behavior
 | Threshold | Actual behavior |
 | --- | --- |
 | `960px` and below | Hero becomes one column with portrait first (`280px` maximum); terminal minimum height becomes `320px`. Desktop navigation gives way to the existing mobile menu; buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns, chapter minimum heights are removed. |
-| `560px` and below | Portrait maximum is `200px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Project order resets to diagram first; diagrams become three horizontal nodes with short right-pointing links. Chapter padding contracts to `26px 0 30px`. |
+| `560px` and below | Portrait maximum is `200px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Each project introduces itself before its own diagram; integration hub, connection route and component board adapt individually. Chapter padding contracts to `26px 0 30px`. |
 | `420px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`, retaining the full logo and uncrushed menu control. |
 | `380px` and below | Logo text disappears; its terminal prompt remains, making room for language and CV controls. |
 
@@ -186,7 +186,7 @@ Credential and contact-directory rows have no hover shadow or lift in the finish
 
 ## Shapes
 
-Hero windows and portrait use the hero radius; facts and diagrams use the container radius; buttons and compact navigation controls use their respective smaller radii. Chips are fully rounded. Schematic nodes are square-edged inside a gently curved diagram container. Narrative list rows are flat and square, divided by thin rules; the facts panel uses dashed internal separators. Native disclosure markers remain visible.
+Hero windows and portrait use the hero radius; facts and the automation hub use the container radius; buttons and compact navigation controls use their respective smaller radii. Chips are fully rounded. Schematic nodes and the technical component board use square edges. Narrative list rows are flat and square, divided by thin rules; the facts panel uses dashed internal separators. Native disclosure markers remain visible.
 
 ## Components
 
@@ -211,7 +211,7 @@ Foundations → operations → enterprise → ServiceNow specialization. The ope
 Real credential links form ruled rows on the console-surface section. Issuer and date metadata accompany the credential name and verification affordance. Hover changes emphasis without turning each row into a raised card. Contact rows use the same flat evidence-directory rhythm, with glyph icons hidden.
 
 ### Workbench diagrams
-Three personal builds are illustrated using existing descriptions: Home Assistant/Node-RED automation, Sunshine/Moonlight remote access and Mini-ITX assembly. Each diagram is HTML/CSS with three labeled square nodes, connectors and an explicit visible **“Conceptual overview · based on project description”** caption (localized in Dutch). The center node is violet-emphasized. These are conceptual explanations, **not screenshots, production architecture evidence or client work**. No fabricated raster assets or performance metrics are implied. The project heading names the actual build; its one-line hook and optional detail remain separate.
+Three personal builds use distinct HTML/CSS schematics drawn from existing descriptions. Home Assistant is a branching hub connecting Node-RED, a smart thermostat and M5Stack voice control. Sunshine/Moonlight is a horizontal host-to-client path with configuration annotations. Mini-ITX is a wide component inventory board showing CPU, GPU, RAM, PSU and an airflow indicator. Every diagram has a visible **“Conceptual overview · based on project description”** caption (localized in Dutch). These are conceptual explanations, **not screenshots, production architecture evidence or client work**. No fabricated raster assets or performance metrics are implied. Each project keeps its actual name, one-line hook, tags and optional full description.
 
 ### Contact finale
 A large human invitation, email and CV actions precede the flat contact directory. The heading is capped at `16ch`; the closing section begins with a violet rule. There is no invented form, submission flow or backend.

@@ -192,15 +192,24 @@
     const C = CONTENT[lang];
     const J = JOURNEY[lang];
     $('#projects .sec-title').hidden = true;
-    $('#projectGrid').innerHTML = C.projects
-      .map(
-        (p, i) =>
-          '<article class="workbench-project"><div class="system-diagram" aria-label="' + escapeHtml(J.diagram) + '">' + J.diagrams[i].map((node, n) => '<div class="system-node node-' + n + '">' + escapeHtml(node) + '</div>').join('<span class="system-link" aria-hidden="true"></span>') + '<p class="diagram-caption">' + escapeHtml(J.diagram) + '</p></div><div class="project-notes"><h3>' + escapeHtml(p.name) + '</h3><p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
-          '<div class="chips">' + p.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
-          '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details>' +
-          '</div></article>'
-      )
-      .join('');
+    const projectInfo = (p, i) =>
+      '<div class="project-notes"><span class="project-index">' + String(i + 1).padStart(2, '0') + ' / 03</span><h3>' + escapeHtml(p.name) + '</h3><p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
+      '<div class="chips">' + p.tags.map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
+      '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details></div>';
+    const node = (text, className) => '<span class="diagram-item ' + className + '">' + escapeHtml(text) + '</span>';
+    const diagram = (i) => {
+      const labels = J.projectSchematics[i];
+      const caption = '<p class="diagram-caption">' + escapeHtml(J.diagram) + '</p>';
+      if (i === 0) return '<div class="project-visual automation-map" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="automation-nodes">' +
+        node(labels[0], 'automation-core') + node(labels[1], 'automation-branch branch-one') + node(labels[2], 'automation-branch branch-two') + node(labels[3], 'automation-branch branch-three') +
+        '</div>' + caption + '</div>';
+      if (i === 1) return '<div class="project-visual remote-route" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="route-nodes">' +
+        node(labels[0], 'route-host') + '<span class="route-line" aria-hidden="true"><i></i></span>' + node(labels[1], 'route-client') + '</div><div class="route-meta">' +
+        labels.slice(2).map(t => '<span>' + escapeHtml(t) + '</span>').join('') + '</div>' + caption + '</div>';
+      return '<div class="project-visual build-board" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="chassis"><span class="chassis-title">Mini-ITX</span>' +
+        labels.map((t, n) => node(t, 'part part-' + n)).join('') + '<span class="airflow" aria-hidden="true"></span></div>' + caption + '</div>';
+    };
+    $('#projectGrid').innerHTML = C.projects.map((p, i) => '<article class="workbench-project workbench-' + i + '">' + projectInfo(p, i) + diagram(i) + '</article>').join('');
     let heading = $('#projects .journey-title');
     if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title'; $('#projectGrid').before(heading); }
     heading.textContent = J.workbench;

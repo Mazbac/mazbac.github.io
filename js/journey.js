@@ -10,7 +10,7 @@ const JOURNEY = {
     phases: ['Building the foundations', 'Keeping operations moving', 'Working across the enterprise', 'Going deeper into ServiceNow'],
     summaries: ['Workstations, hardware and the systems that keep an office running.', 'Incident diagnosis, workplace support and changes with operational impact in mind.', 'Microsoft 365 administration, service management and structured ITIL workflows.', 'Complex platform support, configuration changes and JavaScript scripting.'],
     chapter: 'Career phase', overlap: 'These roles overlap in time; they are shown together, not as consecutive positions.', diagram: 'Conceptual overview · based on project description',
-    diagrams: [['Devices / thermostat', 'Home Assistant', 'Node-RED automations'], ['Sunshine · host PC', 'Remote connection', 'Moonlight · client'], ['Selected components', 'Mini-ITX assembly', 'Airflow / compatibility']],
+    projectSchematics: [['Home Assistant', 'Node-RED', 'Smart thermostat', 'M5Stack voice control'], ['Sunshine · host PC', 'Moonlight · client', 'Port forwarding', 'Encoder settings'], ['CPU', 'GPU', 'RAM', 'PSU']],
     notes: ['Connecting devices and automations.', 'Making a desktop reachable remotely.', 'Working within physical constraints.']
   },
   nl: {
@@ -23,7 +23,7 @@ const JOURNEY = {
     phases: ['De basis bouwen', 'De operatie draaiend houden', 'Werken in de enterprise', 'Dieper in ServiceNow'],
     summaries: ['Werkplekken, hardware en de systemen die een kantoor draaiend houden.', 'Incidentdiagnose, werkplekondersteuning en changes met oog voor de operatie.', 'Microsoft 365-beheer, servicemanagement en gestructureerde ITIL-processen.', 'Complexe platformsupport, configuratiewijzigingen en JavaScript-scripting.'],
     chapter: 'Carrièrefase', overlap: 'Deze rollen overlappen in tijd; ze worden samen getoond, niet als opeenvolgende functies.', diagram: 'Conceptueel overzicht · op basis van de projectbeschrijving',
-    diagrams: [['Apparaten / thermostaat', 'Home Assistant', 'Node-RED-automatiseringen'], ['Sunshine · host-pc', 'Remote verbinding', 'Moonlight · client'], ['Geselecteerde onderdelen', 'Mini-ITX-assemblage', 'Airflow / compatibiliteit']],
+    projectSchematics: [['Home Assistant', 'Node-RED', 'Slimme thermostaat', 'Spraakbediening via M5Stack'], ['Sunshine · host-pc', 'Moonlight · client', 'Port forwarding', 'Encoder-instellingen'], ['CPU', 'GPU', 'RAM', 'PSU']],
     notes: ['Apparaten en automatiseringen verbinden.', 'Een desktop op afstand bereikbaar maken.', 'Bouwen binnen fysieke beperkingen.']
   }
 };
