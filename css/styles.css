@@ -329,7 +329,6 @@ html[data-theme='dark'] .theme-moon { display: none; }
 .lang-toggle:active,
 .menu-btn:active,
 .chip:active,
-.skill-group:active,
 .cert-card:active,
 .project-card:active,
 .contact-card:active {
@@ -740,15 +739,6 @@ h1.glitch {
   background: var(--surface);
   border-radius: 12px;
   padding: 20px;
-  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-}
-
-@media (hover: hover) {
-  .skill-group:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  }
 }
 
 .skill-group h3 {
