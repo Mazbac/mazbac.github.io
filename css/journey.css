@@ -1,0 +1,114 @@
+/* A single narrative rhythm inside the existing terminal identity. */
+[hidden] { display: none !important; }
+.journey-opening h2, .journey-title, .career-stage h2, .contact-finale h2 {
+  font-size: clamp(2rem, 4.2vw, 4rem); line-height: 1.12; font-weight: 700;
+  letter-spacing: -.035em; text-wrap: balance; margin: 0 0 28px;
+}
+.sec { padding-top: 90px; padding-bottom: 90px; }
+.journey-opening > p, .contact-finale > p { font-size: 1.15rem; color: var(--muted); max-width: 55ch; line-height: 1.75; }
+.about-grid { grid-template-columns: 1.5fr 1fr; gap: 70px; align-items: center; }
+details { color: var(--muted); }
+summary { cursor: pointer; color: var(--accent); font-family: var(--mono); padding: 14px 0; min-height: 44px; }
+details[open] summary { margin-bottom: 12px; }
+details p, details li { line-height: 1.75; }
+summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+#timeline { display: grid; grid-template-columns: 1fr 1.1fr; gap: 90px; position: relative; }
+.timeline::before { display: none; }
+.career-stage { position: sticky; top: 105px; align-self: start; }
+.career-orbit { margin: 32px 0; padding: 24px 0; border-block: 1px solid var(--border); }
+.orbit-index { display: block; color: var(--accent); font-family: var(--mono); font-size: clamp(4rem, 7vw, 6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.orbit-name { display: block; margin-top: 14px; font-size: 1.2rem; }
+.orbit-track { display: flex; gap: 12px; margin-top: 24px; }
+.orbit-track i { height: 3px; flex: 1; background: var(--border); }
+.career-stage[style*="--phase: 0"] .orbit-track i:nth-child(1),
+.career-stage[style*="--phase: 1"] .orbit-track i:nth-child(-n+2),
+.career-stage[style*="--phase: 2"] .orbit-track i:nth-child(-n+3),
+.career-stage[style*="--phase: 3"] .orbit-track i { background: var(--accent); }
+.phase-jumps { display: grid; gap: 4px; }
+.phase-jumps a { padding: 10px 0; font: .85rem var(--mono); color: var(--muted); text-decoration: none; }
+.phase-jumps a.is-current { color: var(--accent); }
+.career-phase { min-height: 55vh; padding: 45px 0 65px; border-top: 1px solid var(--border); scroll-margin-top: 95px; }
+.overlap-note { color: var(--muted); font-size: .85rem; line-height: 1.6; }
+.phase-number { font: .85rem var(--mono); color: var(--accent); margin-bottom: 20px; }
+.career-phase h3 { font-size: clamp(1.7rem, 2.6vw, 2.8rem); letter-spacing: -.025em; line-height: 1.15; margin: 0 0 20px; }
+.phase-summary { font-size: 1.15rem; line-height: 1.65; color: var(--muted); }
+.career-phase .chips { margin: 24px 0; }
+.career-role { padding-top: 22px; }
+.career-role h4 { font-size: 1rem; margin: 0 0 10px; }
+.role-meta { font: .85rem/1.8 var(--mono); color: var(--muted); }
+.career-role ul { padding-left: 22px; }
+#skills { padding-top: 0; padding-bottom: 45px; }
+#skillsGrid { display: block; }
+.toolkit { border-block: 1px solid var(--border); }
+.toolkit > summary { font-size: 1.1rem; padding: 24px 0; }
+.toolkit-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: 24px; }
+.toolkit .skill-group { background: none; border: none; padding: 0; }
+#certifications { background: var(--surface); }
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.cert-card { background: none; border: 0; border-radius: 0; border-top: 1px solid var(--border); padding: 24px 0; box-shadow: none; }
+.cert-name { font-size: 1.1rem; }
+#projectGrid { display: block; }
+.workbench-project { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; padding: 65px 0; border-top: 1px solid var(--border); }
+.workbench-project:nth-child(2) .system-diagram { order: 2; }
+.project-notes h3 { font-size: clamp(1.5rem, 2.1vw, 2.2rem); line-height: 1.25; margin: 0 0 20px; }
+.project-hook { color: var(--accent); font-size: 1.1rem; line-height: 1.6; }
+.project-notes .project-text { max-width: 65ch; line-height: 1.8; }
+.system-diagram { padding: 30px; background: var(--surface); border-radius: 12px; }
+.system-node { padding: 22px 16px; border: 1px solid var(--border); text-align: center; font: .95rem/1.5 var(--mono); }
+.system-diagram > *, .career-chapters, .project-notes, .journey-opening { min-width: 0; }
+.system-node, .career-phase h3, .cert-name { overflow-wrap: anywhere; }
+.career-phase .chip, .project-notes .chip { max-width: 100%; overflow-wrap: anywhere; }
+.system-node.node-1 { border-color: var(--accent); color: var(--accent); }
+.system-link { display: block; width: 1px; height: 34px; margin: auto; background: var(--accent); position: relative; }
+.system-link::after { content: ''; position: absolute; bottom: 0; left: -3px; width: 7px; height: 7px; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: rotate(45deg); }
+.diagram-caption { font: .72rem/1.6 var(--mono); color: var(--muted); margin: 24px 0 0; }
+#contactGrid { display: block; }
+#contact { border-top: 1px solid var(--accent); }
+.contact-finale h2 { max-width: 16ch; }
+.finale-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 50px; }
+.contact-directory { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.contact-directory .contact-card { background: none; border: none; border-radius: 0; border-top: 1px solid var(--border); padding: 20px 0; }
+.contact-directory .c-icon { display: none; }
+@media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .career-orbit { transition: color .3s ease-out; }
+  .career-phase { transition: border-color .4s ease-out; }
+  .career-phase.is-current, .career-phase:focus-within { border-color: var(--accent); }
+}
+@media (max-width: 960px) {
+  .sec { padding-top: 60px; padding-bottom: 60px; }
+  .about-grid, #timeline { grid-template-columns: 1fr; gap: 32px; }
+  .career-stage { position: static; }
+  .career-orbit { display: none; }
+  .phase-jumps { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .phase-jumps a { font-size: .75rem; }
+  .career-phase { min-height: 0; padding: 32px 0 40px; }
+  .workbench-project { gap: 32px; }
+  .journey-opening h2, .journey-title, .career-stage h2, .contact-finale h2 { margin-bottom: 24px; }
+}
+@media (max-width: 560px) {
+  .sec { padding-top: 48px; padding-bottom: 48px; }
+  .toolkit-body, .cert-grid, .workbench-project, .contact-directory { grid-template-columns: 1fr; }
+  .workbench-project { padding: 36px 0; }
+  .workbench-project:nth-child(2) .system-diagram { order: 0; }
+  .system-diagram { padding: 20px; }
+  .system-diagram { display: grid; grid-template-columns: 1fr 12px 1fr 12px 1fr; align-items: center; padding: 16px 10px; }
+  .system-node { overflow-wrap: anywhere; }
+  .system-link { width: 12px; height: 1px; }
+  .system-link::after { left: auto; right: 0; bottom: -3px; transform: rotate(-45deg); }
+  .diagram-caption { grid-column: 1 / -1; }
+  .system-node { padding: 16px 10px; font-size: .8rem; }
+  .journey-opening > p, .phase-summary { font-size: 1rem; }
+  .career-phase { padding: 26px 0 30px; }
+  .career-phase .chips { margin: 16px 0; }
+  .career-role { padding-top: 14px; }
+  .contact-directory .c-value { overflow-wrap: anywhere; }
+}
+.cert-issuer, .contact-directory .c-label { color: var(--muted); }
+.finale-actions .btn-primary { background: #7545db; color: #fff; }
+@media (hover: hover) {
+  .cert-card:hover, .contact-directory .contact-card:hover { box-shadow: none; transform: none; color: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .career-stage { position: static; }
+  .career-phase { min-height: 0; opacity: 1; }
+}

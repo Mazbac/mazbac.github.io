@@ -10,6 +10,7 @@ Personal portfolio website for job hunting. Built with plain HTML, CSS and JavaS
 - Interactive terminal hero — type `help` to see the available commands
 - Dark terminal aesthetic: violet accent, matrix rain, CRT scanlines, glitch hover
 - Sections: About, Experience, Skills, Certifications, Projects, Contact
+- Narrative journey: four career phases (sticky desktop, unpinned mobile), expandable role details, verification checkpoint, and conceptual project diagrams
 - Downloadable CVs (Dutch + English PDF)
 
 ## Structure
@@ -18,6 +19,8 @@ Personal portfolio website for job hunting. Built with plain HTML, CSS and JavaS
 index.html          page skeleton
 css/styles.css      all styling
 js/content.js       all NL/EN content (edit this to update text)
+js/journey.js       bilingual narrative copy and conceptual diagram labels
+css/journey.css     narrative layout and responsive choreography
 js/app.js           rendering, i18n, terminal, effects
 assets/headshot.jpg portrait
 cv/                 CV PDFs + the HTML sources used to generate them
@@ -25,7 +28,7 @@ cv/                 CV PDFs + the HTML sources used to generate them
 
 ## Updating content
 
-All site text lives in `js/content.js` (NL and EN objects). Edit the strings, then commit and push.
+Factual content lives in `js/content.js`; narrative presentation copy lives in `js/journey.js` (NL and EN objects). Edit the strings, then commit and push. Project diagrams are labeled conceptual overviews, not screenshots or measured results. Full role and project descriptions remain available through native expandable details.
 
 ## Regenerating the CV PDFs
 

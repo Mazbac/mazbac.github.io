@@ -124,15 +124,16 @@
 
   function renderAbout() {
     const C = CONTENT[lang];
+    const J = JOURNEY[lang];
     const body = $('#aboutBody');
-    body.classList.add('reveal');
+    $('#about .sec-title').hidden = true;
     body.innerHTML =
-      '<p class="about-text">' + escapeHtml(C.about.text) + '</p>' +
+      '<div class="journey-opening"><h2>' + escapeHtml(J.thesis) + '</h2><p>' + escapeHtml(J.intro) + '</p><details><summary>' + escapeHtml(C.sec.about) + '</summary><p class="about-text">' + escapeHtml(C.about.text) + '</p></details></div>' +
       '<div class="facts" role="list">' +
       C.about.facts
-        .map(([k, v, accent]) =>
+        .map(([k, v, accent], i) =>
           '<div class="fact" role="listitem">' +
-          '<span class="k">' + escapeHtml(k) + '</span>' +
+          '<span class="k">' + escapeHtml(J.factLabels[i] || k) + '</span>' +
           '<span class="v' + (accent ? ' accent' : '') + '">' + escapeHtml(v) + '</span>' +
           '</div>'
         )
@@ -142,39 +143,39 @@
 
   function renderExperience() {
     const C = CONTENT[lang];
-    $('#timeline').innerHTML = C.experience
-      .map(
-        (item) =>
-          '<article class="tl-item reveal">' +
-          '<span class="tl-dot" aria-hidden="true"></span>' +
-          '<div class="tl-period">' + escapeHtml(item.period) + '</div>' +
-          '<h3>' + escapeHtml(item.role) + '</h3>' +
-          '<div class="tl-company"><span class="co">' + escapeHtml(item.company) + '</span> · ' + escapeHtml(item.city) + '</div>' +
-          '<ul>' + item.bullets.map((b) => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul>' +
-          '</article>'
-      )
-      .join('');
+    const J = JOURNEY[lang];
+    $('#experience .sec-title').hidden = true;
+    const groups = [[4], [3, 2], [1], [0]];
+    const tools = [['Windows 11', 'Google Workspace', 'Hardware'], ['TOPdesk', 'ServiceNow', 'VPN'], ['Microsoft 365', 'Intune', 'ITIL'], ['ServiceNow', 'JavaScript', 'CSA']];
+    $('#timeline').innerHTML = '<div class="career-stage"><h2>' + escapeHtml(J.career) + '</h2><div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(J.phases[0]) + '</span><div class="orbit-track"><i></i><i></i><i></i><i></i></div></div><nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' + groups.map((g, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(J.phases[i]) + '</a>').join('') + '</nav></div><div class="career-chapters">' + groups.map((indices, i) => '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / 04</div><h3>' + escapeHtml(J.phases[i]) + '</h3><p class="phase-summary">' + escapeHtml(J.summaries[i]) + '</p><div class="chips">' + tools[i].map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' + indices.map(index => {
+      const item = C.experience[index];
+      return '<div class="career-role"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '<br>' + escapeHtml(item.period) + '</p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
+    }).join('') + '</article>').join('') + '</div>';
+    $('#phase-1 .chips').insertAdjacentHTML('afterend', '<p class="overlap-note">' + escapeHtml(J.overlap) + '</p>');
+    updateCareer();
   }
 
   function renderSkills() {
     const C = CONTENT[lang];
-    $('#skillsGrid').innerHTML = C.skills
+    $('#skills .sec-title').hidden = true;
+    $('#skillsGrid').innerHTML = '<details class="toolkit"><summary>' + escapeHtml(JOURNEY[lang].skills) + '</summary><div class="toolkit-body">' + C.skills
       .map(
         (g) =>
-          '<div class="skill-group reveal">' +
+          '<div class="skill-group">' +
           '<h3>' + escapeHtml(g.name) + '</h3>' +
           '<div class="chips">' + g.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
           '</div>'
       )
-      .join('');
+      .join('') + '</div></details>';
   }
 
   function renderCerts() {
     const C = CONTENT[lang];
+    $('#certifications .sec-title').hidden = true;
     $('#certGrid').innerHTML = C.certs
       .map(
         (c) =>
-          '<a class="cert-card reveal" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
+          '<a class="cert-card" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
           '<span class="cert-issuer">' + escapeHtml(c.issuer) + '</span>' +
           '<span class="cert-name">' + escapeHtml(c.name) + '</span>' +
           '<span class="cert-date">' + escapeHtml(c.date) + '</span>' +
@@ -182,37 +183,66 @@
           '</a>'
       )
       .join('');
+    let heading = $('#certifications .journey-title');
+    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title'; $('#certGrid').before(heading); }
+    heading.textContent = JOURNEY[lang].proof;
   }
 
   function renderProjects() {
     const C = CONTENT[lang];
+    const J = JOURNEY[lang];
+    $('#projects .sec-title').hidden = true;
     $('#projectGrid').innerHTML = C.projects
       .map(
-        (p) =>
-          '<article class="project-card reveal">' +
-          '<div class="project-icon" aria-hidden="true">' + (ICONS[p.icon] || '') + '</div>' +
-          '<h3>' + escapeHtml(p.name) + '</h3>' +
+        (p, i) =>
+          '<article class="workbench-project"><div class="system-diagram" aria-label="' + escapeHtml(J.diagram) + '">' + J.diagrams[i].map((node, n) => '<div class="system-node node-' + n + '">' + escapeHtml(node) + '</div>').join('<span class="system-link" aria-hidden="true"></span>') + '<p class="diagram-caption">' + escapeHtml(J.diagram) + '</p></div><div class="project-notes"><h3>' + escapeHtml(p.name) + '</h3><p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
           '<div class="chips">' + p.tags.map((t) => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
-          '<p class="project-text">' + escapeHtml(p.text) + '</p>' +
-          '</article>'
+          '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details>' +
+          '</div></article>'
       )
       .join('');
+    let heading = $('#projects .journey-title');
+    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title'; $('#projectGrid').before(heading); }
+    heading.textContent = J.workbench;
   }
 
   function renderContact() {
     const C = CONTENT[lang];
-    $('#contactGrid').innerHTML = C.contact
+    const J = JOURNEY[lang];
+    $('#contact .sec-title').hidden = true;
+    $('#contactGrid').innerHTML = '<div class="contact-finale"><h2>' + escapeHtml(J.close) + '</h2><p>' + escapeHtml(J.closeText) + '</p><div class="finale-actions"><a class="btn btn-primary" href="mailto:' + CONTACT_EMAIL + '">' + escapeHtml(J.email) + ' ↗</a><a class="btn" href="' + CV_FILES[lang] + '" download>' + escapeHtml(C.hero.actions.cv) + ' ↓</a></div></div><div class="contact-directory">' + C.contact
       .map(
         (c) =>
-          '<a class="contact-card reveal" href="' + escapeHtml(c.href) + '"' +
+          '<a class="contact-card" href="' + escapeHtml(c.href) + '"' +
           (c.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' +
           '<span class="c-icon" aria-hidden="true">' + escapeHtml(c.icon) + '</span>' +
           '<span class="c-label">' + escapeHtml(c.label) + '</span>' +
           '<span class="c-value">' + escapeHtml(c.value) + '</span>' +
           '</a>'
       )
-      .join('');
+      .join('') + '</div>';
   }
+
+  function updateCareer() {
+    const phases = $$('.career-phase');
+    if (!phases.length) return;
+    let active = 0;
+    phases.forEach((p, i) => { if (p.getBoundingClientRect().top <= innerHeight * 0.55) active = i; });
+    const stage = $('.career-stage');
+    if (!stage) return;
+    stage.style.setProperty('--phase', active);
+    $('.orbit-index', stage).textContent = String(active + 1).padStart(2, '0');
+    $('.orbit-name', stage).textContent = JOURNEY[lang].phases[active];
+    $$('.phase-jumps a', stage).forEach((a, i) => { a.classList.toggle('is-current', i === active); if (i === active) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
+    phases.forEach((p, i) => p.classList.toggle('is-current', i === active));
+  }
+  let careerFrame = false;
+  window.addEventListener('scroll', () => {
+    if (careerFrame) return;
+    careerFrame = true;
+    requestAnimationFrame(() => { updateCareer(); careerFrame = false; });
+  }, { passive: true });
+  window.addEventListener('resize', updateCareer);
 
   /* ---------------- reveal on scroll (decode on first view) ---------------- */
 
@@ -680,10 +710,12 @@
     animLock = true;
     // Remember which sections are currently revealed so they don't blink to empty
     const visibleIds = Array.from(new Set($$('.reveal.visible').map((el) => el.closest('section')?.id).filter(Boolean)));
+    const openDetails = $$('main details').map((el, i) => el.open ? i : -1).filter(i => i >= 0);
     lang = lang === 'nl' ? 'en' : 'nl';
     localStorage.setItem('portfolio-lang', lang);
     applyI18n();
     renderAll();
+    openDetails.forEach(i => { const el = $$('main details')[i]; if (el) el.open = true; });
     visibleIds.forEach((id) => {
       const sec = document.getElementById(id);
       if (sec) $$('.reveal', sec).forEach((el) => el.classList.add('visible'));
