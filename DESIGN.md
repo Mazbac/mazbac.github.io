@@ -187,7 +187,7 @@ Credential and contact-directory rows have no hover shadow or lift in the finish
 
 ## Shapes
 
-The terminal window uses the `14px` hero radius; portrait, facts, framed icons, the automation hub, the remote route and the component board use the `12px` container radius; buttons and compact navigation controls use `9px`. Chips are fully rounded. Schematic nodes use square edges; the component board shares the rounded container radius of the other diagram cards. All list dividers, internal facts, menu rows, footer rules and the diagram airflow line are solid, one-pixel strokes. Native disclosure markers remain visible.
+The terminal window uses the `14px` hero radius; portrait, facts, framed icons, the automation hub, the remote route and the component board use the `12px` container radius; buttons and compact navigation controls use `9px`. Chips are fully rounded. Schematic nodes use square edges; all three diagram cards share the same borderless surface card and rounded container radius. All list dividers, internal facts, menu rows, footer rules and the diagram airflow line are solid, one-pixel strokes. Native disclosure markers remain visible.
 
 ## Components
 
