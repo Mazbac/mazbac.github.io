@@ -954,7 +954,6 @@ html.js .reveal.visible {
   }
 
   .hero-side { order: -1; justify-content: center; }
-  .photo-card { max-width: 280px; }
   .terminal-body { min-height: 320px; }
 
   .about-grid { grid-template-columns: 1fr; }
@@ -980,7 +979,6 @@ html.js .reveal.visible {
     padding-top: calc(var(--nav-h) + 20px);
     gap: 20px;
   }
-  .photo-card { max-width: 200px; }
   .photo-card figcaption span:first-child { display: none; }
   .terminal-body { min-height: 250px; max-height: 250px; }
   .hero-intro { padding-top: 20px; }
