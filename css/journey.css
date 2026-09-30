@@ -112,7 +112,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 .workbench-2 .project-heading, .workbench-2 .project-supporting { min-width: 0; }
 .workbench-2 .project-supporting .project-hook { margin-top: 0; }
 .build-board { width: 100%; }
-.chassis { border: 1px solid var(--border-strong); padding: 22px; display: grid; grid-template-columns: 1.25fr .8fr .8fr; grid-template-rows: auto 80px 80px 32px; gap: 10px; background: var(--surface); }
+.chassis { border: 1px solid var(--border-strong); border-radius: 12px; padding: 22px; display: grid; grid-template-columns: 1.25fr .8fr .8fr; grid-template-rows: auto 80px 80px 32px; gap: 10px; background: var(--surface); }
 .chassis-title { grid-column: 1 / -1; font: .8rem var(--mono); color: var(--accent); letter-spacing: .08em; }
 .part { background: var(--bg-soft); min-height: 0; }
 .part-0 { grid-column: 1; grid-row: 2 / 4; border-color: var(--accent); color: var(--accent); font-size: 1.3rem; }
