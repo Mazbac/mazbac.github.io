@@ -455,7 +455,7 @@ html[data-theme='dark'] .theme-moon { display: none; }
 
 /* photo card */
 
-.hero-side { display: flex; justify-content: center; }
+.hero-side { display: flex; justify-content: flex-end; }
 
 .photo-card {
   width: 100%;
@@ -962,7 +962,7 @@ html.js .reveal.visible {
     padding-top: calc(var(--nav-h) + 40px);
   }
 
-  .hero-side { order: -1; }
+  .hero-side { order: -1; justify-content: center; }
   .photo-card { max-width: 280px; }
   .terminal-body { min-height: 320px; }
 
