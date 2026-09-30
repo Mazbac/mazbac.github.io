@@ -2,7 +2,7 @@
 const JOURNEY = {
   en: {
     thesis: 'From keeping people working to shaping the platforms they work on.',
-    factLabels: ['Location', 'Current role', 'Experience', 'Status', 'Languages'],
+    factLabels: ['Location', 'Experience', 'Status', 'Languages'],
     intro: 'Enterprise support, Microsoft 365 and now ServiceNow. Follow the experience behind the tools.',
     career: 'A career in motion.', proof: 'Experience, verified.', workbench: 'The work continues after hours.',
     close: 'Let’s talk about what comes next.', closeText: 'Looking for structured problem-solving, platform experience and a hands-on mindset? Start a conversation.',
@@ -15,7 +15,7 @@ const JOURNEY = {
   },
   nl: {
     thesis: 'Van mensen aan het werk houden naar de platformen waarop ze werken.',
-    factLabels: ['Locatie', 'Huidige rol', 'Ervaring', 'Status', 'Talen'],
+    factLabels: ['Locatie', 'Ervaring', 'Status', 'Talen'],
     intro: 'Enterprise-support, Microsoft 365 en nu ServiceNow. Ontdek de ervaring achter de tools.',
     career: 'Een carrière in beweging.', proof: 'Ervaring, geverifieerd.', workbench: 'Na werktijd gaat het bouwen door.',
     close: 'Laten we praten over de volgende stap.', closeText: 'Op zoek naar gestructureerde probleemoplossing, platformervaring en een hands-on mentaliteit? Laten we kennismaken.',

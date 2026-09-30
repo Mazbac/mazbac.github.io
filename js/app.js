@@ -147,14 +147,13 @@
       const v = resolve(C, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
-    $$('[data-cv-auto]').forEach((el) => { el.href = CV_FILES[lang]; });
     $$('#langToggle span[data-lang]').forEach((el) => {
       el.classList.toggle('active', el.dataset.lang === lang);
     });
     const img = $('#headshotImg');
     if (img) img.alt = C.imgAlt;
-    const navLinks = $('.nav-links');
-    if (navLinks) navLinks.setAttribute('aria-label', C.aria.nav);
+    $('#mmLinks').setAttribute('aria-label', C.aria.nav);
+    $('#navProgress').setAttribute('aria-label', C.nav.progress);
     const input = $('#terminalInput');
     if (input) input.setAttribute('aria-label', C.aria.input);
   }
@@ -289,13 +288,31 @@
     $$('.phase-jumps a', stage).forEach((a, i) => { a.classList.toggle('is-current', i === active); if (i === active) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
     phases.forEach((p, i) => p.classList.toggle('is-current', i === active));
   }
+  const chapterIds = ['about', 'experience', 'skills', 'certifications', 'projects', 'contact'];
+  const chapterKeys = ['about', 'experience', 'skills', 'certs', 'projects', 'contact'];
+
+  function updateChapterIndicator() {
+    let active = -1;
+    const chapterEdge = $('#nav').offsetHeight + 42;
+    chapterIds.forEach((id, i) => {
+      if ($('#' + id).getBoundingClientRect().top <= chapterEdge) active = i;
+    });
+    $('#chapterNumber').textContent = String(active + 1).padStart(2, '0');
+    $('#chapterName').textContent = active < 0 ? '~' : CONTENT[lang].sec[chapterKeys[active]];
+    const maxScroll = document.documentElement.scrollHeight - innerHeight;
+    const percent = maxScroll > 0 ? Math.round(Math.min(100, Math.max(0, scrollY / maxScroll * 100))) : 100;
+    const progress = $('#navProgress');
+    progress.style.setProperty('--progress', percent / 100);
+    progress.setAttribute('aria-valuenow', String(percent));
+    $('#nav').classList.toggle('scrolled', scrollY > 8);
+  }
   let careerFrame = false;
   window.addEventListener('scroll', () => {
     if (careerFrame) return;
     careerFrame = true;
-    requestAnimationFrame(() => { updateCareer(); careerFrame = false; });
+    requestAnimationFrame(() => { updateCareer(); updateChapterIndicator(); careerFrame = false; });
   }, { passive: true });
-  window.addEventListener('resize', updateCareer);
+  window.addEventListener('resize', () => { updateCareer(); updateChapterIndicator(); });
 
   /* ---------------- reveal on scroll (decode on first view) ---------------- */
 
@@ -334,6 +351,7 @@
     renderProjects();
     renderContact();
     observeReveals();
+    updateChapterIndicator();
   }
 
   /* ---------------- terminal ---------------- */
@@ -593,15 +611,6 @@
   }
 
   /* ---------------- nav ---------------- */
-
-  const nav = $('#nav');
-  window.addEventListener(
-    'scroll',
-    () => {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
-    },
-    { passive: true }
-  );
 
   /* ---------------- mobile menu ---------------- */
 

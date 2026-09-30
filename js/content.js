@@ -27,7 +27,8 @@ const CONTENT = {
       certs: 'Certificaten',
       projects: 'Projecten',
       contact: 'Contact',
-      cv: 'CV',
+      role: 'ServiceNow Engineer @ Devoteam',
+      progress: 'Leesvoortgang',
       theme: 'Schakel naar {mode} modus',
       themeLight: 'lichte',
       themeDark: 'donkere',
@@ -43,7 +44,7 @@ const CONTENT = {
     },
     hero: {
       role: 'ICT Professional · ServiceNow Engineer · ITIL',
-      actions: { cv: 'Download CV', contact: 'Contact' },
+      actions: { cv: 'Download CV' },
       intro: [
         {
           cmd: 'whoami',
@@ -119,7 +120,6 @@ const CONTENT = {
       text: 'Ik ben een resultaatgerichte IT-professional met bewezen ervaring in technische ondersteuning binnen enterprise Microsoft 365-omgevingen. Mijn kernvakgebied is incident-, probleem- en changemanagement volgens ITIL-principes, met hands-on kennis van ServiceNow, Intune, Azure AD en Microsoft 365. Ik combineer een gestructureerde werkwijze met een sterk analytisch vermogen en denk proactief mee in procesoptimalisatie en serviceverbetering. Kwaliteit, veiligheid en klantgerichtheid staan voorop in elke schakel van de IT-keten. Buiten kantooruren werk ik aan mijn smart home (Home Assistant, IoT, automatiseringen) en bouw ik zelf PCs.',
       facts: [
         ['location', 'Rotterdam, NL', false],
-        ['current role', 'ServiceNow Engineer @ Devoteam', false],
         ['experience', '4+ jaar IT-support & platformbeheer', false],
         ['status', 'open voor nieuwe opportuniteiten', true],
         ['languages', 'Nederlands (native) · Engels', false]
@@ -255,16 +255,11 @@ const CONTENT = {
       }
     ],
     contact: [
-      { icon: '@', label: 'E-mail', value: CONTACT_EMAIL, href: 'mailto:' + CONTACT_EMAIL },
       { icon: '☎', label: 'Telefoon', value: '+31 6 27057401', href: 'tel:+31627057401' },
       { icon: 'in', label: 'LinkedIn', value: 'linkedin.com/in/mert-ozbek', href: 'https://www.linkedin.com/in/mert-ozbek' },
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      cvTitle: 'CV downloaden:',
-      mail: '✉ e-mail',
-      cvNl: 'CV (Nederlands)',
-      cvEn: 'CV (English)',
       rights: '© 2026 Mertcan Özbek — Alle rechten voorbehouden.',
       built: 'gebouwd met ♥ in plain HTML/CSS/JS — geen framework'
     }
@@ -287,7 +282,8 @@ const CONTENT = {
       certs: 'Certifications',
       projects: 'Projects',
       contact: 'Contact',
-      cv: 'CV',
+      role: 'ServiceNow Engineer @ Devoteam',
+      progress: 'Reading progress',
       theme: 'Switch to {mode} mode',
       themeLight: 'light',
       themeDark: 'dark',
@@ -303,7 +299,7 @@ const CONTENT = {
     },
     hero: {
       role: 'ICT Professional · ServiceNow Engineer · ITIL',
-      actions: { cv: 'Download CV', contact: 'Contact' },
+      actions: { cv: 'Download CV' },
       intro: [
         {
           cmd: 'whoami',
@@ -379,7 +375,6 @@ const CONTENT = {
       text: "I'm a results-oriented IT professional with proven experience in technical support within enterprise Microsoft 365 environments. My core area is incident, problem and change management aligned with ITIL principles, with hands-on knowledge of ServiceNow, Intune, Azure AD and Microsoft 365. I combine a structured way of working with strong analytical skills and think proactively about process optimization and service improvement. Quality, security and customer focus come first in every link of the IT chain. Outside office hours I work on my smart home (Home Assistant, IoT, automations) and build PCs myself.",
       facts: [
         ['location', 'Rotterdam, NL', false],
-        ['current role', 'ServiceNow Engineer @ Devoteam', false],
         ['experience', '4+ years IT support & platform administration', false],
         ['status', 'open to new opportunities', true],
         ['languages', 'Dutch (native) · English', false]
@@ -515,16 +510,11 @@ const CONTENT = {
       }
     ],
     contact: [
-      { icon: '@', label: 'Email', value: CONTACT_EMAIL, href: 'mailto:' + CONTACT_EMAIL },
       { icon: '☎', label: 'Phone', value: '+31 6 27057401', href: 'tel:+31627057401' },
       { icon: 'in', label: 'LinkedIn', value: 'linkedin.com/in/mert-ozbek', href: 'https://www.linkedin.com/in/mert-ozbek' },
       { icon: '</>', label: 'GitHub', value: 'github.com/Mazbac', href: 'https://github.com/Mazbac' }
     ],
     footer: {
-      cvTitle: 'Download CV:',
-      mail: '✉ email',
-      cvNl: 'CV (Dutch)',
-      cvEn: 'CV (English)',
       rights: '© 2026 Mertcan Özbek — All rights reserved.',
       built: 'built with ♥ in plain HTML/CSS/JS — no framework'
     }

@@ -101,7 +101,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 2px soli
 #contact { border-top: 1px solid var(--accent); }
 .contact-finale h2 { max-width: 16ch; }
 .finale-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 50px; }
-.contact-directory { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.contact-directory { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 680px; }
 .contact-directory .contact-card { background: none; border: none; border-radius: 0; border-top: 1px solid var(--border); padding: 20px 0; }
 .contact-directory .c-icon { display: none; }
 @media (min-width: 961px) and (prefers-reduced-motion: no-preference) {

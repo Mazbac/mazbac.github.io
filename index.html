@@ -55,24 +55,17 @@
       <span class="menu-icon" aria-hidden="true"><span class="mid"></span></span>
     </button>
     <a class="logo" href="#top"><span class="prompt">&gt;_</span><span class="logo-text">mertcan@portfolio</span></a>
-    <nav class="nav-links" aria-label="Hoofdnavigatie">
-      <a href="#about" data-i18n="nav.about"></a>
-      <a href="#experience" data-i18n="nav.experience"></a>
-      <a href="#skills" data-i18n="nav.skills"></a>
-      <a href="#certifications" data-i18n="nav.certs"></a>
-      <a href="#projects" data-i18n="nav.projects"></a>
-      <a href="#contact" data-i18n="nav.contact"></a>
-    </nav>
+    <span class="nav-role" data-i18n="nav.role"></span>
+    <span class="chapter-indicator" aria-live="off"><span id="chapterNumber">00</span><span class="chapter-separator" aria-hidden="true"> · </span><span id="chapterName">~</span></span>
+    <a class="nav-contact" href="#contact"><span data-i18n="nav.contact"></span><span aria-hidden="true"> ↓</span></a>
     <button class="lang-toggle" id="langToggle" type="button" aria-label="Wissel taal / Switch language">
       <span data-lang="nl">NL</span><span class="sep">/</span><span data-lang="en">EN</span>
     </button>
-    <a class="btn nav-cv" href="cv/Mertcan-Ozbek-CV-NL.pdf" data-cv-auto download>
-      <span data-i18n="nav.cv"></span>
-    </a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Schakel naar lichte modus" aria-pressed="false" title="Schakel naar lichte modus">
       <svg class="theme-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
       <svg class="theme-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>
     </button>
+    <span class="nav-progress" id="navProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Leesvoortgang"><span class="nav-progress-fill"></span></span>
   </header>
 
   <main id="top">
@@ -109,14 +102,6 @@
     <section class="hero-intro">
       <h1 class="glitch" data-text="Mertcan Özbek">Mertcan Özbek</h1>
       <p class="subtitle"><span id="typedRole"></span><span class="caret" aria-hidden="true">▌</span></p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="cv/Mertcan-Ozbek-CV-NL.pdf" data-cv-auto download>
-          <span data-i18n="hero.actions.cv"></span> ↓
-        </a>
-        <a class="btn" href="#contact"><span data-i18n="hero.actions.contact"></span></a>
-        <a class="btn" href="https://www.linkedin.com/in/mert-ozbek" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/Mazbac" target="_blank" rel="noopener">GitHub</a>
-      </div>
     </section>
 
     <!-- ================= ABOUT ================= -->
@@ -178,20 +163,6 @@
   <!-- ================= FOOTER ================= -->
   <footer class="site">
     <div class="footer-inner">
-      <div class="footer-top">
-        <div class="cv-block">
-          <p class="cv-title" data-i18n="footer.cvTitle"></p>
-          <div class="cv-buttons">
-            <a class="btn" href="cv/Mertcan-Ozbek-CV-NL.pdf" download><span data-i18n="footer.cvNl"></span> ↓</a>
-            <a class="btn" href="cv/Mertcan-Ozbek-CV-EN.pdf" download><span data-i18n="footer.cvEn"></span> ↓</a>
-          </div>
-        </div>
-        <div class="socials">
-          <a class="btn" href="mailto:mertozbek.1994@gmail.com"><span data-i18n="footer.mail"></span></a>
-          <a class="btn" href="https://www.linkedin.com/in/mert-ozbek" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/Mazbac" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
       <div class="footer-bottom">
         <span data-i18n="footer.rights"></span>
         <span data-i18n="footer.built"></span>

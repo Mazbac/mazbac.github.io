@@ -106,7 +106,7 @@ components:
 
 The incumbent near-black and violet terminal/BIOS identity remains authoritative. The optional light mode uses lavender-tinted reading surfaces with a deeper violet accent while the boot and interactive terminal stay dark. Inter carries the human story; JetBrains Mono carries commands, metadata and technical evidence. Recomposition creates distinct reading moments without introducing a new brand.
 
-The preserved boot, interactive terminal and portrait lead into spacious narrative chapters, optional native disclosures, a credential checkpoint, schematic personal builds and direct contact. This is a record of the finished artifact, not a proposal for additional UI.
+The preserved boot, interactive terminal and portrait lead into spacious narrative chapters, optional native disclosures, a credential checkpoint, schematic personal builds and a single contact destination. The hero and footer no longer repeat its actions; the interactive terminal retains its own contact/CV commands as an intentional alternate register.
 
 **Key Characteristics:**
 - Preserved terminal identity and original skippable BIOS opening.
@@ -114,7 +114,7 @@ The preserved boot, interactive terminal and portrait lead into spacious narrati
 - Readable summaries with native optional detail.
 - Truthful portrait, credentials and explicitly conceptual diagrams.
 
-Documentation scope: `css/styles.css`, its later cascade in `css/journey.css`, `index.html`, the generated component markup in `js/app.js`, `js/journey.js`, `PRODUCT.md` and `.impeccable/surfaces/portfolio.md`. Only this file and `.impeccable/design.json` are written in this documentation pass; no UI code or binary assets are edited. `.impeccable` is ignored and local development-only; the root document is the portable system record.
+Documentation scope: `css/styles.css`, its later cascade in `css/journey.css`, `index.html`, and generated markup in `js/app.js`, `js/content.js` and `js/journey.js`. `.impeccable` is ignored and local development-only; this root document is the portable system record.
 
 ## Colors
 
@@ -122,7 +122,7 @@ Violet illumination sits on purple-tinted near-black surfaces in dark mode; read
 
 ### Primary
 - **Terminal Violet** (`accent`): prompts, links, summaries, focus outlines, chapter numbers, active progress segments and diagram connectors.
-- **Action Violet** (`accent-strong`): primary CV actions and their glow.
+- **Action Violet** (`accent-strong`): filled action styling and its glow.
 - **Soft Violet Wash** (`accent-soft`): incumbent accent backing, not a new full-page surface.
 - **Finale Violet** (`finale-action`): the deeper email-action fill used in the closing contact area.
 
@@ -155,16 +155,19 @@ The bold human headline is distinct from restrained monospaced machinery. Narrat
 
 ## Layout
 
-The hero and name/action block share a centered maximum width (`1120px`); narrative sections and footer use `1080px`, with horizontal gutters (`24px`). Desktop hero columns are `1.15fr / 0.85fr` with a `36px` gap. The opening uses `1.5fr / 1fr` and a `70px` gap; the career uses `1fr / 1.1fr` and a `90px` gap. Narrative sections have `90px` top and bottom padding. The toolkit intentionally overrides this with no top padding and `45px` bottom padding.
+The hero and name block share a centered maximum width (`1120px`); narrative sections and footer use `1080px`, with horizontal gutters (`24px`). Desktop hero columns are `1.15fr / 0.85fr` with a `36px` gap. The opening uses `1.5fr / 1fr` and a `70px` gap; the career uses `1fr / 1.1fr` and a `90px` gap. Narrative sections have `90px` top and bottom padding. The toolkit intentionally overrides this with no top padding and `45px` bottom padding.
 
-Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). This offset is also confirmed by the finish reviewer. Chapters use a desktop minimum height (`55vh`), natural document scrolling and real anchor links; no scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials and the contact directory are two-column ruled lists. The workbench changes composition by project: automation hub with integrations beside its introduction, remote transmission route beside notes, and a full-width component spread below the PC-build introduction.
+Four career chapters run alongside a bounded sticky stage (`top: 105px`, `align-self: start`). Chapters use a desktop minimum height (`55vh`), natural document scrolling and real anchor links; no scroll hijacking or mandatory expanded content. The obsolete vertical timeline line is suppressed. Credentials are a two-column ruled list; the contact directory is a single-column ruled list. The workbench changes composition by project: automation hub with integrations beside its introduction, remote transmission route beside notes, and a full-width component spread below the PC-build introduction.
 
 ### Responsive behavior
 | Threshold | Actual behavior |
 | --- | --- |
-| `960px` and below | Hero becomes one column with portrait first (`280px` maximum); terminal minimum height becomes `320px`. Desktop navigation gives way to the existing mobile menu; buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns, chapter minimum heights are removed. |
+| `1100px` and below | Header role text disappears; the section index menu remains available at every width. |
+| `1024px` and below | Header chapter indicator shows the number only; the reading-progress line stays visible. |
+| `960px` and below | Hero becomes one column with portrait first (`280px` maximum); terminal minimum height becomes `320px`. Buttons/language control have a `44px` minimum height. Narrative sections use `60px` vertical padding. Opening/career become single-column with `32px` gaps; career stage is static, orbit is hidden, phase jumps form two columns, chapter minimum heights are removed. |
 | `560px` and below | Portrait maximum is `200px`; its path caption is hidden; terminal body is fixed at `250px`. Hero gap/name-block top padding become `20px`. Narrative section padding becomes `48px`; toolkit, credentials, projects and contact directory stack. Each project introduces itself before its own diagram; integration hub, connection route and component board adapt individually. Chapter padding contracts to `26px 0 30px`. |
-| `500px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`. Logo text disappears; its terminal prompt remains, making room for full-size language, CV and theme controls. |
+| `640px` and below | Logo text disappears; its terminal prompt remains. |
+| `500px` and below | Navigation horizontal padding contracts to `16px` and gaps to `10px`. Chapter number and contact shortcut disappear; the index menu retains contact access, with full-size language and theme controls in the header. |
 
 An incumbent `760px` rule also reduces the logo font to `13px`. Facts retain their incumbent maximum width (`420px`) after the `960px` rule. At small widths, schematic labels, chapter headings and tags wrap rather than force overflow.
 
@@ -198,7 +201,7 @@ The terminal retains traffic-light chrome, monospaced log, scrollable output and
 `assets/headshot.jpg` is the existing **user-supplied portrait of Mertcan Özbek**, not a generated or stock asset. Its provenance is user supplied as confirmed for this pass; no photographer or license is inferred. The binary is untouched. HTML uses meaningful portrait alt text; the image is square, cover-cropped, with the incumbent saturation/contrast filter. The decorative caption path `~/assets/mertcan.jpg` is terminal styling, not the actual source path.
 
 ### Actions and navigation
-Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The original shell includes fixed navigation (`58px` high), bilingual controls, downloadable CVs and the existing modal mobile menu. A 44px sun/moon icon and a labeled menu row toggle light/dark without rerendering content; the first visit follows `prefers-color-scheme` and an explicit choice is persisted. A short color fade is disabled for reduced motion.
+Primary and ghost buttons use monospaced labels, a thin border, compact horizontal padding and slight hover lift (`-1px`); pressed controls scale (`0.97`). The closing email action uses the deeper finale fill. Focus-visible links, buttons and summaries get a violet outline (`2px`, offset `5px`). The fixed header (`58px`) is a status bar: logo, current role on wide screens, current chapter number/name, a thin scroll-progress line, a contact anchor where space permits, language and theme controls. The menu button opens the six-section index at every width. The role was moved out of the About facts rather than duplicated. The theme icon is 44px and the menu has a labeled theme row; first visit follows `prefers-color-scheme`, explicit choice persists, and the short theme fade is disabled for reduced motion.
 
 ### Native disclosures and toolkit
 About, full role bullets, complete toolkit and project detail use actual `<details>/<summary>` elements, not simulated accordions. Summaries are monospaced violet, have `14px` vertical padding and a `44px` minimum height; an open summary has `12px` bottom separation. The toolkit uses a stronger summary (`1.1rem`, `24px` vertical padding), ruled edges and two columns, stacking on small screens. Native keyboard semantics and markers remain intact. Language rerender preserves open disclosure indices.
@@ -213,7 +216,7 @@ Real credential links form ruled rows on the console-surface section. Issuer and
 Three personal builds use distinct HTML/CSS schematics drawn from existing descriptions. Home Assistant is a branching hub connecting Node-RED, a smart thermostat and M5Stack voice control. Sunshine/Moonlight is a horizontal host-to-client path with configuration annotations. Mini-ITX is a wide component inventory board showing CPU, GPU, RAM, PSU and an airflow indicator. Every diagram has a visible **“Conceptual overview · based on project description”** caption (localized in Dutch). These are conceptual explanations, **not screenshots, production architecture evidence or client work**. No fabricated raster assets or performance metrics are implied. Each project keeps its actual name, one-line hook, tags and optional full description.
 
 ### Contact finale
-A large human invitation, email and CV actions precede the flat contact directory. The heading is capped at `16ch`; the closing section begins with a violet rule. There is no invented form, submission flow or backend.
+A large human invitation, email and language-aware CV actions precede a single column with phone, LinkedIn and GitHub. Email appears once as the primary action, not again as a directory row. The heading is capped at `16ch`; the closing section begins with a violet rule. The footer keeps only the signature and return-to-top link. The terminal's `contact`, `cv` and `sudo hire-me` commands remain complete by deliberate exception. There is no invented form, submission flow or backend.
 
 ## Do's and Don'ts
 

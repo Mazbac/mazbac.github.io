@@ -24,4 +24,4 @@ Preserve the dark terminal/BIOS identity and violet accent. A lavender-tinted li
 - Quick first read, optional full detail.
 - Truthful evidence rather than invented achievements.
 - Distinct story moments rather than repeated cards.
-- Contact and CV remain directly accessible.
+- Each contact channel and the CV have one clear home in the contact finale; the persistent header links there on larger screens and the index menu does so at all widths. The interactive terminal remains an intentional alternate route.

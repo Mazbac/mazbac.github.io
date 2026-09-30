@@ -171,6 +171,9 @@ main, footer.site { position: relative; z-index: 1; }
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--mono);
   font-size: 14px;
   color: var(--text);
@@ -180,23 +183,43 @@ main, footer.site { position: relative; z-index: 1; }
 
 .logo .prompt { color: var(--accent); margin-right: 8px; }
 
-.nav-links {
-  display: flex;
-  gap: 4px;
+.nav-role, .chapter-indicator, .nav-contact {
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.nav-role { color: var(--muted); }
+.chapter-indicator {
   margin-left: auto;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
-
-.nav-links a {
-  font-size: 13.5px;
-  color: var(--muted);
+#chapterNumber, .chapter-separator { color: var(--accent); }
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: color 0.2s, background 0.2s;
+  text-underline-offset: 4px;
 }
-
-@media (hover: hover) {
-  .nav-links a:hover { color: var(--text); background: var(--surface); }
+.nav-contact:hover { text-decoration: underline; }
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+  pointer-events: none;
+}
+.nav-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
 }
 
 .lang-toggle {
@@ -296,22 +319,6 @@ html[data-theme='dark'] .theme-moon { display: none; }
   }
 }
 
-.nav-cv {
-  padding: 7px 14px;
-  font-size: 12.5px;
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
-  color: var(--on-accent);
-}
-
-@media (hover: hover) {
-  .nav-cv:hover {
-    color: var(--on-accent);
-    filter: brightness(1.12);
-    box-shadow: var(--glow);
-  }
-}
-
 /* press feedback for touch devices (hover is unavailable) */
 
 .chip, .lang-toggle, .menu-btn, .to-top {
@@ -319,7 +326,6 @@ html[data-theme='dark'] .theme-moon { display: none; }
 }
 
 .btn:active,
-.nav-cv:active,
 .lang-toggle:active,
 .menu-btn:active,
 .chip:active,
@@ -331,8 +337,7 @@ html[data-theme='dark'] .theme-moon { display: none; }
   border-color: var(--accent);
 }
 
-.btn:active,
-.nav-cv:active {
+.btn:active {
   box-shadow: 0 0 0 1px var(--accent), 0 0 18px rgba(167, 139, 250, 0.25);
 }
 
@@ -564,12 +569,6 @@ h1.glitch {
 }
 
 @keyframes blink { 50% { opacity: 0; } }
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 
 /* ---------- sections ---------- */
 
@@ -907,28 +906,6 @@ h1.glitch {
   padding: 56px 24px 40px;
 }
 
-.footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 36px;
-}
-
-.cv-title {
-  font-family: var(--mono);
-  font-size: 12.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--faint);
-  margin: 0 0 12px;
-}
-
-.cv-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-
-.socials { display: flex; gap: 10px; flex-wrap: wrap; }
-
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
@@ -941,7 +918,15 @@ h1.glitch {
   padding-top: 20px;
 }
 
-.to-top { color: var(--muted); text-decoration: none; }
+.to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--muted);
+  text-decoration: none;
+}
 @media (hover: hover) {
   .to-top:hover { color: var(--accent); }
 }
@@ -977,12 +962,14 @@ html.js .reveal.visible {
 }
 
 @media (max-width: 960px) {
-  .nav-links { display: none; }
-  header .menu-btn { display: inline-flex; }
-  body .mobile-menu { display: block; }
   .btn, .lang-toggle { min-height: 44px; }
-  /* split the bar: [burger + logo] left, [NL/EN + CV + theme] right */
-  .lang-toggle { margin-left: auto; }
+}
+
+@media (max-width: 1100px) { .nav-role { display: none; } }
+@media (max-width: 1024px) { #chapterName, .chapter-separator { display: none; } }
+@media (max-width: 640px) {
+  .logo { min-width: 44px; }
+  .logo .logo-text { display: none; }
 }
 
 @media (max-width: 760px) {
@@ -1000,10 +987,11 @@ html.js .reveal.visible {
   .hero-intro { padding-top: 20px; }
 }
 
-/* The extra theme control needs the compact band until the full logo fits. */
+/* The narrow band retains the index, language and theme controls. */
 @media (max-width: 500px) {
   .nav { padding: 0 16px; gap: 10px; }
-  .logo .logo-text { display: none; }
+  .chapter-indicator, .nav-contact { display: none; }
+  .lang-toggle { margin-left: auto; }
 }
 
 /* ---------- reduced motion ---------- */
@@ -1112,7 +1100,7 @@ body.menu-locked {
 }
 
 .menu-btn {
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
@@ -1171,7 +1159,7 @@ body.menu-locked {
   position: fixed;
   inset: 0;
   z-index: 150;
-  display: none;
+  display: block;
   visibility: hidden;
 }
 
