@@ -943,7 +943,7 @@ h1.glitch {
 /* ---------- reveal (decode on first view; JS-gated so content stays visible without JS) ---------- */
 
 .reveal {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
 html.js .reveal {

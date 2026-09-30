@@ -60,6 +60,7 @@
   /* ---------------- scramble-decode utility ---------------- */
 
   const GLYPHS = '0123456789abcdef<>/[]{}$#@*+=~!|?^%&';
+  let decodeGeneration = 0;
   const LEAF_SEL = [
     '[data-i18n]',
     '#chapterName', '.mm-mode',
@@ -81,7 +82,8 @@
   ].join(',');
 
   function scrambleTargetsIn(root) {
-    return $$(LEAF_SEL, root).filter((el) => el.children.length === 0 && el.textContent.trim().length > 0);
+    const targets = root.matches?.(LEAF_SEL) ? [root, ...$$(LEAF_SEL, root)] : $$(LEAF_SEL, root);
+    return targets.filter((el) => el.children.length === 0 && el.textContent.trim().length > 0);
   }
 
   function isRevealed(el) {
@@ -114,7 +116,9 @@
     el.textContent = glyphVersion(finalText, 0);
     if (el.hasAttribute('data-text')) el.setAttribute('data-text', el.textContent);
     const start = performance.now() + delay;
+    const generation = decodeGeneration;
     requestAnimationFrame(function frame(now) {
+      if (generation !== decodeGeneration || !el.isConnected) return;
       if (now < start) {
         requestAnimationFrame(frame);
         return;
@@ -179,8 +183,8 @@
     const body = $('#aboutBody');
     $('#about .sec-title').hidden = true;
     body.innerHTML =
-      '<div class="journey-opening"><h2>' + escapeHtml(J.thesis) + '</h2><p>' + escapeHtml(J.intro) + '</p><details><summary>' + escapeHtml(C.sec.about) + '</summary><p class="about-text">' + escapeHtml(C.about.text) + '</p></details></div>' +
-      '<div class="facts" role="list">' +
+      '<div class="journey-opening reveal" data-reveal="about-story"><h2>' + escapeHtml(J.thesis) + '</h2><p>' + escapeHtml(J.intro) + '</p><details><summary>' + escapeHtml(C.sec.about) + '</summary><p class="about-text">' + escapeHtml(C.about.text) + '</p></details></div>' +
+      '<div class="facts reveal" data-reveal="about-facts" role="list">' +
       C.about.facts
         .map(([k, v, accent], i) =>
           '<div class="fact" role="listitem">' +
@@ -198,9 +202,9 @@
     $('#experience .sec-title').hidden = true;
     const groups = [[4], [3, 2], [1], [0]];
     const tools = [['Windows 11', 'Google Workspace', 'Hardware'], ['TOPdesk', 'ServiceNow', 'VPN'], ['Microsoft 365', 'Intune', 'ITIL'], ['ServiceNow', 'JavaScript', 'CSA']];
-    $('#timeline').innerHTML = '<div class="career-stage"><h2>' + escapeHtml(J.career) + '</h2><div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(J.phases[0]) + '</span><div class="orbit-track"><i></i><i></i><i></i><i></i></div></div><nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' + groups.map((g, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(J.phases[i]) + '</a>').join('') + '</nav></div><div class="career-chapters">' + groups.map((indices, i) => '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / 04</div><h3>' + escapeHtml(J.phases[i]) + '</h3><p class="phase-summary">' + escapeHtml(J.summaries[i]) + '</p><div class="chips">' + tools[i].map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' + indices.map(index => {
+    $('#timeline').innerHTML = '<div class="career-stage reveal" data-reveal="career-stage"><h2>' + escapeHtml(J.career) + '</h2><div class="career-orbit" aria-hidden="true"><span class="orbit-index">01</span><span class="orbit-name">' + escapeHtml(J.phases[0]) + '</span><div class="orbit-track"><i></i><i></i><i></i><i></i></div></div><nav class="phase-jumps" aria-label="' + escapeHtml(C.sec.experience) + '">' + groups.map((g, i) => '<a href="#phase-' + i + '">' + String(i + 1).padStart(2, '0') + ' / ' + escapeHtml(J.phases[i]) + '</a>').join('') + '</nav></div><div class="career-chapters">' + groups.map((indices, i) => '<article class="career-phase" id="phase-' + i + '" data-phase="' + i + '"><div class="phase-intro reveal" data-reveal="phase-' + i + '-intro"><div class="phase-number">' + String(i + 1).padStart(2, '0') + ' / 04</div><h3>' + escapeHtml(J.phases[i]) + '</h3><p class="phase-summary">' + escapeHtml(J.summaries[i]) + '</p><div class="chips">' + tools[i].map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div></div>' + indices.map(index => {
       const item = C.experience[index];
-      return '<div class="career-role"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta"><span class="role-org">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '</span><br><span class="role-period">' + escapeHtml(item.period) + '</span></p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
+      return '<div class="career-role reveal" data-reveal="role-' + index + '"><h4>' + escapeHtml(item.role) + '</h4><p class="role-meta"><span class="role-org">' + escapeHtml(item.company) + ' · ' + escapeHtml(item.city) + '</span><br><span class="role-period">' + escapeHtml(item.period) + '</span></p><details><summary>' + escapeHtml(J.details) + '</summary><ul>' + item.bullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('') + '</ul></details></div>';
     }).join('') + '</article>').join('') + '</div>';
     $('#phase-1 .chips').insertAdjacentHTML('afterend', '<p class="overlap-note">' + escapeHtml(J.overlap) + '</p>');
     updateCareer();
@@ -209,7 +213,7 @@
   function renderSkills() {
     const C = CONTENT[lang];
     $('#skills .sec-title').hidden = true;
-    $('#skillsGrid').innerHTML = '<details class="toolkit"><summary>' + escapeHtml(JOURNEY[lang].skills) + '</summary><div class="toolkit-body">' + C.skills
+    $('#skillsGrid').innerHTML = '<details class="toolkit reveal" data-reveal="skills"><summary>' + escapeHtml(JOURNEY[lang].skills) + '</summary><div class="toolkit-body">' + C.skills
       .map(
         (g) =>
           '<div class="skill-group">' +
@@ -225,8 +229,8 @@
     $('#certifications .sec-title').hidden = true;
     $('#certGrid').innerHTML = C.certs
       .map(
-        (c) =>
-          '<a class="cert-card" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
+        (c, i) =>
+          '<a class="cert-card reveal" data-reveal="cert-' + i + '" href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
           '<span class="cert-issuer">' + escapeHtml(c.issuer) + '</span>' +
           '<span class="cert-name">' + escapeHtml(c.name) + '</span>' +
           '<span class="cert-date">' + escapeHtml(c.date) + '</span>' +
@@ -235,7 +239,7 @@
       )
       .join('');
     let heading = $('#certifications .journey-title');
-    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title'; $('#certGrid').before(heading); }
+    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title reveal'; heading.dataset.reveal = 'cert-heading'; $('#certGrid').before(heading); }
     heading.textContent = JOURNEY[lang].proof;
   }
 
@@ -248,7 +252,7 @@
       const supporting = '<p class="project-hook">' + escapeHtml(J.notes[i]) + '</p>' +
         '<div class="chips">' + p.tags.map(t => '<span class="chip">' + escapeHtml(t) + '</span>').join('') + '</div>' +
         '<details><summary>' + escapeHtml(J.projectDetails) + '</summary><p class="project-text">' + escapeHtml(p.text) + '</p></details>';
-      return '<div class="project-notes">' + (i === 2
+      return '<div class="project-notes reveal" data-reveal="project-' + i + '-notes">' + (i === 2
         ? '<div class="project-heading">' + heading + '</div><div class="project-supporting">' + supporting + '</div>'
         : heading + supporting) + '</div>';
     };
@@ -256,18 +260,18 @@
     const diagram = (i) => {
       const labels = J.projectSchematics[i];
       const caption = '<p class="diagram-caption">' + escapeHtml(J.diagram) + '</p>';
-      if (i === 0) return '<div class="project-visual automation-map" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="automation-nodes">' +
+      if (i === 0) return '<div class="project-visual automation-map reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="automation-nodes">' +
         node(labels[0], 'automation-core') + node(labels[1], 'automation-branch branch-one') + node(labels[2], 'automation-branch branch-two') + node(labels[3], 'automation-branch branch-three') +
         '</div>' + caption + '</div>';
-      if (i === 1) return '<div class="project-visual remote-route" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="route-nodes">' +
+      if (i === 1) return '<div class="project-visual remote-route reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="route-nodes">' +
         node(labels[0], 'route-host') + '<span class="route-line" aria-hidden="true"><i></i></span>' + node(labels[1], 'route-client') + '</div><div class="route-meta">' +
         labels.slice(2).map(t => '<span>' + escapeHtml(t) + '</span>').join('') + '</div>' + caption + '</div>';
-      return '<div class="project-visual build-board" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="chassis"><span class="chassis-title">Mini-ITX</span>' +
+      return '<div class="project-visual build-board reveal" data-reveal="project-' + i + '-visual" role="img" aria-label="' + escapeHtml(J.diagram + ': ' + labels.join(', ')) + '"><div class="chassis"><span class="chassis-title">Mini-ITX</span>' +
         labels.map((t, n) => node(t, 'part part-' + n)).join('') + '<span class="airflow" aria-hidden="true"></span></div>' + caption + '</div>';
     };
     $('#projectGrid').innerHTML = C.projects.map((p, i) => '<article class="workbench-project workbench-' + i + '">' + projectInfo(p, i) + diagram(i) + '</article>').join('');
     let heading = $('#projects .journey-title');
-    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title'; $('#projectGrid').before(heading); }
+    if (!heading) { heading = document.createElement('h2'); heading.className = 'journey-title reveal'; heading.dataset.reveal = 'project-heading'; $('#projectGrid').before(heading); }
     heading.textContent = J.workbench;
   }
 
@@ -275,10 +279,10 @@
     const C = CONTENT[lang];
     const J = JOURNEY[lang];
     $('#contact .sec-title').hidden = true;
-    $('#contactGrid').innerHTML = '<div class="contact-finale"><h2>' + escapeHtml(J.close) + '</h2><p>' + escapeHtml(J.closeText) + '</p><div class="finale-actions"><a class="btn btn-primary" href="mailto:' + CONTACT_EMAIL + '">' + escapeHtml(J.email) + ' ↗</a><a class="btn" href="' + CV_FILES[lang] + '" download>' + escapeHtml(C.hero.actions.cv) + ' ↓</a></div></div><div class="contact-directory">' + C.contact
+    $('#contactGrid').innerHTML = '<div class="contact-finale reveal" data-reveal="contact-finale"><h2>' + escapeHtml(J.close) + '</h2><p>' + escapeHtml(J.closeText) + '</p><div class="finale-actions"><a class="btn btn-primary" href="mailto:' + CONTACT_EMAIL + '">' + escapeHtml(J.email) + ' ↗</a><a class="btn" href="' + CV_FILES[lang] + '" download>' + escapeHtml(C.hero.actions.cv) + ' ↓</a></div></div><div class="contact-directory">' + C.contact
       .map(
-        (c) =>
-          '<a class="contact-card" href="' + escapeHtml(c.href) + '"' +
+        (c, i) =>
+          '<a class="contact-card reveal" data-reveal="contact-' + i + '" href="' + escapeHtml(c.href) + '"' +
           (c.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' +
           '<span class="c-icon" aria-hidden="true">' + escapeHtml(c.icon) + '</span>' +
           '<span class="c-label">' + escapeHtml(c.label) + '</span>' +
@@ -332,7 +336,7 @@
   function revealEl(el) {
     el.classList.add('visible');
     if (reduced) return;
-    const targets = scrambleTargetsIn(el);
+    const targets = scrambleTargetsIn(el).filter(isOnScreen);
     targets.forEach((t, i) => scrambleText(t, t.textContent, { duration: 380, delay: i * 45 }));
   }
 
@@ -340,7 +344,7 @@
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          revealEl(e.target);
+          if (!e.target.classList.contains('visible')) revealEl(e.target);
           io.unobserve(e.target);
         }
       });
@@ -349,6 +353,7 @@
   );
 
   function observeReveals() {
+    io.disconnect();
     if (reduced) {
       $$('.reveal').forEach((el) => el.classList.add('visible'));
       return;
@@ -363,7 +368,6 @@
     renderCerts();
     renderProjects();
     renderContact();
-    observeReveals();
     updateChapterIndicator();
   }
 
@@ -780,6 +784,7 @@
     }
     await sleep(skipRequested ? 170 : 230);
     bootEl.remove();
+    observeReveals();
     window.removeEventListener('keydown', onSkip);
     bootEl.removeEventListener('pointerdown', onSkip);
     animLock = false;
@@ -791,8 +796,9 @@
   $('#langToggle').addEventListener('click', () => {
     if (animLock) return;
     animLock = true;
-    // Remember which sections are currently revealed so they don't blink to empty
-    const visibleIds = Array.from(new Set($$('.reveal.visible').map((el) => el.closest('section')?.id).filter(Boolean)));
+    decodeGeneration += 1;
+    // Keep each block's scroll state across the language rerender.
+    const revealed = new Set($$('.reveal.visible').map((el) => el.dataset.reveal));
     const openDetails = $$('main details').map((el, i) => el.open ? i : -1).filter(i => i >= 0);
     lang = lang === 'nl' ? 'en' : 'nl';
     localStorage.setItem('portfolio-lang', lang);
@@ -800,10 +806,8 @@
     renderAll();
     syncTheme();
     openDetails.forEach(i => { const el = $$('main details')[i]; if (el) el.open = true; });
-    visibleIds.forEach((id) => {
-      const sec = document.getElementById(id);
-      if (sec) $$('.reveal', sec).forEach((el) => el.classList.add('visible'));
-    });
+    $$('.reveal').forEach((el) => { if (revealed.has(el.dataset.reveal)) el.classList.add('visible'); });
+    observeReveals();
     // phones get a slower, more visible wave; desktop stays snappy
     const narrow = window.innerWidth <= 760;
     decodeAll(
