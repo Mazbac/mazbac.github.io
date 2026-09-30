@@ -800,12 +800,18 @@
     // Keep each block's scroll state across the language rerender.
     const revealed = new Set($$('.reveal.visible').map((el) => el.dataset.reveal));
     const openDetails = $$('main details').map((el, i) => el.open ? i : -1).filter(i => i >= 0);
+    const main = $('main');
+    if (openDetails.length) main.classList.add('restoring-details');
     lang = lang === 'nl' ? 'en' : 'nl';
     localStorage.setItem('portfolio-lang', lang);
     applyI18n();
     renderAll();
     syncTheme();
     openDetails.forEach(i => { const el = $$('main details')[i]; if (el) el.open = true; });
+    if (openDetails.length) {
+      main.offsetHeight; // Commit the restored layout before transitions return.
+      requestAnimationFrame(() => main.classList.remove('restoring-details'));
+    }
     $$('.reveal').forEach((el) => { if (revealed.has(el.dataset.reveal)) el.classList.add('visible'); });
     observeReveals();
     // phones get a slower, more visible wave; desktop stays snappy
